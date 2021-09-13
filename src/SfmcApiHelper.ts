@@ -2,13 +2,21 @@
 
 import axios from 'axios';
 import express = require("express");
+import { request } from 'http';
 import Utils from './Utils';
+import xml2js = require("xml2js");
 
 export default class SfmcApiHelper
 {
     // Instance variables
-    private _deExternalKey = "DF18Demo";
-    private _sfmcDataExtensionApiUrl = "https://mcj6cy1x9m-t5h5tz0bfsyqj38ky.rest.marketingcloudapis.com/hub/v1/dataevents/key:" + this._deExternalKey + "/rowset";
+  private client_id="";
+  private client_secret="";
+  // private _accessToken = "";
+  private oauthAccessToken=""; 
+  private member_id = "514017374";
+  private soap_instance_url = "https://mcj6cy1x9m-t5h5tz0bfsyqj38ky.soap.marketingcloudapis.com/";
+  private _deExternalKey = "DF1316_DEMO";
+  private _sfmcDataExtensionApiUrl = "https://mcj6cy1x9m-t5h5tz0bfsyqj38ky.rest.marketingcloudapis.com/hub/v1/dataevents/key:" + this._deExternalKey + "/rowset";
 
     /**
      * getOAuthAccessToken: POSTs to SFMC Auth URL to get an OAuth access token with the given ClientId and ClientSecret
@@ -29,37 +37,13 @@ export default class SfmcApiHelper
         let postBody = {
 
             "grant_type": "client_credentials",
-            "client_id": "di1y81v0ita8ja5qume0em4l",
-            "client_secret": "e9NdAPGQZUuVnt6qkCdNHQF3"
+            "client_id": process.env.CLIENT_ID,
+            "client_secret": process.env.CLIENT_SECRET
         };
 
         return self.getOAuthTokenHelper(headers, postBody);
     }
 
-    /**
-     * getOAuthAccessTokenFromRefreshToken: POSTs to SFMC Auth URL to get an OAuth access token with the given refreshToken
-     * 
-     * More info: https://developer.salesforce.com/docs/atlas.en-us.noversion.mc-getting-started.meta/mc-getting-started/get-access-token.htm
-     * 
-     */
-    public getOAuthAccessTokenFromRefreshToken(client_id: string, clientSecret: string, refreshToken: string) : Promise<any>
-    {
-        let self = this;
-        Utils.logInfo("getOAuthAccessTokenFromRefreshToken called.");
-        Utils.logInfo("Getting OAuth Access Token with refreshToken: " + refreshToken);
-        
-        let headers = {
-            'Content-Type': 'application/json',
-        };
-
-        let postBody = {
-            "grant_type": "client_credentials",
-            "client_id": "di1y81v0ita8ja5qume0em4l",
-            "client_secret": "e9NdAPGQZUuVnt6qkCdNHQF3"
-        };
-
-        return self.getOAuthTokenHelper(headers, postBody);
-    }
 
     /**
      * getOAuthTokenHelper: Helper method to POST the given header & body to the SFMC Auth endpoint
@@ -79,11 +63,8 @@ export default class SfmcApiHelper
                 let jsonData = response.data.jsonData;
                 tokenExpiry.setSeconds(tokenExpiry.getSeconds() + response.data.expiresIn);
                 Utils.logInfo("Got OAuth token: " + accessToken + ", expires = " +  tokenExpiry);
-                console.log("token:",accessToken);
-                
                 console.log("response:",response.data);
                 
-
                 resolve(
                 {
                     oauthAccessToken: accessToken,
@@ -106,83 +87,338 @@ export default class SfmcApiHelper
         });
     }
 
-    /**
-     * loadData: called by the GET handlers for /apidemoloaddata and /appdemoloaddata
-     * 
-     */
-    public loadData(req: express.Request, res: express.Response)
-    {
-        let self = this;
-        let sessionId = req.session.id;
-        Utils.logInfo("loadData entered. SessionId = " + sessionId);
-
-        console.log("Request Session:",req.session)
-        if (req.session.oauthAccessToken)
-        {
-            Utils.logInfo("Using OAuth token: " + req.session.oauthAccessToken);
-            self.loadDataHelper(req.session.oauthAccessToken, req.session.sampleJsonData)
-            .then((result) => {
-                res.status(result.status).send(result.statusText);
-            })
-            .catch((err) => {
-                res.status(500).send(err);
-            });
-        }
-        else
-        {
-            // error
-            let errorMsg = "OAuth Access Token *not* found in session.\nPlease complete previous demo step\nto get an OAuth Access Token."; 
-            Utils.logError(errorMsg);
-            res.status(500).send(errorMsg);
-        }
-    }
-
-    /**
-     * loadDataHelper: uses the given OAuthAccessToklen to load JSON data into the Data Extension with external key "DF18Demo"
-     * 
-     * More info: https://developer.salesforce.com/docs/atlas.en-us.noversion.mc-apis.meta/mc-apis/postDataExtensionRowsetByKey.htm
-     * 
-     */
-    private loadDataHelper(oauthAccessToken: string, jsonData: string) : Promise<any>    
-    {
-        let self = this;
-        Utils.logInfo("loadDataHelper called.");
-        Utils.logInfo("Loading sample data into Data Extension: " + self._deExternalKey);
-        Utils.logInfo("Using OAuth token: " + oauthAccessToken);
-        Utils.logInfo("JSON :"+ jsonData);
-
-        return new Promise<any>((resolve, reject) =>
-        {
+    public createSparkpostIntegrationFolder(
+      req: express.Request,
+      res: express.Response
+    ) {
+      // this.getRefreshTokenHelper(this._accessToken, res);
+      console.log("createSparkpostIntegrationFolder:" + req.body.memberid);
+      console.log("createSparkpostIntegrationFolder:" + req.body.soapInstance);
+      console.log("createSparkpostIntegrationFolder:" + req.body.refreshToken);
+      console.log("createSparkpostIntegrationFolder:" + req.body.ParentFolderID);
+  
+      let refreshTokenbody = "";
+      //this.getRefreshTokenHelper(this._accessToken, res);
+      // this.getRefreshTokenHelper(req.body.refreshToken, req.body.tssd, false, res)
+       
+      let oauthToken=req.body.accessToken;
+     
+          let createFolderData =
+          '<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">' +
+          "<soapenv:Header>" +
+          "<fueloauth>" +
+           oauthToken +
+          "</fueloauth>" +
+          "</soapenv:Header>" +
+          "<soapenv:Body>" +
+          '<CreateRequest xmlns="http://exacttarget.com/wsdl/partnerAPI">' +
+          "<Options/>" +
+          '<ns1:Objects xmlns:ns1="http://exacttarget.com/wsdl/partnerAPI" xsi:type="ns1:DataFolder">' +
+          '<ns1:ModifiedDate xsi:nil="true"/>' +
+          '<ns1:ObjectID xsi:nil="true"/>' +
+          "<ns1:CustomerKey>mcapp44 - " +
+           this.member_id +
+          "</ns1:CustomerKey>" +
+          "<ns1:ParentFolder>" +
+          '<ns1:ModifiedDate xsi:nil="true"/>' +
+          "<ns1:ID> 12785" +
+           
+          "</ns1:ID>" +
+          '<ns1:ObjectID xsi:nil="true"/>' +
+          "</ns1:ParentFolder>" +
+          "<ns1:Name>mcapp44 - " +
+          this.member_id +
+          "</ns1:Name>" +
+          "<ns1:Description>Smcapp44- " +
+          this.member_id +
+          " Folder</ns1:Description>" +
+          "<ns1:ContentType>dataextension</ns1:ContentType>" +
+          "<ns1:IsActive>true</ns1:IsActive>" +
+          "<ns1:IsEditable>true</ns1:IsEditable>" +
+          "<ns1:AllowChildren>true</ns1:AllowChildren>" +
+          "</ns1:Objects>" +
+          "</CreateRequest>" +
+          "</soapenv:Body>" +
+          "</soapenv:Envelope>";
+  
+          return new Promise<any>((resolve, reject) => {
             let headers = {
-                'Content-Type': 'application/json',
-                'Authorization': 'Bearer ' + oauthAccessToken
+              "Content-Type": "text/xml",
+              SOAPAction: "Create",
             };
-
+  
             // POST to Marketing Cloud Data Extension endpoint to load sample data in the POST body
-            console.log("ApiUrl:",self._sfmcDataExtensionApiUrl);
-            console.log("AuthTokken:",oauthAccessToken);
-            console.log("Json data:",jsonData);
-            axios.post(self._sfmcDataExtensionApiUrl, jsonData, {"headers" : headers})
-            .then((response: any) => {
-                // success
-                Utils.logInfo("Successfully loaded sample data into Data Extension!");
+            axios({
+              method: "post",
+              url: "" + this.soap_instance_url + "Service.asmx" + "",
+              data: createFolderData,
+              headers: headers,
+            })
+              .then((response: any) => {
+                let sendresponse = {};
+  
+                var parser = new xml2js.Parser();
+                parser.parseString(
+                  response.data,
+                  (
+                    err: any,
+                    result: {
+                      [x: string]: {
+                        [x: string]: { [x: string]: { [x: string]: any }[] }[];
+                      };
+                    }
+                  ) => {
+                    let SparkpostIntegrationsID =
+                      result["soap:Envelope"]["soap:Body"][0][
+                      "CreateResponse"
+                      ][0]["Results"][0]["NewID"][0];
+                    if (SparkpostIntegrationsID != undefined) {
+                      //  this.FolderID = SparkpostIntegrationsID;
+  
+                      sendresponse = {
+                        refreshToken: refreshTokenbody,
+                        statusText: true,
+                        soap_instance_url: req.body.soapInstance,
+                        member_id: req.body.memberid,
+                        FolderID: SparkpostIntegrationsID,
+                      };
+                      res.status(200).send(sendresponse);
+                    } else {
+                      sendresponse = {
+                        refreshToken: refreshTokenbody,
+                        statusText: false,
+                        soap_instance_url: req.body.soapInstance,
+                        member_id: req.body.memberid,
+                        FolderID: SparkpostIntegrationsID,
+                      };
+                      res.status(200).send(sendresponse);
+                    }
+                  }
+                  
+                );
+              })
+              .catch((error: any) => {
+                // error
+                let errorMsg =
+                  "Error creating the Sparkpost Integrations folder......";
+                errorMsg += "\nMessage: " + error.message;
+                errorMsg +=
+                  "\nStatus: " + error.response
+                    ? error.response.status
+                    : "<None>";
+                errorMsg +=
+                  "\nResponse data: " + error.response.data
+                    ? Utils.prettyPrintJson(JSON.stringify(error.response.data))
+                    : "<None>";
+                Utils.logError(errorMsg);
+  
+                reject(errorMsg);
+              });
+          });
+        
+        // .catch((error: any) => {
+        //   res
+        //     .status(500)
+        //     .send(Utils.prettyPrintJson(JSON.stringify(error.response.data)));
+        // });
+    } 
+    public creatingDomainConfigurationDE(
+    req: express.Request,
+    res: express.Response,
+  
+    ) : Promise<any> {
+      return new Promise<any>((resolve, reject) => {
+        console.log('dename'+req.body.dataextensionname);
+    //this.getRefreshTokenHelper(this._accessToken, res);
+    console.log("creatingDomainConfigurationDE:" + this.member_id);
+    console.log("creatingDomainConfigurationDE:" + this.soap_instance_url);
+       //console.log('domainConfigurationDECheck:'+req.body.ParentFolderID);
+   
+       this.getOAuthAccessToken(this.client_id, this.client_secret)
+      .then((response) => {       
+        Utils.logInfo(
+          "creatingDomainConfigurationDE:" + JSON.stringify(response.oauthAccessToken)
+               );
+        
+        let DCmsg =
+        '<?xml version="1.0" encoding="UTF-8"?>' +
+        '<s:Envelope xmlns:s="http://www.w3.org/2003/05/soap-envelope" xmlns:a="http://schemas.xmlsoap.org/ws/2004/08/addressing" xmlns:u="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd">' +
+        "    <s:Header>" +
+        '        <a:Action s:mustUnderstand="1">Create</a:Action>' +
+        '        <a:To s:mustUnderstand="1">' +
+        this.soap_instance_url +
+        "Service.asmx" +
+        "</a:To>" +
+        '        <fueloauth xmlns="http://exacttarget.com">' +
+        response.oauthAccessToken +
+        "</fueloauth>" +
+        "    </s:Header>" +
+        '    <s:Body xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">' +
+        '        <CreateRequest xmlns="http://exacttarget.com/wsdl/partnerAPI">' +
+        '            <Objects xsi:type="DataExtension">' +
+        "                <CategoryID>24086" +
+        
+        "</CategoryID>" +
+        "                <CustomerKey>" +req.body.dataextensionname+
+        this.member_id +
+        "</CustomerKey>" +
+        "                <Name>" +req.body.dataextensionname+
+        this.member_id +
+        "</Name>" +
+        "                <Fields>" +
+        "                    <Field>" +
+        "                        <CustomerKey>Domain ID</CustomerKey>" +
+        "                        <Name>Domain ID</Name>" +
+        "                        <FieldType>Text</FieldType>" +
+        "                        <MaxLength>50</MaxLength>" +
+        "                        <IsRequired>true</IsRequired>" +
+        "                        <IsPrimaryKey>false</IsPrimaryKey>" +
+        "                    </Field>" +
+        "                    <Field>" +
+        "                        <CustomerKey>Domain Name</CustomerKey>" +
+        "                        <Name>Domain Name</Name>" +
+        "                        <FieldType>Text</FieldType>" +
+        "                        <MaxLength>100</MaxLength>" +
+        "                        <IsRequired>true</IsRequired>" +
+        "                        <IsPrimaryKey>true</IsPrimaryKey>" +
+        "                    </Field>" +
+        "                    <Field>" +
+        "                        <CustomerKey>Inbox Threshold</CustomerKey>" +
+        "                        <Name>Inbox Threshold</Name>" +
+        "                        <FieldType>Text</FieldType>" +
+        "                        <MaxLength>100</MaxLength>" +
+        "                        <IsRequired>false</IsRequired>" +
+        "                        <IsPrimaryKey>false</IsPrimaryKey>" +
+        "                    </Field>" +
+        "                    <Field>" +
+        "                        <CustomerKey>Engagement Threshold</CustomerKey>" +
+        "                        <Name>Engagement Threshold</Name>" +
+        "                        <FieldType>Text</FieldType>" +
+        "                        <MaxLength>100</MaxLength>" +
+        "                        <IsRequired>false</IsRequired>" +
+        "                        <IsPrimaryKey>false</IsPrimaryKey>" +
+        "                    </Field>" +
+        "                    <Field>" +
+        "                        <CustomerKey>SPF Threshold</CustomerKey>" +
+        "                        <Name>SPF Threshold</Name>" +
+        "                        <FieldType>Text</FieldType>" +
+        "                        <MaxLength>100</MaxLength>" +
+        "                        <IsRequired>false</IsRequired>" +
+        "                        <IsPrimaryKey>false</IsPrimaryKey>" +
+        "                    </Field>" +
+        "                    <Field>" +
+        "                        <CustomerKey>DKIM Threshold</CustomerKey>" +
+        "                        <Name>DKIM Threshold</Name>" +
+        "                        <FieldType>Text</FieldType>" +
+        "                        <MaxLength>100</MaxLength>" +
+        "                        <IsRequired>false</IsRequired>" +
+        "                        <IsPrimaryKey>false</IsPrimaryKey>" +
+        "                    </Field>" +
+        "                    <Field>" +
+        "                        <CustomerKey>Campaign Min</CustomerKey>" +
+        "                        <Name>Campaign Min</Name>" +
+        "                        <FieldType>Decimal</FieldType>" +
+        "                        <Precision>18</Precision>" +
+        "                          <Scale>0</Scale>" +
+        "                        <IsRequired>false</IsRequired>" +
+        "                        <IsPrimaryKey>false</IsPrimaryKey>" +
+        "                    </Field>" +
+        "                    <Field>" +
+        "                        <CustomerKey>Intelliseed Lists</CustomerKey>" +
+        "                        <Name>Intelliseed Lists</Name>" +
+        "                        <FieldType>Text</FieldType>" +
+        "                        <MaxLength>250</MaxLength>" +
+        "                        <IsRequired>false</IsRequired>" +
+        "                        <IsPrimaryKey>false</IsPrimaryKey>" +
+        "                    </Field>" +
+        "                    <Field>" +
+        "                        <CustomerKey>Threshold Recipe</CustomerKey>" +
+        "                        <Name>Threshold Recipe</Name>" +
+        "                        <FieldType>Text</FieldType>" +
+        "                        <MaxLength>250</MaxLength>" +
+        "                        <IsRequired>false</IsRequired>" +
+        "                        <IsPrimaryKey>false</IsPrimaryKey>" +
+        "                    </Field>" +
+        "                    <Field>" +
+        "                        <CustomerKey>Rules Recipe</CustomerKey>" +
+        "                        <Name>Rules Recipe</Name>" +
+        "                        <FieldType>Text</FieldType>" +
+        "                        <MaxLength>250</MaxLength>" +
+        "                        <IsRequired>false</IsRequired>" +
+        "                        <IsPrimaryKey>false</IsPrimaryKey>" +
+        "                    </Field>" +
+        "                    <Field>" +
+        "                        <CustomerKey>Created or Modified by</CustomerKey>" +
+        "                        <Name>Created or Modified by</Name>" +
+        "                        <FieldType>Text</FieldType>" +
+        "                        <IsRequired>true</IsRequired>" +
+        "                        <IsPrimaryKey>false</IsPrimaryKey>" +
+        "                    </Field>" +
+        "                    <Field>" +
+        "                        <CustomerKey>Created or Modified date</CustomerKey>" +
+        "                        <Name>Created or Modified date</Name>" +
+        "                        <FieldType>Date</FieldType>" +
+        "						  <DefaultValue>getdate()</DefaultValue>" +
+        "                        <IsRequired>true</IsRequired>" +
+        "                        <IsPrimaryKey>false</IsPrimaryKey>" +
+        "                    </Field>" +
+        "                </Fields>" +
+        "            </Objects>" +
+        "        </CreateRequest>" +
+        "    </s:Body>" +
+        "</s:Envelope>";
 
-                resolve(
-                {
-                    status: response.status,
-                    statusText: response.statusText + "\n" + Utils.prettyPrintJson(JSON.stringify(response.data))
-                });
+        
+          let headers = {
+            "Content-Type": "text/xml",
+          };
+
+          axios({
+            method: "post",
+            url: "" + this.soap_instance_url + "Service.asmx" + "",
+            data: DCmsg,
+            headers: headers,
+          })
+            .then((response: any) => {
+             console.log("hello");
+             
+             
+               console.log("response-",response);
+                
+                 resolve(
+                  {
+                      statusText: response.data
+                  });
             })
             .catch((error: any) => {
-                // error
-                let errorMsg = "Error loading sample data. POST response from Marketing Cloud:";
-                errorMsg += "\nMessage: " + error.message;
-                errorMsg += "\nStatus: " + error.response ? error.response.status : "<None>";
-                errorMsg += "\nResponse data: " + error.response.data ? Utils.prettyPrintJson(JSON.stringify(error.response.data)) : "<None>";
-                Utils.logError(errorMsg);
+              // error
+              let errorMsg =
+                "Error creating the Domain Configuration Data extension......";
+              errorMsg += "\nMessage: " + error.message;
+              errorMsg +=
+                "\nStatus: " + error.response
+                  ? error.response.status
+                  : "<None>";
+              errorMsg +=
+                "\nResponse data: " + error.response.data
+                  ? Utils.prettyPrintJson(JSON.stringify(error.response.data))
+                  : "<None>";
+              Utils.logError(errorMsg);
 
-                reject(errorMsg);
+              reject(errorMsg);
             });
-        });
-    }
+        
+      })
+      .catch((error: any) => {
+        res
+          .status(500)
+          .send(Utils.prettyPrintJson(JSON.stringify(error.response.data)));
+      });
+  });
+    
+  
+      
+
 }
+}    
+

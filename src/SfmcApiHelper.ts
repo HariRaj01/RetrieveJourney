@@ -116,8 +116,7 @@ export default class SfmcApiHelper
           '<ns1:Objects xmlns:ns1="http://exacttarget.com/wsdl/partnerAPI" xsi:type="ns1:DataFolder">' +
           '<ns1:ModifiedDate xsi:nil="true"/>' +
           '<ns1:ObjectID xsi:nil="true"/>' +
-          "<ns1:CustomerKey>mcapp44 - " +
-           this.member_id +
+          "<ns1:CustomerKey>DataExtension Folder" +
           "</ns1:CustomerKey>" +
           "<ns1:ParentFolder>" +
           '<ns1:ModifiedDate xsi:nil="true"/>' +
@@ -129,9 +128,8 @@ export default class SfmcApiHelper
           "<ns1:Name>mcapp44 - " +
           this.member_id +
           "</ns1:Name>" +
-          "<ns1:Description>Smcapp44- " +
-          this.member_id +
-          " Folder</ns1:Description>" +
+          "<ns1:Description>DataExtension Folder " +
+         " Folder</ns1:Description>" +
           "<ns1:ContentType>dataextension</ns1:ContentType>" +
           "<ns1:IsActive>true</ns1:IsActive>" +
           "<ns1:IsEditable>true</ns1:IsEditable>" +

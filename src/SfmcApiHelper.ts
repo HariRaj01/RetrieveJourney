@@ -121,7 +121,7 @@ export default class SfmcApiHelper
           "</ns1:CustomerKey>" +
           "<ns1:ParentFolder>" +
           '<ns1:ModifiedDate xsi:nil="true"/>' +
-          "<ns1:ID> 12785" +
+          "<ns1:ID> 21768" +
            
           "</ns1:ID>" +
           '<ns1:ObjectID xsi:nil="true"/>' +

@@ -256,13 +256,12 @@ export default class SfmcApiHelper
         '    <s:Body xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">' +
         '        <CreateRequest xmlns="http://exacttarget.com/wsdl/partnerAPI">' +
         '            <Objects xsi:type="DataExtension">' +
-        "                <CategoryID>24086" +
+        "                <CategoryID>21768" +
         
         "</CategoryID>" +
-        "                <CustomerKey>" +req.body.dataextensionname+
-        this.member_id +
+        "                <CustomerKey>" + "TESTING "+
         "</CustomerKey>" +
-        "                <Name>" +req.body.dataextensionname+
+        "                <Name>" +"DataExtension check"+
         this.member_id +
         "</Name>" +
         "                <Fields>" +

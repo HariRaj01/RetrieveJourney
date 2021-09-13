@@ -125,9 +125,8 @@ export default class SfmcApiHelper
           "</ns1:ID>" +
           '<ns1:ObjectID xsi:nil="true"/>' +
           "</ns1:ParentFolder>" +
-          "<ns1:Name>mcapp44 - " +
-          this.member_id +
-          "</ns1:Name>" +
+          "<ns1:Name>DataExtension Folder" +
+            "</ns1:Name>" +
           "<ns1:Description>DataExtension Folder " +
          " Folder</ns1:Description>" +
           "<ns1:ContentType>dataextension</ns1:ContentType>" +
@@ -257,9 +256,9 @@ export default class SfmcApiHelper
         "                <CategoryID>21768" +
         
         "</CategoryID>" +
-        "                <CustomerKey>" + "TESTING "+
+        "                <CustomerKey>TESTING "+
         "</CustomerKey>" +
-        "                <Name>" +"DataExtension check"+
+        "                <Name>DataExtension check"+
         this.member_id +
         "</Name>" +
         "                <Fields>" +

@@ -103,7 +103,7 @@ export default class SfmcApiHelper
           //   "datafolderTokenbody:" + JSON.stringify(response.refreshToken)
           // );
           Utils.logInfo(
-            "datafolderAuthTokenbody:" + JSON.stringify(response.s)
+            "datafolderAuthTokenbody:" + JSON.stringify(response)
           );
           const refreshTokenbody = response.refreshToken;
           Utils.logInfo(

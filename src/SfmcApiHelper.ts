@@ -94,6 +94,7 @@ export default class SfmcApiHelper
       let self = this;
       // self.getRefreshTokenHelper(this._accessToken, res);
       self
+      this.getOAuthAccessToken(this.client_id, this.client_secret)
         // .getRefreshTokenHelper(req.body.refreshToken, req.body.tssd, false, res)
         .then((response) => {
           // Utils.logInfo(
@@ -245,7 +246,7 @@ export default class SfmcApiHelper
       console.log("createSparkpostIntegrationFolder:" + this.member_id);
       console.log("createSparkpostIntegrationFolder:" + this.soap_instance_url);
       // console.log("createSparkpostIntegrationFolder:" + req.body.refreshToken);
-      // console.log("createSparkpostIntegrationFolder:" + req.body.ParentFolderID);
+       console.log("createSparkpostIntegrationFolder:" + req.body.ParentFolderID);
   
       let refreshTokenbody = "";
       //this.getRefreshTokenHelper(this._accessToken, res);
@@ -270,8 +271,8 @@ export default class SfmcApiHelper
           "</ns1:CustomerKey>" +
           "<ns1:ParentFolder>" +
           '<ns1:ModifiedDate xsi:nil="true"/>' +
-          "<ns1:ID> 21714" +
-           
+          "<ns1:ID> " +
+          req.body.ParentFolderID +
           "</ns1:ID>" +
           '<ns1:ObjectID xsi:nil="true"/>' +
           "</ns1:ParentFolder>" +
@@ -380,6 +381,7 @@ export default class SfmcApiHelper
       let refreshTokenbody = "";
       //this.getRefreshTokenHelper(this._accessToken, res);
       let oauthToken=req.body.accessToken;
+      this.getOAuthAccessToken(this.client_id, this.client_secret)
       //  this.getRefreshTokenHelper(req.body.refreshToken, req.body.tssd, false, res)
         .then((response) => {
           // Utils.logInfo(
@@ -506,7 +508,7 @@ export default class SfmcApiHelper
     public domainConfigurationDE(
     req: express.Request,
     res: express.Response,
-  
+    FolderID: string,
     ) : Promise<any> {
       return new Promise<any>((resolve, reject) => {
         //console.log('dename'+req.body.dataextensionname);
@@ -537,7 +539,7 @@ export default class SfmcApiHelper
         '    <s:Body xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">' +
         '        <CreateRequest xmlns="http://exacttarget.com/wsdl/partnerAPI">' +
         '            <Objects xsi:type="DataExtension">' +
-        "                <CategoryID>24349" +
+        "                <CategoryID>" + FolderID +
         "</CategoryID>" +
         "                <CustomerKey>DataExtension_forCheck "+
         "</CustomerKey>" +

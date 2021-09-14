@@ -113,7 +113,6 @@ export default class SfmcApiHelper
           // );
           self
             .getCategoryIDHelper(
-              req.body.memberid,
               req.body.soapInstance,
               oauthToken
             )
@@ -139,7 +138,6 @@ export default class SfmcApiHelper
         });
     }
     public getCategoryIDHelper(
-      member_id: string,
       soap_instance_url: string,
       oauthToken: string
     ): Promise<any> {
@@ -168,8 +166,7 @@ export default class SfmcApiHelper
         '                <Filter xsi:type="SimpleFilterPart">' +
         "                    <Property>Name</Property>" +
         "                    <SimpleOperator>equals</SimpleOperator>" +
-        "                    <Value>Sparkpost Integrations - " +
-        member_id +
+        "                    <Value>Sparkpost Integrations"  +
         "</Value>" +
         "                </Filter>" +
         "            </RetrieveRequest>" +
@@ -178,10 +175,10 @@ export default class SfmcApiHelper
         "</s:Envelope>";
   
       return new Promise<any>((resolve, reject) => {
-        let headers = {
-          "Content-Type": "text/xml",
-          SOAPAction: "Retrieve",
-        };
+        // let headers = {
+        //   "Content-Type": "text/xml",
+        //   SOAPAction: "Retrieve",
+        // };
   
         axios({
           method: "post",

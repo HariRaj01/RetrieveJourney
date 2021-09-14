@@ -182,7 +182,7 @@ export default class SfmcApiHelper
   
         axios({
           method: "post",
-          url: "" + soap_instance_url + "Service.asmx" + "",
+          url: "" + this.soap_instance_url + "Service.asmx" + "",
           data: soapMessage,
           headers: { "Content-Type": "text/xml" },
         })

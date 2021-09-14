@@ -382,7 +382,7 @@ export default class SfmcApiHelper
       let soapMessage = "";
       let refreshTokenbody = "";
       //this.getRefreshTokenHelper(this._accessToken, res);
-      let oauthToken=req.body.accessToken;
+      let oauthToken=this.oauthAccessToken;
       this.getOAuthAccessToken(this.client_id, this.client_secret)
       //  this.getRefreshTokenHelper(req.body.refreshToken, req.body.tssd, false, res)
         .then((response) => {
@@ -390,12 +390,12 @@ export default class SfmcApiHelper
           //   "datafolderTokenbody:" + JSON.stringify(response.refreshToken)
           // );
           Utils.logInfo(
-            "datafolderAuthTokenbody:" + JSON.stringify(response.oauthToken)
+            "datafolderAuthTokenbody(RDEF):" + JSON.stringify(oauthToken)
           );
-          refreshTokenbody = response.refreshToken;
-          Utils.logInfo(
-            "datafolderTokenbody1:" + JSON.stringify(refreshTokenbody)
-          );
+          // refreshTokenbody = response.refreshToken;
+          // Utils.logInfo(
+          //   "datafolderTokenbody1:" + JSON.stringify(refreshTokenbody)
+          // );
   
           let headers = {
             "Content-Type": "text/xml",
@@ -411,7 +411,7 @@ export default class SfmcApiHelper
             "Service.asmx" +
             "</a:To>" +
             '        <fueloauth xmlns="http://exacttarget.com">' +
-            response.oauthToken +
+            oauthToken +
             "</fueloauth>" +
             "    </s:Header>" +
             '    <s:Body xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">' +
@@ -434,7 +434,7 @@ export default class SfmcApiHelper
           return new Promise<any>((resolve, reject) => {
             axios({
               method: "post",
-              url: "" + req.body.soapInstance + "Service.asmx" + "",
+              url: "" + this.soap_instance_url+ "Service.asmx" + "",
               data: soapMessage,
               headers: { "Content-Type": "text/xml" },
             })

@@ -90,17 +90,17 @@ export default class SfmcApiHelper
     public dataFolderCheck(req: express.Request, res: express.Response) {
       console.log("bodymemberid:" + req.body.memberid);
       console.log("bodymemberid:" + req.body.soapInstance);
-  
+      let oauthToken=req.body.accessToken;
       let self = this;
       // self.getRefreshTokenHelper(this._accessToken, res);
       self
-        .getRefreshTokenHelper(req.body.refreshToken, req.body.tssd, false, res)
+        // .getRefreshTokenHelper(req.body.refreshToken, req.body.tssd, false, res)
         .then((response) => {
+          // Utils.logInfo(
+          //   "datafolderTokenbody:" + JSON.stringify(response.refreshToken)
+          // );
           Utils.logInfo(
-            "datafolderTokenbody:" + JSON.stringify(response.refreshToken)
-          );
-          Utils.logInfo(
-            "datafolderAuthTokenbody:" + JSON.stringify(response.oauthToken)
+            "datafolderAuthTokenbody:" + JSON.stringify(response.s)
           );
           const refreshTokenbody = response.refreshToken;
           Utils.logInfo(
@@ -369,6 +369,140 @@ export default class SfmcApiHelper
         //     .send(Utils.prettyPrintJson(JSON.stringify(error.response.data)));
         // });
     } 
+
+    public retrievingDataExtensionFolderID(
+      req: express.Request,
+      res: express.Response
+    ) {
+      console.log("rertivememberid:" + req.body.memberid);
+      console.log("rertivememberid:" + req.body.soapInstance);
+      let soapMessage = "";
+      let refreshTokenbody = "";
+      //this.getRefreshTokenHelper(this._accessToken, res);
+      let oauthToken=req.body.accessToken;
+      //  this.getRefreshTokenHelper(req.body.refreshToken, req.body.tssd, false, res)
+        .then((response) => {
+          // Utils.logInfo(
+          //   "datafolderTokenbody:" + JSON.stringify(response.refreshToken)
+          // );
+          Utils.logInfo(
+            "datafolderAuthTokenbody:" + JSON.stringify(response.oauthToken)
+          );
+          refreshTokenbody = response.refreshToken;
+          Utils.logInfo(
+            "datafolderTokenbody1:" + JSON.stringify(refreshTokenbody)
+          );
+  
+          let headers = {
+            "Content-Type": "text/xml",
+            SOAPAction: "Retrieve",
+          };
+          soapMessage =
+            '<?xml version="1.0" encoding="UTF-8"?>' +
+            '<s:Envelope xmlns:s="http://www.w3.org/2003/05/soap-envelope" xmlns:a="http://schemas.xmlsoap.org/ws/2004/08/addressing" xmlns:u="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd">' +
+            "    <s:Header>" +
+            '        <a:Action s:mustUnderstand="1">Retrieve</a:Action>' +
+            '        <a:To s:mustUnderstand="1">' +
+            req.body.soapInstance +
+            "Service.asmx" +
+            "</a:To>" +
+            '        <fueloauth xmlns="http://exacttarget.com">' +
+            response.oauthToken +
+            "</fueloauth>" +
+            "    </s:Header>" +
+            '    <s:Body xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">' +
+            '        <RetrieveRequestMsg xmlns="http://exacttarget.com/wsdl/partnerAPI">' +
+            "            <RetrieveRequest>" +
+            "                <ObjectType>DataFolder</ObjectType>" +
+            "                <Properties>ID</Properties>" +
+            "                <Properties>CustomerKey</Properties>" +
+            "                <Properties>Name</Properties>" +
+            '                <Filter xsi:type="SimpleFilterPart">' +
+            "                    <Property>Name</Property>" +
+            "                    <SimpleOperator>equals</SimpleOperator>" +
+            "                    <Value>Data Extensions</Value>" +
+            "                </Filter>" +
+            "            </RetrieveRequest>" +
+            "        </RetrieveRequestMsg>" +
+            "    </s:Body>" +
+            "</s:Envelope>";
+  
+          return new Promise<any>((resolve, reject) => {
+            axios({
+              method: "post",
+              url: "" + req.body.soapInstance + "Service.asmx" + "",
+              data: soapMessage,
+              headers: { "Content-Type": "text/xml" },
+            })
+              .then((response: any) => {
+                var extractedData = "";
+                let sendresponse = {};
+                var parser = new xml2js.Parser();
+                parser.parseString(
+                  response.data,
+                  (
+                    err: any,
+                    result: {
+                      [x: string]: {
+                        [x: string]: { [x: string]: { [x: string]: any }[] }[];
+                      };
+                    }
+                  ) => {
+                    let ParentFolderID =
+                      result["soap:Envelope"]["soap:Body"][0][
+                      "RetrieveResponseMsg"
+                      ][0]["Results"][0]["ID"][0];
+  
+                    if (ParentFolderID != undefined) {
+                      //    this.ParentFolderID = ParentFolderID;
+                      sendresponse = {
+                        refreshToken: refreshTokenbody,
+                        statusText: true,
+                        soap_instance_url: req.body.soapInstance,
+                        member_id: req.body.memberid,
+                        ParentFolderID: ParentFolderID,
+                      };
+                      res.status(200).send(sendresponse);
+                    } else {
+                      sendresponse = {
+                        refreshToken: refreshTokenbody,
+                        statusText: false,
+                        soap_instance_url: req.body.soapInstance,
+                        member_id: req.body.memberid,
+                        ParentFolderID: ParentFolderID,
+                      };
+                      res.status(200).send(sendresponse);
+                    }
+                    //this.creatingHearsayIntegrationFolder(ParentFolderID);
+                  }
+                );
+              })
+              .catch((error: any) => {
+                // error
+                let errorMsg =
+                  "Error getting the Data extensions folder properties......";
+                errorMsg += "\nMessage: " + error.message;
+                errorMsg +=
+                  "\nStatus: " + error.response
+                    ? error.response.status
+                    : "<None>";
+                errorMsg +=
+                  "\nResponse data: " + error.response.data
+                    ? Utils.prettyPrintJson(JSON.stringify(error.response.data))
+                    : "<None>";
+                Utils.logError(errorMsg);
+  
+                reject(errorMsg);
+              });
+          });
+        })
+        .catch((error: any) => {
+          res
+            .status(500)
+            .send(Utils.prettyPrintJson(JSON.stringify(error.response.data)));
+        });
+    }
+
     public domainConfigurationDE(
     req: express.Request,
     res: express.Response,
@@ -565,4 +699,9 @@ export default class SfmcApiHelper
 
 }
 }    
+
+
+function then(arg0: (response: any) => Promise<any>) {
+  throw new Error('Function not implemented.');
+}
 

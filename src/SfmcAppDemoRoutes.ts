@@ -154,6 +154,7 @@ export default class SfmcAppDemoRoutes
         
       ) {        
         let self = this;
+        console.log("Hello")
        self._apiHelper.creatingDomainConfigurationDE(req, res)
        .then((response:any)=>{
 

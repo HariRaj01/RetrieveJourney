@@ -74,8 +74,8 @@ export default class SfmcApiHelper
                     status: response.status,
                     statusText: response.statusText + "\n" + Utils.prettyPrintJson(JSON.stringify(response.data))
                 });
-                var accesstoken=this.oauthAccessToken
-                console.log("accesstoken:>>",accesstoken);
+                this.oauthAccessToken=response.data.access_token;
+                console.log("accesstoken:>>",this.oauthAccessToken);
             })
             .catch((error: any) => {
                 // error

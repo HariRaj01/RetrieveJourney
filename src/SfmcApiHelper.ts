@@ -11,6 +11,7 @@ export default class SfmcApiHelper
     // Instance variables
   private client_id="";
   private client_secret="";
+  private FolderID="";
   // private _accessToken = "";
   private oauthAccessToken=""; 
   private member_id = "514017374";
@@ -508,7 +509,7 @@ export default class SfmcApiHelper
     public domainConfigurationDE(
     req: express.Request,
     res: express.Response,
-    FolderID: string,
+      
     ) : Promise<any> {
       return new Promise<any>((resolve, reject) => {
         //console.log('dename'+req.body.dataextensionname);
@@ -539,7 +540,7 @@ export default class SfmcApiHelper
         '    <s:Body xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">' +
         '        <CreateRequest xmlns="http://exacttarget.com/wsdl/partnerAPI">' +
         '            <Objects xsi:type="DataExtension">' +
-        "                <CategoryID>" + FolderID +
+        "                <CategoryID>" + this.FolderID +
         "</CategoryID>" +
         "                <CustomerKey>DataExtension_forCheck "+
         "</CustomerKey>" +

@@ -94,7 +94,7 @@ export default class SfmcApiHelper
       console.log("Hello");
       console.log("bodymemberid:" + this.member_id);
       console.log("bodymemberid:" + this.soap_instance_url);
-      let oauthToken= this.;
+      let oauthToken= this.oauthAccessToken;
       let self = this;
       // self.getRefreshTokenHelper(this._accessToken, res);
       self

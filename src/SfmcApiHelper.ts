@@ -377,8 +377,8 @@ export default class SfmcApiHelper
       req: express.Request,
       res: express.Response
     ) {
-      console.log("rertivememberid:" + req.body.memberid);
-      console.log("rertivememberid:" + req.body.soapInstance);
+      console.log("retrivememberid:" + this.member_id);
+      console.log("retrivememberid:" + this.soap_instance_url);
       let soapMessage = "";
       let refreshTokenbody = "";
       //this.getRefreshTokenHelper(this._accessToken, res);

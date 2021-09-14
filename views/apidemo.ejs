@@ -69,8 +69,7 @@
           method: "POST",
           url: "/datafoldercheck",
           data: {
-            refreshToken: refreshToken,
-            
+            refreshToken: refreshToken, 
             memberid: memberid,
             restInstance: restInstance,
             soapInstance: soapInstance,
@@ -79,13 +78,13 @@
           .then(function (response) {
             console.log("datafolder:" + JSON.stringify(response.data));
             if (response.data.statusText) {
-              console.log("memberid:" + thisdata.member_id);
-              console.log("refreshToken:" + thisdata.refreshtoken);
-              console.log("restInstance:" + thisdata.restInstance);
-              console.log("soapInstance:" + thisdata.soapInstance);
+              // console.log("memberid:" + thisdata.member_id);
+              // console.log("refreshToken:" + thisdata.refreshtoken);
+              // console.log("restInstance:" + thisdata.restInstance);
+              // console.log("soapInstance:" + thisdata.soapInstance);
 
-              thisdata.setState({ refreshtoken: response.data.refreshToken });
-              thisdata.setState({ FolderID: response.data.FolderID });
+              // thisdata.setState({ refreshtoken: response.data.refreshToken });
+              // thisdata.setState({ FolderID: response.data.FolderID });
               domainConfigurationDECheck(
                 
                 response.data.refreshToken,

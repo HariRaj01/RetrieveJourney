@@ -93,7 +93,7 @@ export default class SfmcApiHelper
       console.log("Hello");
       console.log("bodymemberid:" + this.member_id);
       console.log("bodymemberid:" + this.soap_instance_url);
-      // let oauthToken = ;
+      let oauthToken= this.oauthAccessToken;
       let self = this;
       // self.getRefreshTokenHelper(this._accessToken, res);
       self
@@ -118,7 +118,7 @@ export default class SfmcApiHelper
             )
             .then((result) => {
               const sendresponse = {
-                refreshToken: refreshTokenbody,
+
                 statusText: result.statusText,
                 soap_instance_url: req.body.soapInstance,
                 member_id: req.body.memberid,

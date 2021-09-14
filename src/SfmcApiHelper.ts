@@ -187,7 +187,7 @@ export default class SfmcApiHelper
           headers: { "Content-Type": "text/xml" },
         })
           .then((response: any) => {
-            console.log("Hi,Hello");
+            console.log("Hi,Hello:",response.data);
             var extractedData = "";
             var parser = new xml2js.Parser();
             parser.parseString(

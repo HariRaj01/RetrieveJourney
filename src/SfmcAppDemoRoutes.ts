@@ -138,6 +138,18 @@ export default class SfmcAppDemoRoutes
             res.status(500).send(errorMsg);
         }
     }
+    public dataFolderCheck(req: express.Request, res: express.Response) {
+      let self = this;
+      self._apiHelper.dataFolderCheck(req, res);
+    }
+
+    public retrievingDataExtensionFolderID(
+      req: express.Request,
+      res: express.Response
+    ) {
+      let self = this;
+      self._apiHelper.retrievingDataExtensionFolderID(req, res);
+    }
     public createSparkpostIntegrationFolder(
         req: express.Request,
         res: express.Response
@@ -148,14 +160,13 @@ export default class SfmcAppDemoRoutes
       }
     
      
-    public creatingDomainConfigurationDE(
+    public domainConfigurationDE(
         req: express.Request,
         res: express.Response,
         
       ) {        
         let self = this;
-        console.log("Hello")
-       self._apiHelper.creatingDomainConfigurationDE(req, res)
+       self._apiHelper.domainConfigurationDE(req, res)
        .then((response:any)=>{
 
         console.log("Response for Creating DE :::"+ JSON.stringify(response));

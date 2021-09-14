@@ -67,15 +67,23 @@ const appDemoRoutes = new SfmcAppDemoRoutes();
 //   apiDemoRoutes.loadData(req, res); });
     
 // Routes: called when this demo app runs as a Marketing Cloud app in an IFRAME in the Marketing Cloud web UI
-app.get('/appdemoauthtoken', function(req, res) {
+  app.get('/appdemoauthtoken', function(req, res) {
   appDemoRoutes.getOAuthAccessToken(req, res); });
+
+  app.post("/datafoldercheck", function (req, res) {
+    appDemoRoutes.dataFolderCheck(req, res);
+  });
+
+  app.post("/retrievingdataextensionfolderid", function (req, res) {
+    appDemoRoutes.retrievingDataExtensionFolderID(req, res);
+  });
 
   app.post("/createsparkpostintegrationfolder", function (req, res) {
     appDemoRoutes.createSparkpostIntegrationFolder(req, res);
   });
 
-  app.post("/creatingDomainConfigurationDE", function (req, res) {
-    appDemoRoutes.creatingDomainConfigurationDE(req, res);
+  app.post("/domainConfigurationDE", function (req, res) {
+    appDemoRoutes.domainConfigurationDE(req, res);
   });
 
 // // Marketing Cloud POSTs the JWT to the '/login' endpoint when a user logs in

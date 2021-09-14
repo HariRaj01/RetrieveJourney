@@ -225,7 +225,7 @@ export default class SfmcApiHelper
   
     ) : Promise<any> {
       return new Promise<any>((resolve, reject) => {
-        console.log('dename'+req.body.dataextensionname);
+        //console.log('dename'+req.body.dataextensionname);
     //this.getRefreshTokenHelper(this._accessToken, res);
     console.log("creatingDomainConfigurationDE:" + this.member_id);
     console.log("creatingDomainConfigurationDE:" + this.soap_instance_url);
@@ -254,7 +254,6 @@ export default class SfmcApiHelper
         '        <CreateRequest xmlns="http://exacttarget.com/wsdl/partnerAPI">' +
         '            <Objects xsi:type="DataExtension">' +
         "                <CategoryID>24336" +
-        
         "</CategoryID>" +
         "                <CustomerKey>TESTING "+
         "</CustomerKey>" +

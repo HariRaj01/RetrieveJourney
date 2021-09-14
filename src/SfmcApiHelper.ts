@@ -188,37 +188,37 @@ export default class SfmcApiHelper
         })
           .then((response: any) => {
             console.log("Hi,Hello");
-            var extractedData = "";
-            var parser = new xml2js.Parser();
-            parser.parseString(
-              response.data,
-              (
-                err: any,
-                result: {
-                  [x: string]: {
-                    [x: string]: { [x: string]: { [x: string]: any }[] }[];
-                  };
-                }
-              ) => {
-                let FolderID =
-                  result["soap:Envelope"]["soap:Body"][0][
-                  "RetrieveResponseMsg"
-                  ][0]["Results"];
-                if (FolderID != undefined) {
-                  //    this.FolderID = FolderID[0]["ID"][0];
-                  resolve({
-                    status: response.status,
-                    statusText: true,
-                    FolderID: FolderID[0]["ID"][0],
-                  });
-                } else {
-                  resolve({
-                    status: response.status,
-                    statusText: false,
-                  });
-                }
-              }
-            );
+            // var extractedData = "";
+            // var parser = new xml2js.Parser();
+            // parser.parseString(
+            //   response.data,
+            //   (
+            //     err: any,
+            //     result: {
+            //       [x: string]: {
+            //         [x: string]: { [x: string]: { [x: string]: any }[] }[];
+            //       };
+            //     }
+            //   ) => {
+            //     let FolderID =
+            //       result["soap:Envelope"]["soap:Body"][0][
+            //       "RetrieveResponseMsg"
+            //       ][0]["Results"];
+            //     if (FolderID != undefined) {
+            //       //    this.FolderID = FolderID[0]["ID"][0];
+            //       resolve({
+            //         status: response.status,
+            //         statusText: true,
+            //         FolderID: FolderID[0]["ID"][0],
+            //       });
+            //     } else {
+            //       resolve({
+            //         status: response.status,
+            //         statusText: false,
+            //       });
+            //     }
+            //   }
+            // );
           })
           .catch((error: any) => {
             // error

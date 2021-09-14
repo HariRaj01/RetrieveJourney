@@ -94,8 +94,8 @@ export default class SfmcApiHelper
       // this.getRefreshTokenHelper(this._accessToken, res);
       console.log("createSparkpostIntegrationFolder:" + this.member_id);
       console.log("createSparkpostIntegrationFolder:" + this.soap_instance_url);
-      console.log("createSparkpostIntegrationFolder:" + req.body.refreshToken);
-      console.log("createSparkpostIntegrationFolder:" + req.body.ParentFolderID);
+      // console.log("createSparkpostIntegrationFolder:" + req.body.refreshToken);
+      // console.log("createSparkpostIntegrationFolder:" + req.body.ParentFolderID);
   
       let refreshTokenbody = "";
       //this.getRefreshTokenHelper(this._accessToken, res);

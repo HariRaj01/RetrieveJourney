@@ -90,8 +90,8 @@ export default class SfmcApiHelper
 
     public dataFolderCheck(req: express.Request, res: express.Response) {
       console.log("Hello");
-      console.log("bodymemberid:" + req.body.memberid);
-      console.log("bodymemberid:" + req.body.soapInstance);
+      console.log("bodymemberid:" + this.member_id);
+      console.log("bodymemberid:" + this.soap_instance_url);
       let oauthToken=req.body.accessToken;
       let self = this;
       // self.getRefreshTokenHelper(this._accessToken, res);
@@ -105,10 +105,10 @@ export default class SfmcApiHelper
           Utils.logInfo(
             "datafolderAuthTokenbody:" + JSON.stringify(response)
           );
-          const refreshTokenbody = response.refreshToken;
-          Utils.logInfo(
-            "datafolderTokenbody1:" + JSON.stringify(refreshTokenbody)
-          );
+          // const refreshTokenbody = response.refreshToken;
+          // Utils.logInfo(
+          //   "datafolderTokenbody1:" + JSON.stringify(refreshTokenbody)
+          // );
           self
             .getCategoryIDHelper(
               req.body.memberid,

@@ -255,7 +255,7 @@ export default class SfmcApiHelper
         '            <Objects xsi:type="DataExtension">' +
         "                <CategoryID>24336" +
         "</CategoryID>" +
-        "                <CustomerKey>TESTING "+
+        "                <CustomerKey>DataExtension check "+
         "</CustomerKey>" +
         "                <Name>DataExtension check"+
         "</Name>" +

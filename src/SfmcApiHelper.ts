@@ -147,7 +147,7 @@ export default class SfmcApiHelper
         "    <s:Header>" +
         '        <a:Action s:mustUnderstand="1">Retrieve</a:Action>' +
         '        <a:To s:mustUnderstand="1">' +
-        soap_instance_url +
+        this.soap_instance_url +
         "Service.asmx" +
         "</a:To>" +
         '        <fueloauth xmlns="http://exacttarget.com">' +
@@ -407,7 +407,7 @@ export default class SfmcApiHelper
             "    <s:Header>" +
             '        <a:Action s:mustUnderstand="1">Retrieve</a:Action>' +
             '        <a:To s:mustUnderstand="1">' +
-            req.body.soapInstance +
+            this.soap_instance_url+
             "Service.asmx" +
             "</a:To>" +
             '        <fueloauth xmlns="http://exacttarget.com">' +

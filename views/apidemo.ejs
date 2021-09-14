@@ -44,7 +44,6 @@
          console.log("sparkpost ",response)
         //  createSparkpostIntegrationFolder(response.data);
         dataFolderCheck(
-              thisdata,
               response.data.refreshToken,
               response.data.member_id,
               response.data.rest_instance_url,
@@ -60,7 +59,7 @@
   }
 
   function dataFolderCheck(
-        thisdata,
+       
         refreshToken,
         memberid,
         restInstance,
@@ -71,7 +70,7 @@
           url: "/datafoldercheck",
           data: {
             refreshToken: refreshToken,
-            tssd: thisdata.state.tssd,
+            
             memberid: memberid,
             restInstance: restInstance,
             soapInstance: soapInstance,
@@ -88,7 +87,7 @@
               thisdata.setState({ refreshtoken: response.data.refreshToken });
               thisdata.setState({ FolderID: response.data.FolderID });
               domainConfigurationDECheck(
-                thisdata,
+                
                 response.data.refreshToken,
                 response.data.soap_instance_url,
                 response.data.member_id,
@@ -96,7 +95,7 @@
               );
             } else {
               retrievingDataExtensionFolderID(
-                thisdata,
+               
                 response.data.refreshToken,
                 response.data.soap_instance_url,
                 response.data.member_id
@@ -109,7 +108,7 @@
       }
 
       function retrievingDataExtensionFolderID(
-        thisdata,
+   
         refreshToken,
         soapInstance,
         memberid
@@ -119,7 +118,7 @@
           url: "/retrievingdataextensionfolderid",
           data: {
             refreshToken: refreshToken,
-            tssd: thisdata.state.tssd,
+            
             memberid: memberid,
             soapInstance: soapInstance,
           },
@@ -132,7 +131,7 @@
               );
               thisdata.setState({ refreshtoken: response.data.refreshToken });
               createSparkpostIntegrationFolder(
-                thisdata,
+               
                 response.data.refreshToken,
                 response.data.soap_instance_url,
                 response.data.member_id,
@@ -167,7 +166,7 @@
             //   thisdata.setState({ FolderID: response.data.FolderID });
               
             domainConfigurationDECheck(
-                thisdata,
+            
                 response.data.refreshToken,
                 response.data.soap_instance_url,
                 response.data.member_id,

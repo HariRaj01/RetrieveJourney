@@ -65,8 +65,7 @@ export default class SfmcApiHelper
                 tokenExpiry.setSeconds(tokenExpiry.getSeconds() + response.data.expiresIn);
                 Utils.logInfo("Got OAuth token: " + accessToken + ", expires = " +  tokenExpiry);
                 console.log("response:",response.data);
-                var accesstoken=this.oauthAccessToken
-                console.log("accesstoken:>>",accesstoken);
+               
                 resolve(
                 {
                     oauthAccessToken: accessToken,
@@ -75,6 +74,8 @@ export default class SfmcApiHelper
                     status: response.status,
                     statusText: response.statusText + "\n" + Utils.prettyPrintJson(JSON.stringify(response.data))
                 });
+                var accesstoken=this.oauthAccessToken
+                console.log("accesstoken:>>",accesstoken);
             })
             .catch((error: any) => {
                 // error
@@ -93,7 +94,7 @@ export default class SfmcApiHelper
       console.log("Hello");
       console.log("bodymemberid:" + this.member_id);
       console.log("bodymemberid:" + this.soap_instance_url);
-      let oauthToken= this.oauthAccessToken;
+      let oauthToken= this.;
       let self = this;
       // self.getRefreshTokenHelper(this._accessToken, res);
       self

@@ -259,7 +259,6 @@ export default class SfmcApiHelper
         "                <CustomerKey>TESTING "+
         "</CustomerKey>" +
         "                <Name>DataExtension check"+
-        this.member_id +
         "</Name>" +
         "                <Fields>" +
         "                    <Field>" +

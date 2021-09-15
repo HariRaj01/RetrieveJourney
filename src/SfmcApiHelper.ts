@@ -245,6 +245,7 @@ export default class SfmcApiHelper
       res: express.Response
     ) {
       // this.getRefreshTokenHelper(this._accessToken, res);
+      console.log("<<<CREATING SPARKPOST INTEGRATION>>>")
       console.log("createSparkpostIntegrationFolder:" + this.member_id);
       console.log("createSparkpostIntegrationFolder:" + this.soap_instance_url);
       // console.log("createSparkpostIntegrationFolder:" + req.body.refreshToken);

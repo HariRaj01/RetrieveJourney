@@ -424,7 +424,7 @@ export default class SfmcApiHelper
             '                <Filter xsi:type="SimpleFilterPart">' +
             "                    <Property>Name</Property>" +
             "                    <SimpleOperator>equals</SimpleOperator>" +
-            "                    <Value>Hari</Value>" +
+            "                    <Value>Data Extensions</Value>" +
             "                </Filter>" +
             "            </RetrieveRequest>" +
             "        </RetrieveRequestMsg>" +

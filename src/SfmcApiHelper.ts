@@ -166,7 +166,7 @@ export default class SfmcApiHelper
         '                <Filter xsi:type="SimpleFilterPart">' +
         "                    <Property>Name</Property>" +
         "                    <SimpleOperator>equals</SimpleOperator>" +
-        "                    <Value>Sparkpost Integrations"  +
+        "                    <Value>DataExtension Folder"  +
         "</Value>" +
         "                </Filter>" +
         "            </RetrieveRequest>" +

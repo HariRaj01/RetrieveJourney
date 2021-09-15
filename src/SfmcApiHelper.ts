@@ -515,6 +515,7 @@ export default class SfmcApiHelper
       return new Promise<any>((resolve, reject) => {
         //console.log('dename'+req.body.dataextensionname);
     //this.getRefreshTokenHelper(this._accessToken, res);
+    let oauthToken=this.oauthAccessToken;
     console.log("creatingDomainConfigurationDE:" + this.member_id);
     console.log("creatingDomainConfigurationDE:" + this.soap_instance_url);
        //console.log('domainConfigurationDECheck:'+req.body.ParentFolderID);
@@ -535,7 +536,7 @@ export default class SfmcApiHelper
         "Service.asmx" +
         "</a:To>" +
         '        <fueloauth xmlns="http://exacttarget.com">' +
-        response.oauthAccessToken +
+        oauthToken +
         "</fueloauth>" +
         "    </s:Header>" +
         '    <s:Body xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">' +

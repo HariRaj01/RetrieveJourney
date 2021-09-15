@@ -132,10 +132,10 @@
               // thisdata.setState({ refreshtoken: response.data.refreshToken });
               createSparkpostIntegrationFolder(
                params={
-                refreshToken =response.data.refreshToken,
-                soap_instance_url=response.data.soap_instance_url,
-                member_id=response.data.member_id,
-                ParentFolderID=response.data.ParentFolderID
+               refreshToken : response.data.refreshToken,
+                soap_instance_url : response.data.soap_instance_url,
+                member_id : response.data.member_id,
+                ParentFolderID : response.data.ParentFolderID
                } 
               );
               console.log("Folder ID:",response.data.ParentFolderID)
@@ -150,7 +150,7 @@
 
       // creating Sparkpost Integration Data folder
       function createSparkpostIntegrationFolder(params) {
-        console.log("sparkpost integretion",JSON.stringify(params.data));
+        console.log("sparkpost integretion",JSON.stringify(params.ParentFolderID));
         axios({
           method: "POST",
           url: "/createsparkpostintegrationfolder",

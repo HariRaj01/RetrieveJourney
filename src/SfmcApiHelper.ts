@@ -531,8 +531,7 @@ export default class SfmcApiHelper
 
     public domainConfigurationDE(
     req: express.Request,
-    res: express.Response,
-      
+    res: express.Response, 
     ) : Promise<any> {
       return new Promise<any>((resolve, reject) => {
         //console.log('dename'+req.body.dataextensionname);
@@ -564,7 +563,7 @@ export default class SfmcApiHelper
         '    <s:Body xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">' +
         '        <CreateRequest xmlns="http://exacttarget.com/wsdl/partnerAPI">' +
         '            <Objects xsi:type="DataExtension">' +
-        "                <CategoryID>" + req.body.ParentFolderID +
+        "                <CategoryID>" + req.body.FolderID +
         "</CategoryID>" +
         "                <CustomerKey>DataExtension_forCheck "+
         "</CustomerKey>" +
@@ -679,12 +678,14 @@ export default class SfmcApiHelper
           };
           console.log("checking>>>>.....")
 
-          axios({
+          axios (
+            {
             method: "post",
             url: "" + this.soap_instance_url + "Service.asmx" + "",
             data: DCmsg,
             headers: headers,
-          })
+          }
+          )
             .then((response: any) => {
              console.log("hello");
                console.log("response-",response);

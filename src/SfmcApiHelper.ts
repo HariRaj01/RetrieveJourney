@@ -564,7 +564,7 @@ export default class SfmcApiHelper
         '    <s:Body xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">' +
         '        <CreateRequest xmlns="http://exacttarget.com/wsdl/partnerAPI">' +
         '            <Objects xsi:type="DataExtension">' +
-        "                <CategoryID>" + req.body.FolderID +
+        "                <CategoryID>" + req.body.Folder_ID +
         "</CategoryID>" +
         "                <CustomerKey>DataExtension_forCheck "+
         "</CustomerKey>" +

@@ -82,7 +82,7 @@ const appDemoRoutes = new SfmcAppDemoRoutes();
     appDemoRoutes.createSparkpostIntegrationFolder(req, res);
   });
 
-  app.post("/domainConfigurationDE", function (req, res) {
+  app.post("/domainconfigurationde", function (req, res) {
     appDemoRoutes.domainConfigurationDE(req, res);
   });
 

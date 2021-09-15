@@ -718,14 +718,8 @@ export default class SfmcApiHelper
           .send(Utils.prettyPrintJson(JSON.stringify(error.response.data)));
       });
   });
-    
-  
-      
-
 }
-}    
-
-
+}   
 function then(arg0: (response: any) => Promise<any>) {
   throw new Error('Function not implemented.');
 }

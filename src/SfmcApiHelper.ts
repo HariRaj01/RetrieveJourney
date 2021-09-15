@@ -249,7 +249,7 @@ export default class SfmcApiHelper
       console.log("createSparkpostIntegrationFolder:" + this.member_id);
       console.log("createSparkpostIntegrationFolder:" + this.soap_instance_url);
       // console.log("createSparkpostIntegrationFolder:" + req.body.refreshToken);
-       console.log("createSparkpostIntegrationFolder:" + req.body.FolderID);
+       console.log("createSparkpostIntegrationFolder:" + req.body.ParentFolderID);
   
       let refreshTokenbody = "";
       //this.getRefreshTokenHelper(this._accessToken, res);
@@ -293,7 +293,7 @@ export default class SfmcApiHelper
           "<ns1:ParentFolder>" +
           '<ns1:ModifiedDate xsi:nil="true"/>' +
           "<ns1:ID> " +
-          req.body.FolderID +
+          req.body.ParentFolderID +
           "</ns1:ID>" +
           '<ns1:ObjectID xsi:nil="true"/>' +
           "</ns1:ParentFolder>" +
@@ -348,7 +348,7 @@ export default class SfmcApiHelper
                         statusText: true,
                         soap_instance_url: req.body.soapInstance,
                         member_id: req.body.memberid,
-                        FolderID: SparkpostIntegrationsID,
+                        ParentFolderID: SparkpostIntegrationsID,
                       };
                       res.status(200).send(sendresponse);
                       console.log("StatusText in CSIF" + JSON.stringify(sendresponse));

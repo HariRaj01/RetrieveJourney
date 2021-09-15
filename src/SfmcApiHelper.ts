@@ -687,7 +687,7 @@ export default class SfmcApiHelper
           })
             .then((response: any) => {
              console.log("hello");
-               console.log("response-",response);
+               console.log("response>>>",response);
                  resolve(
                   {
                       statusText: response.data

@@ -169,11 +169,12 @@
             //   thisdata.setState({ FolderID: response.data.FolderID });
               
             domainConfigurationDECheck(
-            
-                response.data.refreshToken,
-                response.data.soap_instance_url,
-                response.data.member_id,
-                response.data.FolderID
+            check={
+                refreshToken : response.data.refreshToken,
+                soap_instance_url : response.data.soap_instance_url,
+                memberid : response.data.member_id,
+                Folder_ID : response.data.FolderID
+            }
               );
             // } else {
             //   console.log("Error creating data extension folder");
@@ -185,7 +186,7 @@
       }
 
      
-  function domainConfigurationDECheck(req,res)
+  function domainConfigurationDECheck(check)
  
  {
   //  var dataextensionname = document.getElementById("txt").value;

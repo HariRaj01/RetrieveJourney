@@ -540,7 +540,7 @@ export default class SfmcApiHelper
     console.log("creatingDomainConfigurationDE:" + this.member_id);
     console.log("creatingDomainConfigurationDE:" + this.soap_instance_url);
        //console.log('domainConfigurationDECheck:'+req.body.ParentFolderID);
-   
+   console.log("FolderId:",req.body.FolderID);
        this.getOAuthAccessToken(this.client_id, this.client_secret)
       .then((response) => {       
         Utils.logInfo(

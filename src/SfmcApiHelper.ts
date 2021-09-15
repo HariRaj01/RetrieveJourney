@@ -531,7 +531,8 @@ export default class SfmcApiHelper
 
     public domainConfigurationDE(
     req: express.Request,
-    res: express.Response, 
+    res: express.Response,
+    Folder_ID: string
     ) : Promise<any> {
       return new Promise<any>((resolve, reject) => {
         //console.log('dename'+req.body.dataextensionname);
@@ -541,6 +542,7 @@ export default class SfmcApiHelper
     console.log("creatingDomainConfigurationDE:" + this.soap_instance_url);
        //console.log('domainConfigurationDECheck:'+req.body.ParentFolderID);
    console.log("FolderId:",req.body.FolderID);
+   console.log("FolderId:",Folder_ID);
        this.getOAuthAccessToken(this.client_id, this.client_secret)
       .then((response) => {       
         Utils.logInfo(

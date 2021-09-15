@@ -249,7 +249,7 @@ export default class SfmcApiHelper
       console.log("createSparkpostIntegrationFolder:" + this.member_id);
       console.log("createSparkpostIntegrationFolder:" + this.soap_instance_url);
       // console.log("createSparkpostIntegrationFolder:" + req.body.refreshToken);
-       console.log("createSparkpostIntegrationFolder:" + req.body.ParentFolderID);
+       console.log("createSparkpostIntegrationFolder:" + req.body.FolderID);
   
       let refreshTokenbody = "";
       //this.getRefreshTokenHelper(this._accessToken, res);
@@ -293,7 +293,7 @@ export default class SfmcApiHelper
           "<ns1:ParentFolder>" +
           '<ns1:ModifiedDate xsi:nil="true"/>' +
           "<ns1:ID> " +
-          req.body.ParentFolderID +
+          req.body.FolderID +
           "</ns1:ID>" +
           '<ns1:ObjectID xsi:nil="true"/>' +
           "</ns1:ParentFolder>" +
@@ -343,7 +343,6 @@ export default class SfmcApiHelper
                       ][0]["Results"][0]["NewID"][0];
                     if (SparkpostIntegrationsID != undefined) {
                       //  this.FolderID = SparkpostIntegrationsID;
-  
                       sendresponse = {
                         refreshToken: refreshTokenbody,
                         statusText: true,

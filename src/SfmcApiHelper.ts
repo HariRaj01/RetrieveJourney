@@ -467,6 +467,7 @@ export default class SfmcApiHelper
                         ParentFolderID: ParentFolderID,
                       };
                       res.status(200).send(sendresponse);
+                      console.log("StatusText in RDEF" + JSON.stringify(sendresponse));
                     } else {
                       sendresponse = {
                         refreshToken: refreshTokenbody,
@@ -475,6 +476,7 @@ export default class SfmcApiHelper
                         member_id: req.body.memberid,
                         ParentFolderID: ParentFolderID,
                       };
+                      console.log("StatusText in RDEF:" + JSON.stringify(sendresponse));
                       res.status(200).send(sendresponse);
                     }
                     //this.creatingHearsayIntegrationFolder(ParentFolderID);

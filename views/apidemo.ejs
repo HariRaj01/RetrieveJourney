@@ -124,11 +124,12 @@
         })
           .then(function (response) {
             if (response.data.statusText) {
+              
               console.log(
                 "retrievingdataextensionfolderid:" +
                   JSON.stringify(response.data)
               );
-              thisdata.setState({ refreshtoken: response.data.refreshToken });
+              // thisdata.setState({ refreshtoken: response.data.refreshToken });
               createSparkpostIntegrationFolder(
                
                 response.data.refreshToken,

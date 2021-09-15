@@ -536,8 +536,8 @@ export default class SfmcApiHelper
     soap_instance_url: string,
     Folder_ID : string
       
-    )  {
-      
+    ) : Promise<any> {
+      return new Promise<any>((resolve, reject) => {
         //console.log('dename'+req.body.dataextensionname);
     //this.getRefreshTokenHelper(this._accessToken, res);
     let oauthToken=this.oauthAccessToken;
@@ -676,7 +676,7 @@ export default class SfmcApiHelper
         "    </s:Body>" +
         "</s:Envelope>";
 
-        return new Promise<any>((resolve, reject) => {
+        
           let headers = {
             "Content-Type": "text/xml",
           };
@@ -713,7 +713,7 @@ export default class SfmcApiHelper
 
               reject(errorMsg);
             });
-          });
+        
       })
       .catch((error: any) => {
         console.log("Error in Creating DE")
@@ -721,7 +721,7 @@ export default class SfmcApiHelper
           .status(500)
           .send(Utils.prettyPrintJson(JSON.stringify(error.response.data)));
       });
- 
+  });
 }
 }   
 function then(arg0: (response: any) => Promise<any>) {

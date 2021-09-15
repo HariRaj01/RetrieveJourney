@@ -192,7 +192,7 @@
   //  console.log("dataextensionname=",dataextensionname);
   //  console.log("methodcalled");
   console.log("World");
-  console.log("FolderID in DE:",check.ParentFolderID)
+  console.log("FolderID in DE:",JSON.stringify(check.ParentFolderID))
        axios({
          method: "POST",
          url: "/domainconfigurationdecheck",

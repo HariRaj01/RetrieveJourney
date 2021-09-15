@@ -93,7 +93,7 @@ export default class SfmcApiHelper
     public dataFolderCheck(req: express.Request, res: express.Response) {
       console.log("Hello");
       console.log("bodymemberid:" + this.member_id);
-      console.log("bodymemberid:" + this.soap_instance_url);
+      console.log("bodymemberid:" + req.body.soapInstance);
       let oauthToken= this.oauthAccessToken;
       let self = this;
       // self.getRefreshTokenHelper(this._accessToken, res);
@@ -138,7 +138,7 @@ export default class SfmcApiHelper
         });
     }
     public getCategoryIDHelper(
-      soap_instance_url: string,
+      soapInstance: string,
       oauthToken: string
     ): Promise<any> {
       let soapMessage =
@@ -147,7 +147,7 @@ export default class SfmcApiHelper
         "    <s:Header>" +
         '        <a:Action s:mustUnderstand="1">Retrieve</a:Action>' +
         '        <a:To s:mustUnderstand="1">' +
-        this.soap_instance_url +
+        soapInstance +
         "Service.asmx" +
         "</a:To>" +
         '        <fueloauth xmlns="http://exacttarget.com">' +
@@ -182,7 +182,7 @@ export default class SfmcApiHelper
   
         axios({
           method: "post",
-          url: "" + this.soap_instance_url + "Service.asmx" + "",
+          url: "" + soapInstance + "Service.asmx" + "",
           data: soapMessage,
           headers: { "Content-Type": "text/xml" },
         })
@@ -247,7 +247,7 @@ export default class SfmcApiHelper
       // this.getRefreshTokenHelper(this._accessToken, res);
       console.log("<<<CREATING SPARKPOST INTEGRATION>>>")
       console.log("createSparkpostIntegrationFolder:" + this.member_id);
-      console.log("createSparkpostIntegrationFolder:" + this.soap_instance_url);
+      console.log("createSparkpostIntegrationFolder:" + req.body.soap_instance_url);
       // console.log("createSparkpostIntegrationFolder:" + req.body.refreshToken);
        console.log("createSparkpostIntegrationFolder:" + req.body.ParentFolderID);
   
@@ -319,7 +319,7 @@ export default class SfmcApiHelper
             // POST to Marketing Cloud Data Extension endpoint to load sample data in the POST body
             axios({
               method: "post",
-              url: "" + this.soap_instance_url + "Service.asmx" + "",
+              url: "" + req.body.soap_instance_url + "Service.asmx" + "",
               data: createFolderData,
               headers: headers,
             })
@@ -398,7 +398,7 @@ export default class SfmcApiHelper
       res: express.Response
     ) {
       console.log("retrivememberid:" + this.member_id);
-      console.log("retrivememberid:" + this.soap_instance_url);
+      console.log("retrivememberid:" + req.body.soapInstance);
       let soapMessage = "";
       let refreshTokenbody = "";
       //this.getRefreshTokenHelper(this._accessToken, res);
@@ -427,7 +427,7 @@ export default class SfmcApiHelper
             "    <s:Header>" +
             '        <a:Action s:mustUnderstand="1">Retrieve</a:Action>' +
             '        <a:To s:mustUnderstand="1">' +
-            this.soap_instance_url+
+            req.body.soapInstance+
             "Service.asmx" +
             "</a:To>" +
             '        <fueloauth xmlns="http://exacttarget.com">' +
@@ -454,7 +454,7 @@ export default class SfmcApiHelper
           return new Promise<any>((resolve, reject) => {
             axios({
               method: "post",
-              url: "" + this.soap_instance_url+ "Service.asmx" + "",
+              url: "" + req.body.soapInstance + "Service.asmx" + "",
               data: soapMessage,
               headers: { "Content-Type": "text/xml" },
             })
@@ -538,7 +538,7 @@ export default class SfmcApiHelper
     //this.getRefreshTokenHelper(this._accessToken, res);
     let oauthToken=this.oauthAccessToken;
     console.log("creatingDomainConfigurationDE:" + this.member_id);
-    console.log("creatingDomainConfigurationDE:" + this.soap_instance_url);
+    console.log("creatingDomainConfigurationDE:" + req.body.soap_instance_url);
        //console.log('domainConfigurationDECheck:'+req.body.ParentFolderID);
    console.log("FolderId:",req.body.Folder_ID);
    
@@ -554,7 +554,7 @@ export default class SfmcApiHelper
         "    <s:Header>" +
         '        <a:Action s:mustUnderstand="1">Create</a:Action>' +
         '        <a:To s:mustUnderstand="1">' +
-        this.soap_instance_url +
+        req.body.soap_instance_url +
         "Service.asmx" +
         "</a:To>" +
         '        <fueloauth xmlns="http://exacttarget.com">' +
@@ -682,7 +682,7 @@ export default class SfmcApiHelper
           axios (
             {
             method: "post",
-            url: "" + this.soap_instance_url + "Service.asmx" + "",
+            url: "" + req.body.soap_instance_url + "Service.asmx" + "",
             data: DCmsg,
             headers: headers,
           }

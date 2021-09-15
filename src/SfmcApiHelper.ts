@@ -245,12 +245,13 @@ export default class SfmcApiHelper
       res: express.Response
     ) {
       // this.getRefreshTokenHelper(this._accessToken, res);
+      console.log("<<<CREATING SPARKPOST INTEGRATION FOLDER>>>")
       console.log("createSparkpostIntegrationFolder:" + this.member_id);
       console.log("createSparkpostIntegrationFolder:" + this.soap_instance_url);
       // console.log("createSparkpostIntegrationFolder:" + req.body.refreshToken);
        console.log("createSparkpostIntegrationFolder:" + req.body.ParentFolderID);
   
-      let refreshTokenbody = "";
+      // let refreshTokenbody = "";
       //this.getRefreshTokenHelper(this._accessToken, res);
       // this.getRefreshTokenHelper(req.body.refreshToken, req.body.tssd, false, res)
        

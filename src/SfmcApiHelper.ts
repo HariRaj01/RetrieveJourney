@@ -726,7 +726,7 @@ export default class SfmcApiHelper
 }    
 
 
-function then(arg0: (response: any) => Promise<any>) {
-  throw new Error('Function not implemented.');
+// function then(arg0: (response: any) => Promise<any>) {
+//   throw new Error('Function not implemented.');
 }
 

@@ -532,9 +532,6 @@ export default class SfmcApiHelper
     public domainConfigurationDE(
     req: express.Request,
     res: express.Response,
-    member_id: string,
-    soap_instance_url: string,
-    Folder_ID : string
       
     ) : Promise<any> {
       return new Promise<any>((resolve, reject) => {
@@ -690,7 +687,7 @@ export default class SfmcApiHelper
           })
             .then((response: any) => {
              console.log("hello");
-               console.log("response>>>",response);
+               console.log("response-",response);
                  resolve(
                   {
                       statusText: response.data

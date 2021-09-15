@@ -348,7 +348,7 @@ export default class SfmcApiHelper
                         statusText: true,
                         soap_instance_url: req.body.soapInstance,
                         member_id: req.body.memberid,
-                        ParentFolderID: SparkpostIntegrationsID,
+                        FolderID: SparkpostIntegrationsID,
                       };
                       res.status(200).send(sendresponse);
                       console.log("StatusText in CSIF" + JSON.stringify(sendresponse));

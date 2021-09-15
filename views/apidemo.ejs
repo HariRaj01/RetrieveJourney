@@ -61,7 +61,7 @@
   }
 
   function dataFolderCheck(per) {
-    console.log("DataFolder SOAP:",per.soap_instance_url)
+    console.log("DataFolder SOAP:",JSON.stringify(per.soap_instance_url))
         axios({
           method: "POST",
           url: "/datafoldercheck",

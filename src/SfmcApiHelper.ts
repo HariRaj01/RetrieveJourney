@@ -686,10 +686,7 @@ export default class SfmcApiHelper
           })
             .then((response: any) => {
              console.log("hello");
-             
-             
                console.log("response-",response);
-                
                  resolve(
                   {
                       statusText: response.data
@@ -715,6 +712,7 @@ export default class SfmcApiHelper
         
       })
       .catch((error: any) => {
+        console.log("Error in Creating DE")
         res
           .status(500)
           .send(Utils.prettyPrintJson(JSON.stringify(error.response.data)));

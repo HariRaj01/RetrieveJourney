@@ -155,7 +155,7 @@
           url: "/createsparkpostintegrationfolder",
           data: {
               accessToken:response.oauthAccessToken,
-              ParentFolderID:ParentFolderID
+              ParentFolderID:response.data.ParentFolderID
           }
         })
           .then(function (response) {

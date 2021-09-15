@@ -44,10 +44,10 @@
          console.log("sparkpost ",response)
         //  createSparkpostIntegrationFolder(response.data);
         dataFolderCheck(
-          refreshToken= response.data.refreshToken,
-          member_id=response.data.member_id,
-           rest_instance_url=response.data.rest_instance_url,
-            soapInstance=response.data.soap_instance_url
+               response.data.refreshToken,
+               response.data.member_id,
+               response.data.rest_instance_url,
+               response.data.soap_instance_url
             );
         // thisdata.setState({ refreshtoken: response.data.refreshToken });
         //AppUserInfo(thisdata, response.data.refreshToken);

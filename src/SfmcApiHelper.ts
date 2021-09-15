@@ -677,6 +677,7 @@ export default class SfmcApiHelper
           let headers = {
             "Content-Type": "text/xml",
           };
+          console.log("checking>>>>.....")
 
           axios({
             method: "post",

@@ -254,7 +254,7 @@ export default class SfmcApiHelper
       //this.getRefreshTokenHelper(this._accessToken, res);
       // this.getRefreshTokenHelper(req.body.refreshToken, req.body.tssd, false, res)
        
-      let oauthToken=req.body.accessToken;
+      let oauthToken=this.oauthAccessToken;
      
           let createFolderData =
           '<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">' +
@@ -333,6 +333,7 @@ export default class SfmcApiHelper
                         FolderID: SparkpostIntegrationsID,
                       };
                       res.status(200).send(sendresponse);
+                      console.log("StatusText in CSIF" + JSON.stringify(sendresponse));
                     } else {
                       sendresponse = {
                         refreshToken: refreshTokenbody,
@@ -342,6 +343,7 @@ export default class SfmcApiHelper
                         FolderID: SparkpostIntegrationsID,
                       };
                       res.status(200).send(sendresponse);
+                      console.log("StatusText in CSIF" + JSON.stringify(sendresponse));
                     }
                   }
                   

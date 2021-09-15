@@ -255,6 +255,24 @@ export default class SfmcApiHelper
       // this.getRefreshTokenHelper(req.body.refreshToken, req.body.tssd, false, res)
        
       let oauthToken=this.oauthAccessToken;
+      this.getOAuthAccessToken(this.client_id, this.client_secret)
+      //  this.getRefreshTokenHelper(req.body.refreshToken, req.body.tssd, false, res)
+        .then((response) => {
+          // Utils.logInfo(
+          //   "datafolderTokenbody:" + JSON.stringify(response.refreshToken)
+          // );
+          Utils.logInfo(
+            "datafolderAuthTokenbody(createSparkpostIntegrationFolder):" + JSON.stringify(oauthToken)
+          );
+          // refreshTokenbody = response.refreshToken;
+          // Utils.logInfo(
+          //   "datafolderTokenbody1:" + JSON.stringify(refreshTokenbody)
+          // );
+  
+          let headers = {
+            "Content-Type": "text/xml",
+            SOAPAction: "Retrieve",
+          };
      
           let createFolderData =
           '<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">' +
@@ -343,7 +361,7 @@ export default class SfmcApiHelper
                         FolderID: SparkpostIntegrationsID,
                       };
                       res.status(200).send(sendresponse);
-                      console.log("StatusText in CSIF" + JSON.stringify(sendresponse));
+                       console.log("StatusText in CSIF" + JSON.stringify(sendresponse));
                     }
                   }
                   
@@ -372,7 +390,7 @@ export default class SfmcApiHelper
         //   res
         //     .status(500)
         //     .send(Utils.prettyPrintJson(JSON.stringify(error.response.data)));
-        // });
+         });
     } 
 
     public retrievingDataExtensionFolderID(

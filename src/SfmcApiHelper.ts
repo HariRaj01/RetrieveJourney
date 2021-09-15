@@ -93,7 +93,7 @@ export default class SfmcApiHelper
     public dataFolderCheck(req: express.Request, res: express.Response) {
       console.log("Hello");
       console.log("bodymemberid:" + this.member_id);
-      console.log("bodymemberid:" + req.body.soapInstance);
+      console.log("bodymemberid:" + JSON.stringify(req.body.soapInstance));
       let oauthToken= this.oauthAccessToken;
       let self = this;
       // self.getRefreshTokenHelper(this._accessToken, res);

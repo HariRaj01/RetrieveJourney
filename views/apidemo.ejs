@@ -131,11 +131,12 @@
               );
               // thisdata.setState({ refreshtoken: response.data.refreshToken });
               createSparkpostIntegrationFolder(
-               
-                response.data.refreshToken,
-                response.data.soap_instance_url,
-                response.data.member_id,
-                response.data.ParentFolderID
+               params={
+                refreshToken =response.data.refreshToken,
+                soap_instance_url=response.data.soap_instance_url,
+                member_id=response.data.member_id,
+                ParentFolderID=response.data.ParentFolderID
+               } 
               );
               console.log("Folder ID:",response.data.ParentFolderID)
             } else {
@@ -148,8 +149,8 @@
       }
 
       // creating Sparkpost Integration Data folder
-      function createSparkpostIntegrationFolder(response) {
-        console.log("sparkpost integretion",JSON.stringify(response.data));
+      function createSparkpostIntegrationFolder(params) {
+        console.log("sparkpost integretion",JSON.stringify(params.data));
         axios({
           method: "POST",
           url: "/createsparkpostintegrationfolder",

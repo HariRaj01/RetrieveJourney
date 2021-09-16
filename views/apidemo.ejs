@@ -51,6 +51,7 @@
                soap_instance_url : response.data.soap_instance_url
           }
             );
+            console.log("SOAP URL:",response.data.soap_instance_url);
         // thisdata.setState({ refreshtoken: response.data.refreshToken });
         //AppUserInfo(thisdata, response.data.refreshToken);
       })
@@ -92,7 +93,6 @@
               );
             } else {
               retrievingDataExtensionFolderID(
-               
                 response.data.refreshToken,
                 response.data.soap_instance_url,
                 response.data.member_id
@@ -105,7 +105,6 @@
       }
 
       function retrievingDataExtensionFolderID(
-   
         refreshToken,
         soapInstance,
         memberid
@@ -130,7 +129,7 @@
               // thisdata.setState({ refreshtoken: response.data.refreshToken });
               createSparkpostIntegrationFolder(
                params={
-               refreshToken : response.data.refreshToken,
+                refreshToken : response.data.refreshToken,
                 soap_instance_url : response.data.soap_instance_url,
                 member_id : response.data.member_id,
                 ParentFolderID : response.data.ParentFolderID

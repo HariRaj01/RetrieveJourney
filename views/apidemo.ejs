@@ -161,8 +161,9 @@
           .then(function (response) {
             console.log(
               "createSparkpostIntegrationFolder:" +
-                JSON.stringify(response.data)
-            );
+                JSON.stringify(response.data));
+                console.log("create sparkpostIntegration Folder - SOAP URL:",response.data.soap_instance_url)
+          
             // if (response.data.statusText) {
             //   thisdata.setState({ refreshtoken: response.data.refreshToken });
             //   thisdata.setState({ FolderID: response.data.FolderID });

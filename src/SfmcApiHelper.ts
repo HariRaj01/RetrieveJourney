@@ -119,7 +119,7 @@ export default class SfmcApiHelper
             )
             .then((result) => {
               const sendresponse = {
-
+                
                 statusText: result.statusText,
                 soap_instance_url: req.body.soap_instance_url,
                 member_id: req.body.memberid,

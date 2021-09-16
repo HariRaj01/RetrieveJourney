@@ -42,7 +42,7 @@
         
          console.log("accesstokengeneration:" +JSON.stringify(response.data) );
          console.log("sparkpost ",response)
-         console.log("SOAP URL:",response.data);
+         console.log("OAuthToken",response.data.oauthAccessToken);
         //  createSparkpostIntegrationFolder(response.data);
         dataFolderCheck(
           per={

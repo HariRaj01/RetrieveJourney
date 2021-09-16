@@ -47,7 +47,7 @@
         dataFolderCheck(
           per={
               //  refreshToken : response.data.refreshToken,
-               member_id : response.data.member_id,
+              // member_id : response.data.member_id,
                rest_instance_url : response.data.rest_instance_url,
                soap_instance_url : response.data.soap_instance_url
           }
@@ -69,7 +69,7 @@
           url: "/datafoldercheck",
           data: {
             // refreshToken: refreshToken, 
-            memberid: memberid,
+            //memberid: memberid,
             restInstance: restInstance,
             soap_instance_url: soap_instance_url,
           },
@@ -88,7 +88,7 @@
                 check={
                 // refreshToken : response.data.refreshToken,
                 soap_instance_url : response.data.soap_instance_url,
-                member_id : response.data.member_id,
+               // member_id : response.data.member_id,
                 Folder_ID : response.data.FolderID
                 }
               );
@@ -96,7 +96,7 @@
               retrievingDataExtensionFolderID(
                 // response.data.refreshToken,
                 response.data.soap_instance_url,
-                response.data.member_id
+              //  response.data.member_id
               );
             }
           })
@@ -108,14 +108,14 @@
       function retrievingDataExtensionFolderID(
         // refreshToken,
         soap_instance_url,
-        memberid
+       // memberid
       ) {
         axios({
           method: "POST",
           url: "/retrievingdataextensionfolderid",
           data: {
             // refreshToken: refreshToken,
-            memberid: memberid,
+           // memberid: memberid,
             soap_instance_url: soap_instance_url,
           },
         })
@@ -131,7 +131,7 @@
                params={
                // refreshToken : response.data.refreshToken,
                 soap_instance_url : response.data.soap_instance_url,
-                member_id : response.data.member_id,
+                //member_id : response.data.member_id,
                 ParentFolderID : response.data.ParentFolderID
                } 
               );
@@ -171,7 +171,7 @@
             check={
                // refreshToken : response.data.refreshToken,
                 soap_instance_url : response.data.soap_instance_url,
-                memberid : response.data.member_id,
+                //memberid : response.data.member_id,
                 Folder_ID : response.data.FolderID
             }
               );
@@ -197,7 +197,7 @@
          url: "/domainconfigurationde",
          data: {
           // dataextensionname : dataextensionname,
-           memberid:check.memberid,
+          // memberid:check.memberid,
            soap_instance_url: check.soap_instance_url,
            Folder_ID : check.Folder_ID   
          },

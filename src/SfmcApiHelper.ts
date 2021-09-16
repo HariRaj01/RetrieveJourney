@@ -94,7 +94,7 @@ export default class SfmcApiHelper
     public dataFolderCheck(req: express.Request, res: express.Response) {
       console.log("Hello");
       console.log("bodymemberid:" + this.member_id);
-      console.log("bodymemberid:" + JSON.stringify(req.body.soapInstance));
+      console.log("bodymemberid:" + JSON.stringify(req.body.soap_instance_url));
       let oauthToken= this.oauthAccessToken;
       let self = this;
       // self.getRefreshTokenHelper(this._accessToken, res);
@@ -114,14 +114,14 @@ export default class SfmcApiHelper
           // );
           self
             .getCategoryIDHelper(
-              req.body.soapInstance,
+              req.body.soap_instance_url,
               oauthToken
             )
             .then((result) => {
               const sendresponse = {
 
                 statusText: result.statusText,
-                soap_instance_url: req.body.soapInstance,
+                soap_instance_url: req.body.soap_instance_url,
                 member_id: req.body.memberid,
                 FolderID: result.FolderID,
               };
@@ -139,7 +139,7 @@ export default class SfmcApiHelper
         });
     }
     public getCategoryIDHelper(
-      soapInstance: string,
+      soap_instance_url: string,
       oauthToken: string
     ): Promise<any> {
       let soapMessage =
@@ -148,7 +148,7 @@ export default class SfmcApiHelper
         "    <s:Header>" +
         '        <a:Action s:mustUnderstand="1">Retrieve</a:Action>' +
         '        <a:To s:mustUnderstand="1">' +
-        soapInstance +
+        soap_instance_url +
         "Service.asmx" +
         "</a:To>" +
         '        <fueloauth xmlns="http://exacttarget.com">' +
@@ -183,7 +183,7 @@ export default class SfmcApiHelper
   
         axios({
           method: "post",
-          url: "" + soapInstance + "Service.asmx" + "",
+          url: "" + soap_instance_url + "Service.asmx" + "",
           data: soapMessage,
           headers: { "Content-Type": "text/xml" },
         })
@@ -347,7 +347,7 @@ export default class SfmcApiHelper
                       sendresponse = {
                         refreshToken: refreshTokenbody,
                         statusText: true,
-                        soap_instance_url: req.body.soapInstance,
+                        soap_instance_url: req.body.soap_instance_url,
                         member_id: req.body.memberid,
                         FolderID: SparkpostIntegrationsID,
                       };
@@ -357,7 +357,7 @@ export default class SfmcApiHelper
                       sendresponse = {
                         refreshToken: refreshTokenbody,
                         statusText: false,
-                        soap_instance_url: req.body.soapInstance,
+                        soap_instance_url: req.body.soap_instance_url,
                         member_id: req.body.memberid,
                         FolderID: SparkpostIntegrationsID,
                       };
@@ -399,7 +399,7 @@ export default class SfmcApiHelper
       res: express.Response
     ) {
       console.log("retrivememberid:" + this.member_id);
-      console.log("retrivememberid:" + req.body.soapInstance);
+      console.log("retrivememberid:" + req.body.soap_instance_url);
       let soapMessage = "";
       let refreshTokenbody = "";
       //this.getRefreshTokenHelper(this._accessToken, res);
@@ -428,7 +428,7 @@ export default class SfmcApiHelper
             "    <s:Header>" +
             '        <a:Action s:mustUnderstand="1">Retrieve</a:Action>' +
             '        <a:To s:mustUnderstand="1">' +
-            req.body.soapInstance+
+            req.body.soap_instance_url+
             "Service.asmx" +
             "</a:To>" +
             '        <fueloauth xmlns="http://exacttarget.com">' +
@@ -455,7 +455,7 @@ export default class SfmcApiHelper
           return new Promise<any>((resolve, reject) => {
             axios({
               method: "post",
-              url: "" + req.body.soapInstance + "Service.asmx" + "",
+              url: "" + req.body.soap_instance_url + "Service.asmx" + "",
               data: soapMessage,
               headers: { "Content-Type": "text/xml" },
             })
@@ -483,7 +483,7 @@ export default class SfmcApiHelper
                       sendresponse = {
                         refreshToken: refreshTokenbody,
                         statusText: true,
-                        soap_instance_url: req.body.soapInstance,
+                        soap_instance_url: req.body.soap_instance_url,
                         member_id: req.body.memberid,
                         ParentFolderID: ParentFolderID,
                       };
@@ -493,7 +493,7 @@ export default class SfmcApiHelper
                       sendresponse = {
                         refreshToken: refreshTokenbody,
                         statusText: false,
-                        soap_instance_url: req.body.soapInstance,
+                        soap_instance_url: req.body.soap_instance_url,
                         member_id: req.body.memberid,
                         ParentFolderID: ParentFolderID,
                       };

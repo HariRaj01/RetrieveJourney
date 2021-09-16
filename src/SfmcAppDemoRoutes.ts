@@ -138,47 +138,45 @@ export default class SfmcAppDemoRoutes
             res.status(500).send(errorMsg);
         }
     }
-    public dataFolderCheck(req: express.Request, res: express.Response) {
-      let self = this;
-      self._apiHelper.dataFolderCheck(req, res);
-    }
+    // public dataFolderCheck(req: express.Request, res: express.Response) {
+    //   let self = this;
+    //   self._apiHelper.dataFolderCheck(req, res);
+    // }
 
-    public retrievingDataExtensionFolderID(
-      req: express.Request,
-      res: express.Response
-    ) {
-      let self = this;
-      self._apiHelper.retrievingDataExtensionFolderID(req, res);
-    }
-    public createSparkpostIntegrationFolder(
-        req: express.Request,
-        res: express.Response
-      ) {
-        let self = this;
-        self._apiHelper.createSparkpostIntegrationFolder(req, res)
+    // public retrievingDataExtensionFolderID(
+    //   req: express.Request,
+    //   res: express.Response
+    // ) {
+    //   let self = this;
+    //   self._apiHelper.retrievingDataExtensionFolderID(req, res);
+    // }
+    // public createSparkpostIntegrationFolder(
+    //     req: express.Request,
+    //     res: express.Response
+    //   ) {
+    //     let self = this;
+    //     self._apiHelper.createSparkpostIntegrationFolder(req, res)
       
-      }
+    //   }
     
      
-    public domainConfigurationDE(
-        req: express.Request,
-        res: express.Response,
+    // public domainConfigurationDE(
+    //     req: express.Request,
+    //     res: express.Response,
         
-      ) {        
-        let self = this;
-       self._apiHelper.domainConfigurationDE(req, res)
-       .then((response:any)=>{
+    //   ) {        
+    //     let self = this;
+    //    self._apiHelper.domainConfigurationDE(req, res)
+    //    .then((response:any)=>{
 
-        console.log("Response for Creating DE :::"+ JSON.stringify(response));
-        res.status(200).send(response.statusText);
+    //     console.log("Response for Creating DE :::"+ JSON.stringify(response));
+    //     res.status(200).send(response.statusText);
 
-       })
-       .catch((error: any) => {
-         console.log("error in creating domainconfiguration")
+    //    })
+    //    .catch((error: any) => {
+    //      console.log("error in creating domainconfiguration")
          
       
-      })
-}
-
-
+    //   })
+// }
 }

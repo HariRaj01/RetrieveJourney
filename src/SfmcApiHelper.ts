@@ -18,7 +18,7 @@ export default class SfmcApiHelper
   //private soap_instance_url = "https://mcj6cy1x9m-t5h5tz0bfsyqj38ky.soap.marketingcloudapis.com/";
   private _deExternalKey = "DF1316_DEMO";
   private _sfmcDataExtensionApiUrl = "https://mcj6cy1x9m-t5h5tz0bfsyqj38ky.rest.marketingcloudapis.com/hub/v1/dataevents/key:" + this._deExternalKey + "/rowset";
-
+  private isAccessToken = false;
 
   public getOAuthAccessToken(
     clientId: string,
@@ -65,7 +65,7 @@ export default class SfmcApiHelper
         .post(sfmcAuthServiceApiUrl, postBody, { headers: headers })
         .then((response: any) => {
           let refreshToken = response.data.refresh_token;
-          this.getRefreshTokenHelper(refreshToken, tssd, true, res);
+          // this.getRefreshTokenHelper(refreshToken, tssd, true, res);
         })
         .catch((error: any) => {
           // error

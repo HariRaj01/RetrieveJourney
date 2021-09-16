@@ -72,7 +72,7 @@ export default class SfmcApiHelper
                     oauthAccessTokenExpiry: tokenExpiry,
                     JSON:jsonData,
                     status: response.status,
-                    soap_instance_url:response.soap_instance_url,
+                    soap_instance_url:response.data.soap_instance_url,
                     statusText: response.statusText + "\n" + Utils.prettyPrintJson(JSON.stringify(response.data))
                 });
                 this.oauthAccessToken=response.data.access_token;

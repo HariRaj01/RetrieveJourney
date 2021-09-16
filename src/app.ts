@@ -50,7 +50,18 @@ app.use(express.static(path.join(__dirname, "../static")));
 app.use(favicon(path.join(__dirname,'../static','images','favicons', 'favicon.ico')));
 
 // Routes: pages
-app.get('/', function(req, res) { Utils.initSampleDataAndRenderView(req, res, 'apidemo.ejs') });
+app.get("/", function (req, res) {
+  if (req.query.code === undefined) {
+    const redirectUri = `https://${process.env.BASE_URL}.auth.marketingcloudapis.com/v2/authorize?response_type=code&client_id=${process.env.CLIENTID}&redirect_uri=${process.env.REDIRECT_URL}`;
+
+    res.redirect(redirectUri);
+  } else {
+    res.render("apidemo.ejs", {
+      authorization_code: req.query.code,
+      tssd: req.query.tssd ? req.query.tssd : process.env.BASE_URL,
+    });
+  }
+});
 
 
 
@@ -70,21 +81,21 @@ const appDemoRoutes = new SfmcAppDemoRoutes();
   app.get('/appdemoauthtoken', function(req, res) {
   appDemoRoutes.getOAuthAccessToken(req, res); });
 
-  app.post("/datafoldercheck", function (req, res) {
-    appDemoRoutes.dataFolderCheck(req, res);
-  });
+  // app.post("/datafoldercheck", function (req, res) {
+  //   appDemoRoutes.dataFolderCheck(req, res);
+  // });
 
-  app.post("/retrievingdataextensionfolderid", function (req, res) {
-    appDemoRoutes.retrievingDataExtensionFolderID(req, res);
-  });
+  // app.post("/retrievingdataextensionfolderid", function (req, res) {
+  //   appDemoRoutes.retrievingDataExtensionFolderID(req, res);
+  // });
 
-  app.post("/createsparkpostintegrationfolder", function (req, res) {
-    appDemoRoutes.createSparkpostIntegrationFolder(req, res);
-  });
+  // app.post("/createsparkpostintegrationfolder", function (req, res) {
+  //   appDemoRoutes.createSparkpostIntegrationFolder(req, res);
+  // });
 
-  app.post("/domainconfigurationde", function (req, res) {
-    appDemoRoutes.domainConfigurationDE(req, res);
-  });
+  // app.post("/domainconfigurationde", function (req, res) {
+  //   appDemoRoutes.domainConfigurationDE(req, res);
+  // });
 
 // // Marketing Cloud POSTs the JWT to the '/login' endpoint when a user logs in
 // app.post('/login', function(req, res) {

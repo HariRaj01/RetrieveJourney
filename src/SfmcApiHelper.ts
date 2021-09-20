@@ -145,8 +145,10 @@ export default class SfmcApiHelper
     console.log("getJourneysById:" + this.soap_instance_url);
     console.log("getJourneysById:" + req.body.refreshToken);
     console.log("Get Journey ID:",req.body.journeyId)
-    let oauthToken=this.oauthAccessToken
-    
+    let oauthToken=this.oauthAccessToken;
+    let tssd = process.env.BASE_URL;
+    this.getRefreshTokenHelper(req.body.refreshToken, tssd, false, res)
+      .then((response) => {
         Utils.logInfo(
           "getJourneysById:" + JSON.stringify(req.body.refreshToken)
         );
@@ -161,7 +163,7 @@ export default class SfmcApiHelper
 
           let JourneyUrl =
             "https://" +
-            process.env.BASE_URL +
+             tssd +
             ".rest.marketingcloudapis.com/interaction/v1/interactions/" 
             req.body.journeyId;
 
@@ -196,7 +198,12 @@ export default class SfmcApiHelper
               reject(errorMsg);
             });
         });
-      
+      })
+      .catch((error: any) => {
+        res
+          .status(500)
+          .send(Utils.prettyPrintJson(JSON.stringify(error.response.data)));
+      });
       // .catch((error: any) => {
       //   res
       //     .status(500)

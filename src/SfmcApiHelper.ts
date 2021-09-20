@@ -61,6 +61,8 @@ export default class SfmcApiHelper
       "https://mcj6cy1x9m-t5h5tz0bfsyqj38ky.auth.marketingcloudapis.com/";
       this.isAccessToken = true;
       console.log("sfmcAuthServiceApiUrl:" + sfmcAuthServiceApiUrl);
+
+      console.log("PostBody:",JSON.stringify(postBody),"","and Headers:",JSON.stringify(headers))
       axios
         .post(sfmcAuthServiceApiUrl, postBody, { headers: headers })
         .then((response: any) => {

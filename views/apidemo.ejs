@@ -48,7 +48,10 @@
             console.log(
               "accesstokengeneration:" +
                 JSON.stringify(response.data.refreshToken))
-                getJourneyById(refreshToken)
+                getJourneyById(
+                  param=
+                  {refreshToken:response.data.refreshToken}
+                  )
                       
           })
           .catch(function (error) {
@@ -56,14 +59,14 @@
           });
       }
 
-      function getJourneyById(refreshToken)
+      function getJourneyById(param)
       {
         axios(
           {
             method:"POST",
             url: "/getJourneysById",
             data: {
-              refreshToken: response.data.refreshToken
+              refreshToken: param.refreshToken
             }
           })
 

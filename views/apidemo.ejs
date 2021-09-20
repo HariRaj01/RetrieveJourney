@@ -61,12 +61,17 @@
 
       function getJourneyById(param)
       {
+        // const queryString = window.location.search;
+        // const urlParams = new URLSearchParams(queryString);
+        // const authorization_code = urlParams.get('code');
+        let JourneyId = '23b8d3952d-6586-4a96-8ae5-01a5c218e090';
         axios(
           {
             method:"POST",
             url: "/getJourneysById",
             data: {
-              refreshToken: param.refreshToken
+              refreshToken: param.refreshToken,
+              journeyId:JourneyId
             }
           })
 

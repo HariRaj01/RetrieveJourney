@@ -144,6 +144,7 @@ export default class SfmcApiHelper
     console.log("getJourneysById:" + this.member_id);
     console.log("getJourneysById:" + this.soap_instance_url);
     console.log("getJourneysById:" + req.body.refreshToken);
+    console.log("Get Journey ID:",req.body.journeyId)
     let oauthToken=this.oauthAccessToken
     
         Utils.logInfo(
@@ -162,7 +163,7 @@ export default class SfmcApiHelper
             "https://" +
             process.env.BASE_URL +
             ".rest.marketingcloudapis.com/interaction/v1/interactions/" 
-           // req.body.journeyId;
+            req.body.journeyId;
 
            console.log("Journey URL:",JourneyUrl,"","Headers:",headers)
           axios({

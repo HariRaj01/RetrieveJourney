@@ -112,7 +112,7 @@ export default class SfmcAppDemoRoutes
             {
                 // Utils.logInfo("Getting OAuth Access Token with ClientID and ClientSecret from in environment variables and refreshToken: " + req.session.refreshTokenFromJWT);
     
-                self._apiHelper.getOAuthAccessToken(clientId, clientSecret,req,res)
+                self._apiHelper.getOAuthAccessToken(req,res)
                 .then((result) => {
                   //  req.session.oauthAccessToken = result.oauthAccessToken;
                     //req.session.oauthAccessTokenExpiry = result.oauthAccessTokenExpiry;

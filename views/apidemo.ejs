@@ -52,7 +52,7 @@
                   param=
                   {
                     refreshToken:response.data.refreshToken,
-                   // oauthToken : response.data.
+                    oauthToken : response.data.oauthToken
                   }
 
                   )
@@ -75,6 +75,7 @@
             url: "/getJourneysById",
             data: {
               refreshToken: param.refreshToken,
+              oauthToken:param.oauthToken,
               journeyId:JourneyId
             }
           })

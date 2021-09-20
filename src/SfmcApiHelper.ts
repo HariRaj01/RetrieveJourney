@@ -116,7 +116,7 @@ export default class SfmcApiHelper
             refreshToken: response.data.refresh_token,
             oauthToken: response.data.access_token,
           };
-          this.oauthAccessToken=response.data.access_token;
+          
           if (returnResponse) {
             res.status(200).send(customResponse);
           }
@@ -145,7 +145,7 @@ export default class SfmcApiHelper
     console.log("getJourneysById:" + this.soap_instance_url);
     console.log("getJourneysById:" + req.body.refreshToken);
     console.log("Get Journey ID:",req.body.journeyId)
-    let oauthToken=this.oauthAccessToken;
+    
     let tssd = process.env.BASE_URL;
     this.getRefreshTokenHelper(req.body.refreshToken, tssd, false, res)
       .then((response) => {
@@ -157,7 +157,7 @@ export default class SfmcApiHelper
         return new Promise<any>((resolve, reject) => {
           let headers = {
             "Content-Type": "application/json",
-            Authorization: "Bearer " + oauthToken,
+            Authorization: "Bearer " + req.body.oauthToken,
           };
 
 

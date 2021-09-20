@@ -153,7 +153,7 @@ export default class SfmcApiHelper
         Utils.logInfo("getJourneysById:" + JSON.stringify(response.oauthToken));
         refreshTokenbody = response.refreshToken;
         Utils.logInfo("getJourneysById:" + JSON.stringify(refreshTokenbody));
-        console.log("OAuthToken For Response:",response.oauthToken);
+
         return new Promise<any>((resolve, reject) => {
           let headers = {
             "Content-Type": "application/json",
@@ -164,8 +164,6 @@ export default class SfmcApiHelper
             process.env.BASE_URL +
             ".rest.marketingcloudapis.com/interaction/v1/interactions/" +
             req.body.journeyId;
-
-            console.log("URL Journey:",JourneyUrl ,"","headers:",headers);
           axios({
             method: "get",
             url: JourneyUrl,
@@ -179,7 +177,6 @@ export default class SfmcApiHelper
               res.status(200).send(sendresponse);
               // res.status(200).send(response.data);
             })
-            
             .catch((error: any) => {
               // error
               let errorMsg = "Error getting the Active Journeys......";

@@ -26,38 +26,35 @@
 </head>
 <body>
   <script>
-    function getOAuthAccessToken() {
-    axios({
-      method: "GET",
-      url: "/appdemoauthtoken",        
-    }
-    )
-      .then(function (response) {
-         console.log("accesstokengeneration:" +JSON.stringify(response.data) );
-          // document.getElementById("demo").innerHTML = "token generated";
-        // var bt = document.getElementById('btSubmit');
+   const queryString = window.location.search;
+    const urlParams = new URLSearchParams(queryString);
+    const authorization_code = urlParams.get('code');
+    console.log("authorization_code",authorization_code);
+    // const tssd = urlParams.get('tssd');
+    const tssd ="mcj6cy1x9m-t5h5tz0bfsyqj38ky";
 
-        //     bt.disabled = false;
-        // console.log("sparkpost ",response)
-         
-        //  createSparkpostIntegrationFolder(response.data);
-        // dataFolderCheck(
-        //   per={
-        //       //  refreshToken : response.data.refreshToken,
-        //       // member_id : response.data.member_id,
-        //        //rest_instance_url : response.data.rest_instance_url,
-        //        soap_instance_url : response.data.soap_instance_url
-        //   }
-        //     );
-           
-        // thisdata.setState({ refreshtoken: response.data.refreshToken });
-        //AppUserInfo(thisdata, response.data.refreshToken);
-      })
-         .catch(function (error) {
-          // document.getElementById("demo1").innerHTML = "token not generated";
-        console.log(error);
-      });
-  }
+    console.log("tssd=",tssd);
+      function accessTokenGeneration(req,res) {
+        
+        axios({
+          method: "POST",
+          url: "/appdemoauthtoken",
+          data: {
+            authorization_code:authorization_code,
+            tssd: tssd
+          },
+        })
+          .then(function (response) {
+            console.log(
+              "accesstokengeneration:" +
+                JSON.stringify(response.data.refreshToken)
+            );
+            
+          })
+          .catch(function (error) {
+            console.log(error);
+          });
+      }
 
 //   function dataFolderCheck(per) {
 //     console.log("DataFolder SOAP:",JSON.stringify(per.soap_instance_url))

@@ -28,7 +28,7 @@ export default class SfmcApiHelper
   ): Promise<any> {
     let self = this;
     var tssd = "";
-    tssd = req.body.tssd ? req.body.tssd : process.env.BASE_URL;
+    tssd =  process.env.BASE_URL;
     console.log("authorizetssd:" + tssd);
     let headers = {
       "Content-Type": "application/json",

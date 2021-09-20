@@ -157,7 +157,7 @@ export default class SfmcApiHelper
         return new Promise<any>((resolve, reject) => {
           let headers = {
             "Content-Type": "application/json",
-            Authorization: "Bearer" + oauthToken,
+            Authorization: "Bearer " + oauthToken,
           };
 
 

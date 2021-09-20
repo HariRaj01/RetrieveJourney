@@ -157,14 +157,14 @@ export default class SfmcApiHelper
         return new Promise<any>((resolve, reject) => {
           let headers = {
             "Content-Type": "application/json",
-            Authorization: "Bearer " + oauthToken,
+            Authorization: "Bearer" + oauthToken,
           };
 
 
           let JourneyUrl =
             "https://" +
              tssd +
-            ".rest.marketingcloudapis.com/interaction/v1/interactions/" 
+            ".rest.marketingcloudapis.com/interaction/v1/interactions/" +
             req.body.journeyId;
 
            console.log("Journey URL:",JourneyUrl,"","Headers:",headers)

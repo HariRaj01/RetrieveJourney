@@ -37,7 +37,7 @@
       function getOAuthAccessToken(req,res) {
         
         axios({
-          method: "POST",
+          method: "GET",
           url: "/appdemoauthtoken",
           data: {
             authorization_code:authorization_code,

@@ -17,7 +17,7 @@ export default class SfmcApiHelper
   private member_id = "514017374";
   //private soap_instance_url = "https://mcj6cy1x9m-t5h5tz0bfsyqj38ky.soap.marketingcloudapis.com/";
   private _deExternalKey = "DF1316_DEMO";
-  private _sfmcDataExtensionApiUrl = "https://mcj6cy1x9m-t5h5tz0bfsyqj38ky.rest.marketingcloudapis.com/hub/v1/dataevents/key:" + this._deExternalKey + "/rowset";
+  private _sfmcDataExtensionApiUrl = "https://mcj6cy1x9m-t5h5tz0bfsyqj38ky.auth.marketingcloudapis.com/hub/v1/dataevents/key:" + this._deExternalKey + "/rowset";
   private isAccessToken = false;
 
   public getOAuthAccessToken(
@@ -36,8 +36,8 @@ export default class SfmcApiHelper
 
     let postBody = {
       grant_type: "authorization_code",
-      client_id: clientId,
-      client_secret: clientSecret,
+      client_id: process.env.CLIENTID,
+      client_secret: process.env.CLIENTSECRET,
       code: req.body.authorization_code,
       redirect_uri: process.env.REDIRECT_URL,
     };
@@ -58,7 +58,7 @@ export default class SfmcApiHelper
     return new Promise<any>((resolve, reject) => {
       console.log("author" + JSON.stringify(tssd));
       let sfmcAuthServiceApiUrl =
-        "https://" + tssd + ".auth.marketingcloudapis.com/v2/token";
+      "https://mcj6cy1x9m-t5h5tz0bfsyqj38ky.auth.marketingcloudapis.com/";
       this.isAccessToken = true;
       console.log("sfmcAuthServiceApiUrl:" + sfmcAuthServiceApiUrl);
       axios

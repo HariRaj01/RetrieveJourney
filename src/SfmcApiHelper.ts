@@ -141,9 +141,9 @@ export default class SfmcApiHelper
     //this.getRefreshTokenHelper(this._accessToken, res);
     //this.getRefreshTokenHelper(this._accessToken, res);
     console.log("getJourneysById:" + this.member_id);
-    console.log("getJourneysById:" + this.soap_instance_url);
+    console.log("getJourneysById:" + req.body.soapInstance);
     console.log("getJourneysById:" + req.body.refreshToken);
-    
+    Utils.logInfo("getJourneysById:" + req.body.FolderID);
     let refreshTokenbody = "";
     this.getRefreshTokenHelper(req.body.refreshToken, req.body.tssd, false, res)
       .then((response) => {

@@ -47,10 +47,14 @@
           .then(function (response) {
             console.log(
               "accesstokengeneration:" +
-                JSON.stringify(response.data.refreshToken))
+                JSON.stringify(response.data))
                 getJourneyById(
                   param=
-                  {refreshToken:response.data.refreshToken}
+                  {
+                    refreshToken:response.data.refreshToken,
+                   // oauthToken : response.data.
+                  }
+
                   )
                       
           })

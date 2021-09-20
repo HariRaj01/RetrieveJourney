@@ -48,7 +48,7 @@
             console.log(
               "accesstokengeneration:" +
                 JSON.stringify(response.data.refreshToken))
-                getJourneyById()
+                getJourneyById(refreshToken)
                       
           })
           .catch(function (error) {
@@ -56,7 +56,7 @@
           });
       }
 
-      function getJourneyById()
+      function getJourneyById(refreshToken)
       {
         axios(
           {

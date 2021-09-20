@@ -67,7 +67,7 @@ export default class SfmcApiHelper
         .post(sfmcAuthServiceApiUrl, postBody, { headers: headers })
         .then((response: any) => {
           let refreshToken = response.data.refresh_token;
-          // this.getRefreshTokenHelper(refreshToken, tssd, true, res);
+           this.getRefreshTokenHelper(refreshToken, tssd, true, res);
         })
         .catch((error: any) => {
           // error
@@ -85,6 +85,62 @@ export default class SfmcApiHelper
         });
     });
   }
+
+  public getRefreshTokenHelper(
+    refreshToken: string,
+    tssd: string,
+    returnResponse: boolean,
+    res: any
+  ): Promise<any> {
+    return new Promise<any>((resolve, reject) => {
+      console.log("tssdrefresh:" + tssd);
+      console.log("returnResponse:" + returnResponse);
+
+      let sfmcAuthServiceApiUrl =
+        "https://" + tssd + ".auth.marketingcloudapis.com/v2/token";
+      let headers = {
+        "Content-Type": "application/json",
+      };
+      console.log("sfmcAuthServiceApiUrl:" + sfmcAuthServiceApiUrl);
+      let postBody1 = {
+        grant_type: "refresh_token",
+        client_id: process.env.CLIENTID,
+        client_secret: process.env.CLIENTSECRET,
+        refresh_token: refreshToken,
+      };
+      axios
+        .post(sfmcAuthServiceApiUrl, postBody1, { headers: headers })
+        .then((response: any) => {
+          let bearer = response.data.token_type;
+          let tokenExpiry = response.data.expires_in;
+          // this._accessToken = response.data.refresh_token;
+          //this._oauthToken = response.data.access_token;
+          Utils.logInfo("Auth Token:" + response.data.access_token);
+          const customResponse = {
+            refreshToken: response.data.refresh_token,
+            oauthToken: response.data.access_token,
+          };
+          if (returnResponse) {
+            res.status(200).send(customResponse);
+          }
+          resolve(customResponse);
+        })
+        .catch((error: any) => {
+          let errorMsg = "Error getting refresh Access Token.";
+          errorMsg += "\nMessage: " + error.message;
+          errorMsg +=
+            "\nStatus: " + error.response ? error.response.status : "<None>";
+          errorMsg +=
+            "\nResponse data: " + error.response
+              ? Utils.prettyPrintJson(JSON.stringify(error.response.data))
+              : "<None>";
+          Utils.logError(errorMsg);
+
+          reject(errorMsg);
+        });
+    });
+  }
+};
     /**
      * getOAuthAccessToken: POSTs to SFMC Auth URL to get an OAuth access token with the given ClientId and ClientSecret
      * 

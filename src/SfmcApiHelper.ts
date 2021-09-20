@@ -20,7 +20,9 @@ export default class SfmcApiHelper
   private _sfmcDataExtensionApiUrl = "https://mcj6cy1x9m-t5h5tz0bfsyqj38ky.auth.marketingcloudapis.com/hub/v1/dataevents/key:" + this._deExternalKey + "/rowset";
   private isAccessToken = false;
 
-  public getOAuthAccessToken(  
+  public getOAuthAccessToken( 
+    client_id:string,
+    client_secret:string, 
     req: any,
     res: any
   ): Promise<any> {

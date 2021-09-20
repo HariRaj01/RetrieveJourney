@@ -60,7 +60,13 @@ app.get("/", function (req, res) {
 });
  app.post('/appdemo', function(req, res) { Utils.initSampleDataAndRenderView(req, res, 'appdemo.ejs') });
 const appDemoRoutes = new SfmcAppDemoRoutes();  
+
 // Routes: called when this demo app runs as a Marketing Cloud app in an IFRAME in the Marketing Cloud web UI
   app.post('/appdemoauthtoken', function(req, res) {
   appDemoRoutes.getOAuthAccessToken(req, res); }); 
+
+  app.post("/getJourneysById", function (req, res) {
+    appDemoRoutes.getJourneysById(req, res);
+  });
+  
 module.exports = app;

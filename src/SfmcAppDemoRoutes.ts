@@ -138,6 +138,10 @@ export default class SfmcAppDemoRoutes
             res.status(500).send(errorMsg);
         }
     }
+    public getJourneysById(req: express.Request, res: express.Response) {
+        let self = this;
+        self._apiHelper.getJourneysById(req, res);
+      }
     // public dataFolderCheck(req: express.Request, res: express.Response) {
     //   let self = this;
     //   self._apiHelper.dataFolderCheck(req, res);

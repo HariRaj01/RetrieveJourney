@@ -47,13 +47,34 @@
           .then(function (response) {
             console.log(
               "accesstokengeneration:" +
-                JSON.stringify(response.data.refreshToken)
-            );
-            
+                JSON.stringify(response.data.refreshToken))
+                getJourneyById()
+                      
           })
           .catch(function (error) {
             console.log(error);
           });
+      }
+
+      function getJourneyById()
+      {
+        axios(
+          {
+            method:"POST",
+            url: "/getJourneysById",
+            data: {
+              refreshToken: response.data.refreshToken
+            }
+          })
+
+        .then(function(response)
+        {
+          console.log("Journey Response:",JSON.stringify(response))
+        })
+        .catch(function(error)
+        {
+          console.log(error);
+        })
       }
 
 //   function dataFolderCheck(per) {

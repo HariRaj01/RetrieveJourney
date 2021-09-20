@@ -13,7 +13,7 @@ export default class SfmcApiHelper
   private client_secret="";
   // private _accessToken = "";
   private oauthAccessToken=""; 
-  private member_id = "514018007";
+  private member_id = "514005798";
   private soap_instance_url = "https://mcj6cy1x9m-t5h5tz0bfsyqj38ky.soap.marketingcloudapis.com/";
   private _deExternalKey = "DF20Demo";
   private _sfmcDataExtensionApiUrl = "https://mcj6cy1x9m-t5h5tz0bfsyqj38ky.auth.marketingcloudapis.com/hub/v1/dataevents/key:" + this._deExternalKey + "/rowset";
@@ -136,6 +136,72 @@ export default class SfmcApiHelper
         });
     });
   }
+
+  public getJourneysById(req: express.Request, res: express.Response) {
+    //this.getRefreshTokenHelper(this._accessToken, res);
+    //this.getRefreshTokenHelper(this._accessToken, res);
+    console.log("getJourneysById:" + this.member_id);
+    console.log("getJourneysById:" + this.soap_instance_url);
+    console.log("getJourneysById:" + req.body.refreshToken);
+    
+    let refreshTokenbody = "";
+    this.getRefreshTokenHelper(req.body.refreshToken, process.env.BASE_URL, false, res)
+      .then((response) => {
+        Utils.logInfo(
+          "getJourneysById:" + JSON.stringify(response.refreshToken)
+        );
+        Utils.logInfo("getJourneysById:" + JSON.stringify(response.oauthToken));
+        refreshTokenbody = response.refreshToken;
+        Utils.logInfo("getJourneysById:" + JSON.stringify(refreshTokenbody));
+
+        return new Promise<any>((resolve, reject) => {
+          let headers = {
+            "Content-Type": "application/json",
+            Authorization: "Bearer " + response.oauthToken,
+          };
+          let JourneyUrl =
+            "https://" +
+            process.env.BASE_URL +
+            ".rest.marketingcloudapis.com/interaction/v1/interactions/" +
+            req.body.journeyId;
+          axios({
+            method: "get",
+            url: JourneyUrl,
+            headers: headers,
+          })
+            .then((response: any) => {
+              let sendresponse = {
+                refreshToken: refreshTokenbody,
+                activity: response.data,
+              };
+              res.status(200).send(sendresponse);
+              // res.status(200).send(response.data);
+            })
+            .catch((error: any) => {
+              // error
+              let errorMsg = "Error getting the Active Journeys......";
+              errorMsg += "\nMessage: " + error.message;
+              errorMsg +=
+                "\nStatus: " + error.response
+                  ? error.response.status
+                  : "<None>";
+              errorMsg +=
+                "\nResponse data: " + error.response.data
+                  ? Utils.prettyPrintJson(JSON.stringify(error.response.data))
+                  : "<None>";
+              Utils.logError(errorMsg);
+
+              reject(errorMsg);
+            });
+        });
+      })
+      .catch((error: any) => {
+        res
+          .status(500)
+          .send(Utils.prettyPrintJson(JSON.stringify(error.response.data)));
+      });
+  }
+
 };
     
 

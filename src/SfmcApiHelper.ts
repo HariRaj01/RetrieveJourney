@@ -138,6 +138,77 @@ export default class SfmcApiHelper
     });
   }
 
+  
+  public appUserInfo(req: any, res: any) {
+    let self = this;
+    console.log("req.body.tssd:" + req.body.tssd);
+    console.log("req.body.trefreshToken:" + req.body.refreshToken);
+    
+    let userInfoUrl =
+      "https://" + req.body.tssd + ".auth.marketingcloudapis.com/v2/userinfo";
+    let access_token: string;
+  
+    self
+      .getRefreshTokenHelper(req.body.refreshToken, req.body.tssd, false, res)
+      .then((response) => {
+        Utils.logInfo(
+          "refreshTokenbody:" + JSON.stringify(response.refreshToken)
+        );
+        Utils.logInfo("AuthTokenbody:" + JSON.stringify(response.oauthToken));
+        access_token = response.oauthToken;
+        const refreshTokenbody = response.refreshToken;
+        Utils.logInfo("refreshTokenbody1:" + JSON.stringify(refreshTokenbody));
+        let headers = {
+          "Content-Type": "application/json",
+          Authorization: "Bearer " + access_token,
+        };
+  
+        axios
+          .get(userInfoUrl, { headers: headers })
+          .then((response: any) => {
+            console.log("userinfo>>>>",response.data.user.name);
+            
+            const getUserInfoResponse = {
+              member_id: response.data.organization.member_id,
+              soap_instance_url: response.data.rest.soap_instance_url,
+              rest_instance_url: response.data.rest.rest_instance_url,
+              refreshToken: req.body.refreshToken,
+              username:response.data.user.name
+            };
+  
+            //Set the member_id into the session
+            console.log("Setting active sfmc mid into session:" + getUserInfoResponse.member_id);
+            req.session.sfmcMemberId = getUserInfoResponse.member_id;
+            console.log("UserInfo>>>>>>",getUserInfoResponse.member_id);
+            
+            //this.CheckAutomationStudio(access_token, req.body.refreshToken, req.body.tssd, getUserInfoResponse.member_id);
+            res.status(200).send(getUserInfoResponse);
+          })
+          .catch((error: any) => {
+            // error
+            let errorMsg = "Error getting User's Information.";
+            errorMsg += "\nMessage: " + error.message;
+            errorMsg +=
+              "\nStatus: " + error.response ? error.response.status : "<None>";
+            errorMsg +=
+              "\nResponse data: " + error.response
+                ? Utils.prettyPrintJson(JSON.stringify(error.response.data))
+                : "<None>";
+            Utils.logError(errorMsg);
+  
+            res
+              .status(500)
+              .send(Utils.prettyPrintJson(JSON.stringify(error.response.data)));
+          });
+      })
+      .catch((error: any) => {
+        res
+          .status(500)
+          .send(Utils.prettyPrintJson(JSON.stringify(error.response.data)));
+      });
+  }
+  
+
   public getJourneysById(req: express.Request, res: express.Response) {
     //this.getRefreshTokenHelper(this._accessToken, res);
     //this.getRefreshTokenHelper(this._accessToken, res);

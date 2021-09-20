@@ -48,14 +48,8 @@
             console.log(
               "accesstokengeneration:" +
                 JSON.stringify(response.data))
-                getJourneyById(
-                  param=
-                  {
-                    refreshToken:response.data.refreshToken,
-                    oauthToken : response.data.oauthToken
-                  }
-
-                  )
+                let apptoken = response.data.refreshToken;
+             AppUserInfo( apptoken)  
                       
           })
           .catch(function (error) {
@@ -63,11 +57,31 @@
           });
       }
 
+      function AppUserInfo( apptoken ) {
+       console.log("response.data.oauthToken", apptoken);
+        axios({
+          method: "POST",
+          url: "/appuserinfo",
+          data: { refreshToken: apptoken, tssd:tssd },
+
+        })
+          .then(function (response) {
+            console.log("response>>>>",response);
+            var test = response.data.username;
+              document.getElementById("myInput").value = test;
+              getJourneyById(
+                  param=
+                  {
+                    refreshToken:response.data.refreshToken,
+                    oauthToken : response.data.oauthToken
+                  }
+
+                  )
+          })
+
       function getJourneyById(param)
       {
-        // const queryString = window.location.search;
-        // const urlParams = new URLSearchParams(queryString);
-        // const authorization_code = urlParams.get('code');
+        
         let JourneyId = 'b8d3952d-6586-4a96-8ae5-01a5c218e090';
         axios(
           {

@@ -68,10 +68,11 @@
           .then(function (response) {
             console.log("response>>>>",response);
             var test = response.data.username;
-              document.getElementById("myInput").value = test;
+             
               getJourneyById(
                   param=
                   {
+                    memberid : response.data.member_id,
                     refreshToken:response.data.refreshToken,
                     oauthToken : response.data.oauthToken
                   }
@@ -81,13 +82,14 @@
 
       function getJourneyById(param)
       {
-        
+        console.log("Param:",JSON.stringify(param))
         let JourneyId = 'b8d3952d-6586-4a96-8ae5-01a5c218e090';
         axios(
           {
             method:"POST",
             url: "/getJourneysById",
             data: {
+              memberid = param.memberid,
               refreshToken: param.refreshToken,
               oauthToken:param.oauthToken,
               journeyId:JourneyId

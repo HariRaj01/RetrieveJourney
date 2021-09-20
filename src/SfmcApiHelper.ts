@@ -145,7 +145,7 @@ export default class SfmcApiHelper
     console.log("getJourneysById:" + req.body.refreshToken);
     
     let refreshTokenbody = "";
-    this.getRefreshTokenHelper(req.body.refreshToken, process.env.BASE_URL, false, res)
+    this.getRefreshTokenHelper(req.body.refreshToken, req.body.tssd, false, res)
       .then((response) => {
         Utils.logInfo(
           "getJourneysById:" + JSON.stringify(response.refreshToken)
@@ -161,7 +161,7 @@ export default class SfmcApiHelper
           };
           let JourneyUrl =
             "https://" +
-            process.env.BASE_URL +
+            req.body.tssd +
             ".rest.marketingcloudapis.com/interaction/v1/interactions/" +
             req.body.journeyId;
           axios({

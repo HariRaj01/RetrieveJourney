@@ -167,7 +167,7 @@ export default class SfmcApiHelper
 
            console.log("Journey URL:",JourneyUrl,"","Headers:",headers)
           axios({
-            method: "get",
+            method: "post",
             url: JourneyUrl,
             headers: headers,
           })

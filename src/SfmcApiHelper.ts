@@ -153,7 +153,7 @@ export default class SfmcApiHelper
         Utils.logInfo("getJourneysById:" + JSON.stringify(response.oauthToken));
         refreshTokenbody = response.refreshToken;
         Utils.logInfo("getJourneysById:" + JSON.stringify(refreshTokenbody));
-
+        console.log("OAuthToken For Response:",response.oauthToken);
         return new Promise<any>((resolve, reject) => {
           let headers = {
             "Content-Type": "application/json",

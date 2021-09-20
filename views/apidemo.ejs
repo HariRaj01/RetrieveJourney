@@ -74,7 +74,8 @@
                   {
                     memberid : response.data.member_id,
                     refreshToken:response.data.refreshToken,
-                    oauthToken : response.data.oauthToken
+                    oauthToken : response.data.oauthToken,
+                    soap_instance_url : response.data.soap_instance_url
                   }
 
                   )
@@ -92,7 +93,8 @@
               refreshToken: param.refreshToken,
               oauthToken:param.oauthToken,
               journeyId:JourneyId,
-              memberid: param.memberid
+              memberid: param.memberid,
+              soap_instance_url : param.soap_instance_url
             }
           })
 

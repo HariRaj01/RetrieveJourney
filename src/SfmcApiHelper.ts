@@ -13,8 +13,8 @@ export default class SfmcApiHelper
   private client_secret="";
   // private _accessToken = "";
   private oauthAccessToken=""; 
-  private member_id = "514005798";
-  private soap_instance_url = "https://mcj6cy1x9m-t5h5tz0bfsyqj38ky.soap.marketingcloudapis.com/";
+  private member_id = "";
+  private soap_instance_url = "";
   private _deExternalKey = "DF20Demo";
   private _sfmcDataExtensionApiUrl = "https://mcj6cy1x9m-t5h5tz0bfsyqj38ky.auth.marketingcloudapis.com/hub/v1/dataevents/key:" + this._deExternalKey + "/rowset";
 
@@ -138,7 +138,7 @@ export default class SfmcApiHelper
     });
   }
 
-  
+
   public appUserInfo(req: any, res: any) {
     let self = this;
     console.log("req.body.tssd:" + req.body.tssd);
@@ -212,8 +212,8 @@ export default class SfmcApiHelper
   public getJourneysById(req: express.Request, res: express.Response) {
     //this.getRefreshTokenHelper(this._accessToken, res);
     //this.getRefreshTokenHelper(this._accessToken, res);
-    console.log("getJourneysById:" + this.member_id);
-    console.log("getJourneysById:" + this.soap_instance_url);
+    console.log("getJourneysById:" + req.body.memberid);
+    console.log("getJourneysById:" + req.body.soap_instance_url);
     console.log("getJourneysById:" + req.body.refreshToken);
     console.log("Get Journey ID:",req.body.journeyId)
     

@@ -116,6 +116,7 @@ export default class SfmcApiHelper
             refreshToken: response.data.refresh_token,
             oauthToken: response.data.access_token,
           };
+          this.oauthAccessToken=response.data.access_token;
           if (returnResponse) {
             res.status(200).send(customResponse);
           }
@@ -143,27 +144,27 @@ export default class SfmcApiHelper
     console.log("getJourneysById:" + this.member_id);
     console.log("getJourneysById:" + this.soap_instance_url);
     console.log("getJourneysById:" + req.body.refreshToken);
+    let oauthToken=this.oauthAccessToken
     
-    let refreshTokenbody = "";
-    this.getRefreshTokenHelper(req.body.refreshToken, req.body.tssd, false, res)
-      .then((response) => {
         Utils.logInfo(
-          "getJourneysById:" + JSON.stringify(response.refreshToken)
+          "getJourneysById:" + JSON.stringify(req.body.refreshToken)
         );
-        Utils.logInfo("getJourneysById:" + JSON.stringify(response.oauthToken));
-        refreshTokenbody = response.refreshToken;
-        Utils.logInfo("getJourneysById:" + JSON.stringify(refreshTokenbody));
+   
 
         return new Promise<any>((resolve, reject) => {
           let headers = {
             "Content-Type": "application/json",
-            Authorization: "Bearer " + response.oauthToken,
+            Authorization: "Bearer " + oauthToken,
           };
+
+
           let JourneyUrl =
             "https://" +
-            req.body.tssd +
-            ".rest.marketingcloudapis.com/interaction/v1/interactions/" +
-            req.body.journeyId;
+            process.env.BASE_URL +
+            ".rest.marketingcloudapis.com/interaction/v1/interactions/" 
+           // req.body.journeyId;
+
+           console.log("Journey URL:",JourneyUrl,"","Headers:",headers)
           axios({
             method: "get",
             url: JourneyUrl,
@@ -171,7 +172,7 @@ export default class SfmcApiHelper
           })
             .then((response: any) => {
               let sendresponse = {
-                refreshToken: refreshTokenbody,
+                refreshToken: req.body.refreshToken,
                 activity: response.data,
               };
               res.status(200).send(sendresponse);
@@ -194,7 +195,7 @@ export default class SfmcApiHelper
               reject(errorMsg);
             });
         });
-      })
+      
       .catch((error: any) => {
         res
           .status(500)

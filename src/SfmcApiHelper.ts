@@ -27,7 +27,7 @@ export default class SfmcApiHelper
   ): Promise<any> {
     let self = this;
     var tssd = "";
-    tssd = req.body.tssd ? req.body.tssd : process.env.BASE_URL;
+    tssd = process.env.BASE_URL;
     console.log("authorizetssd:" + tssd);
     let headers = {
       "Content-Type": "application/json",
@@ -141,9 +141,9 @@ export default class SfmcApiHelper
     //this.getRefreshTokenHelper(this._accessToken, res);
     //this.getRefreshTokenHelper(this._accessToken, res);
     console.log("getJourneysById:" + this.member_id);
-    console.log("getJourneysById:" + req.body.soapInstance);
+    console.log("getJourneysById:" + this.soap_instance_url);
     console.log("getJourneysById:" + req.body.refreshToken);
-    Utils.logInfo("getJourneysById:" + req.body.FolderID);
+    
     let refreshTokenbody = "";
     this.getRefreshTokenHelper(req.body.refreshToken, req.body.tssd, false, res)
       .then((response) => {

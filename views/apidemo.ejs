@@ -89,10 +89,10 @@
             method:"POST",
             url: "/getJourneysById",
             data: {
-              memberid = param.memberid,
               refreshToken: param.refreshToken,
               oauthToken:param.oauthToken,
-              journeyId:JourneyId
+              journeyId:JourneyId,
+              memberid: param.memberid
             }
           })
 

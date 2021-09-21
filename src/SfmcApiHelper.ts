@@ -173,6 +173,7 @@ export default class SfmcApiHelper
               soap_instance_url: response.data.rest.soap_instance_url,
               rest_instance_url: response.data.rest.rest_instance_url,
               refreshToken: req.body.refreshToken,
+              oauthToken : req.body.oauthToken,
               username:response.data.user.name
             };
   
@@ -224,6 +225,9 @@ export default class SfmcApiHelper
         Utils.logInfo(
           "getJourneysById:" + JSON.stringify(req.body.refreshToken)
         );
+        Utils.logInfo(
+          "getJourneysById= OauthToken:" + JSON.stringify(req.body.oauthToken)
+        );
         return new Promise<any>((resolve, reject) => {
           let headers = {
             "Content-Type": "application/json",
@@ -246,6 +250,7 @@ export default class SfmcApiHelper
             .then((response: any) => {
               let sendresponse = {
                 refreshToken: req.body.refreshToken,
+                oauthToken : req.body.oauthToken,
                 activity: response.data,
               };
               res.status(200).send(sendresponse);

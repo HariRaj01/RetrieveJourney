@@ -66,7 +66,11 @@
         axios({
           method: "POST",
           url: "/appuserinfo",
-          data: { refreshToken: apptoken, tssd:tssd },
+          data: 
+          { 
+             refreshToken: apptoken.refreshToken,
+             oauthToken : apptoken.oauthToken,
+             tssd:tssd },
 
         })
           .then(function (response) {
@@ -82,8 +86,8 @@
                     oauthToken : response.data.oauthToken,
                     soap_instance_url : response.data.soap_instance_url
                   }
-
                   )
+                  console.log("OAuthToken:",oauthToken)
           })
 
       function getJourneyById(param)

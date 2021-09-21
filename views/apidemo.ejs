@@ -48,8 +48,12 @@
             console.log(
               "accesstokengeneration:" +
                 JSON.stringify(response.data))
-                let apptoken = response.data.refreshToken;
-             AppUserInfo( apptoken)  
+                apptoken = response.data.refreshToken;
+             AppUserInfo( apptoken={
+               refreshToken : response.data.refreshToken,
+               oauthToken : response.data.oauthToken
+
+             })  
                       
           })
           .catch(function (error) {
@@ -58,7 +62,7 @@
       }
 
       function AppUserInfo( apptoken ) {
-       console.log("response.data.oauthToken", apptoken);
+       console.log("Response from accessToken", apptoken.oauthToken);
         axios({
           method: "POST",
           url: "/appuserinfo",
@@ -85,7 +89,7 @@
       function getJourneyById(param)
       {
         console.log("Param:",JSON.stringify(param))
-        let JourneyId = 'b8d3952d-6586-4a96-8ae5-01a5c218e090';
+        let JourneyId = '9ea0dc48-0aa7-4c7d-9e5f-7a1e5fe685a0';
         axios(
           {
             method:"POST",

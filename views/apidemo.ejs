@@ -109,9 +109,10 @@
 
         .then(function(response)
         {
-          console.log("Journey Response:",JSON.stringify(response))
+          console.log("Journey Response:",JSON.stringify(response));
+          console.log("JSON Data-Activity:",response.data.activity)
         })
-        console.log("JSON Data-Activity:",response.data.activity)
+        
         .catch(function(error)
         {
           console.log(error);

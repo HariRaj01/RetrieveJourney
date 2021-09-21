@@ -216,8 +216,9 @@ export default class SfmcApiHelper
     console.log("getJourneysById:" + req.body.memberid);
     console.log("getJourneysById:" + req.body.soap_instance_url);
     console.log("getJourneysById:" + req.body.refreshToken);
-    console.log("Get Journey ID:",req.body.journeyId)
-    let oauthToken = req.body.oauthToken;
+    console.log("Get Journey ID:",req.body.journeyId);
+    let oauthToken="";
+    oauthToken = req.body.oauthToken;
     console.log("OAuth in:>>",oauthToken)
     let tssd = process.env.BASE_URL;
     this.getRefreshTokenHelper(req.body.refreshToken, tssd, false, res)

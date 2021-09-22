@@ -134,7 +134,7 @@
             console.log("Names:",journeyName) 
             if(inputName==response.data.activity.items[i].name){
             console.log("It's equal")
-            document.getElementById("demo").innerText=response.data.activity.items[i]; 
+            document.getElementById("demo").innerText=JSON.stringify(response.data.activity.items[i]); 
             
         }
 

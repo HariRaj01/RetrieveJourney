@@ -130,10 +130,16 @@
          console.log("JSON Data-Activity:",response.data.activity)
         // console.log("Length of response:",response.data.activity.items.length)
          for (var i = 0; i < response.data.activity.items.length; i++) {
+
            journeyName.push(response.data.activity.items[i].name)
+         }
           
           document.getElementById("demo").innerText=journeyName;
-         }
+
+          
+          //document.getElementById("demo").innerText=JSON.stringify(response.data.activity.items[i].name);
+
+         
         })
         
         .catch(function(error)

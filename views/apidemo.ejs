@@ -132,6 +132,7 @@
         
         .catch(function(error)
         {
+          document.getElementById("demo").innerText = "Invalid Journey Name or Error in getting JSON Data"
           console.log(error);
         })
       }

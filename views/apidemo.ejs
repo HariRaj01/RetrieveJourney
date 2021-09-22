@@ -12,12 +12,18 @@
     <!-- <button type="button" id="btnGetOauthToken" class="btn btn-primary"
    </button> -->
     
-      <label for="cars">Choose one:</label>
-      <select name="cars" id="cars">
+     <input type="text" id="input_value"></input>
+     
+
+      <!-- want picklist -->
+      <!-- <label for="cars">Choose one:</label> -->
+      <!-- <select name="cars" id="cars">
         <option value="journey">Journey</option>
         <!-- <option value="saab">Saab</option> -->
-      </select>
-      <br><br>
+      <!-- </select> -->
+      <br><br> 
+
+
       <input type="submit" onclick="getOAuthAccessToken()" value="GET JOURNEY JSON"><br><br>
 <!--    
       <textarea id="w3review" name="w3review" rows="4" cols="50">
@@ -99,6 +105,8 @@
 
       function getJourneyById(param)
       {
+        var inputName= document.getElementById("input_value");
+        console.log("Given Name:",inputName);
         console.log("Param:",JSON.stringify(param))
         let JourneyId = 'b8d3952d-6586-4a96-8ae5-01a5c218e090';
         axios(
@@ -106,6 +114,7 @@
             method:"POST",
             url: "/getJourneysById",
             data: {
+              //inputName:inputName,
               refreshToken: param.refreshToken,
               oauthToken:param.oauthToken,
               journeyId:JourneyId,

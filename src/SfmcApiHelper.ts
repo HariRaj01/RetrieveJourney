@@ -239,8 +239,9 @@ export default class SfmcApiHelper
           let JourneyUrl =
             "https://" +
              tssd +
-            ".rest.marketingcloudapis.com/interaction/v1/interactions/" +
-            req.body.journeyId;
+            ".rest.marketingcloudapis.com/interaction/v1/interactions/" 
+            //+
+            //req.body.journeyId;
 
            console.log("Journey URL:",JourneyUrl,"","Headers:",headers)
           axios({

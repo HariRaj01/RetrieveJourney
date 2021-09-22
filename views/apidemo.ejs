@@ -130,14 +130,16 @@
          console.log("JSON Data-Activity:",response.data.activity)
         // console.log("Length of response:",response.data.activity.items.length)
          for (var i = 0; i < response.data.activity.items.length; i++) {  
-           journeyName.push(response.data.activity.items[i].name)              
+           journeyName.push(response.data.activity.items[i].name)
+              
             console.log("Names:",journeyName) 
             if(inputName===journeyName){
             console.log("It's equal")
             document.getElementById("demo").innerText=journeyName; 
         }
       }
-        })  
+        })
+        
         .catch(function(error)
         {
           document.getElementById("demo").innerText = "Invalid Journey Name or Error in getting JSON Data"
@@ -145,6 +147,8 @@
         })
       }
     }
+
+
   </script>
 </body>
 </html>

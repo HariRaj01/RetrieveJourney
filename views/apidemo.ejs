@@ -108,7 +108,7 @@
         var inputName= document.getElementById("input_value").value
         console.log("Given Name:",inputName);
         console.log("Param:",JSON.stringify(param))
-        //let JourneyId = 'b8d3952d-6586-4a96-8ae5-01a5c218e090';
+        let JourneyId = 'b8d3952d-6586-4a96-8ae5-01a5c218e090';
         axios(
           {
             method:"POST",
@@ -117,7 +117,7 @@
               //inputName:inputName,
               refreshToken: param.refreshToken,
               oauthToken:param.oauthToken,
-              //journeyId:JourneyId,
+              journeyId:JourneyId,
               memberid: param.memberid,
               soap_instance_url : param.soap_instance_url
             }

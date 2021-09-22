@@ -113,8 +113,8 @@
         .then(function(response)
         {
           console.log("Journey Response:",JSON.stringify(response));
-          json = console.log("JSON Data-Activity:",response.data.activity)
-          document.getElementById("demo").innerText=json
+          var reusultData = console.log("JSON Data-Activity:",response.data.activity)
+          document.getElementById("demo").innerText=JSON.stringify(reusultData);
         })
         
         .catch(function(error)

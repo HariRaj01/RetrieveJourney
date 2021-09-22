@@ -11,6 +11,9 @@
     <!-- <script src="/src/SfmcApiHelper.ts"></script> -->
     <button type="button" id="btnGetOauthToken" class="btn btn-primary"
     onclick="getOAuthAccessToken()">GET ACCESS TOKEN</button>
+    <div>
+      <p id="demo"></p>
+    </div>
     <!-- <p id="demo" style="color:green;"></p>
     <p id="demo1" style="color:red;"></p>
     <body>
@@ -110,7 +113,8 @@
         .then(function(response)
         {
           console.log("Journey Response:",JSON.stringify(response));
-          console.log("JSON Data-Activity:",response.data.activity)
+          json = console.log("JSON Data-Activity:",response.data.activity)
+          document.getElementById("demo").innerText=json
         })
         
         .catch(function(error)

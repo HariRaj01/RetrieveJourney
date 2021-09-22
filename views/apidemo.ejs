@@ -133,12 +133,9 @@
            journeyName.push(response.data.activity.items[i].name)
            {
              if(inputName == response.data.activity.items[i].name)
-             break;
-             console.log("Return Name:",journeyName)
-             
+             break; 
            }
           }
-          //console.log("Names:",journeyName)
           document.getElementById("demo").innerText=journeyName;
          
         })

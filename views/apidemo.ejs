@@ -9,21 +9,23 @@
     ></script>
     <title>OutPut Page </title>
     <!-- <script src="/src/SfmcApiHelper.ts"></script> -->
-    <button type="button" id="btnGetOauthToken" class="btn btn-primary"
-    onclick="getOAuthAccessToken()">GET ACCESS TOKEN</button>
+    <!-- <button type="button" id="btnGetOauthToken" class="btn btn-primary"
+   </button> -->
+  
+
+    <form action="/action_page.php">
+      <label for="cars">Choose one:</label>
+      <select name="cars" id="cars">
+        <option value="journey">Journey</option>
+        <!-- <option value="saab">Saab</option> -->
+      </select>
+      <br><br>
+      <input type="submit" onclick="getOAuthAccessToken()" value="GET ACCESS TOKEN">
+    </form>
     <div>
       <p id="demo"></p>
     </div>
-    <!-- <p id="demo" style="color:green;"></p>
-    <p id="demo1" style="color:red;"></p>
-    <body>
-      <h3>Enter Dataextension Name</h3>
-      <input type="text" id="txt"/>
-      <input type="submit" id="btSubmit"  onclick="creatingDomainConfigurationDE()" disabled />
-      <p id="demo2" style="color:green;"></p>
-      <p id="demo4" style="color:rgb(13, 0, 128);"></p>
-    <p id="demo3" style="color:red;"></p>
-  </body> -->
+   
     <br><br>
     
 </head>

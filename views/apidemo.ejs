@@ -133,15 +133,14 @@
            journeyName.push(response.data.activity.items[i].name)
            {         
             console.log("Names:",journeyName) 
-           }
-        
-        if(inputName===journeyName[i]){
-        console.log("It's equal")
-          document.getElementById("demo").innerText=journeyName;
+            if(inputName===journeyName){
+            console.log("It's equal")
+            document.getElementById("demo").innerText=journeyName;
           }
           else
           document.getElementById("demo").innerText=journeyName;
          }
+        }
         })
         
         .catch(function(error)

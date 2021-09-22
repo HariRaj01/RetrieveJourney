@@ -105,7 +105,8 @@
 
       function getJourneyById(param)
       {
-        var inputName= document.getElementById("input_value");
+        var inputName;
+         document.getElementById("input_value").innerText=inputName;
         console.log("Given Name:",inputName);
         console.log("Param:",JSON.stringify(param))
         let JourneyId = 'b8d3952d-6586-4a96-8ae5-01a5c218e090';

@@ -131,9 +131,9 @@
         // console.log("Length of response:",response.data.activity.items.length)
          for (var i = 0; i < response.data.activity.items.length; i++) {
            journeyName.push(response.data.activity.items[i].name)
-          }
+          
           document.getElementById("demo").innerText=journeyName;
-         
+         }
         })
         
         .catch(function(error)

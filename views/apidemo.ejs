@@ -125,9 +125,11 @@
 
         .then(function(response)
         {
+          let journeyName= new Array();
           console.log("Journey Response:",JSON.stringify(response));
          console.log("JSON Data-Activity:",response.data.activity)
          for (var i = 0; i < response.data.activity.items.length; i++) {
+           journey.push()
           document.getElementById("demo").innerText=JSON.stringify(response.data.activity.items[i].name);
          }
         })

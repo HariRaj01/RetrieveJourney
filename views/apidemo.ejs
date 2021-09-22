@@ -132,19 +132,13 @@
          for (var i = 0; i < response.data.activity.items.length; i++) {  
            journeyName.push(response.data.activity.items[i].name)
            {         
-          console.log("Names:",journeyName)
-         
-         }
-         console.log('Input Name:',inputName);
-         console.log('JN',journeyName);
-          if(inputName==journeyName){
+            console.log("Names:",journeyName) 
+           }
+        }
+        if(inputName==journeyName){
           break;
           document.getElementById("demo").innerText=journeyName;
           }
-        }
-          //document.getElementById("demo").innerText=JSON.stringify(response.data.activity.items[i].name);
-
-         
         })
         
         .catch(function(error)

@@ -43,8 +43,10 @@
     console.log("authorization_code",authorization_code);
     // const tssd = urlParams.get('tssd');
     const tssd ="mcj6cy1x9m-t5h5tz0bfsyqj38ky";
-
-    console.log("tssd=",tssd);
+    if(authorization_code!= null)
+    {
+      getOAuthAccessToken()
+    }
       function getOAuthAccessToken(req,res) {
         
         axios({
@@ -60,11 +62,11 @@
               "accesstokengeneration:" +
                 JSON.stringify(response.data))
                
-             AppUserInfo( apptoken={
+           /*  AppUserInfo( apptoken={
                refreshToken : response.data.refreshToken,
                oauthToken : response.data.oauthToken
 
-             })  
+             })  */
                       
           })
           .catch(function (error) {

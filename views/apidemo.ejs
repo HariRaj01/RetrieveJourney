@@ -62,11 +62,11 @@
               "accesstokengeneration:" +
                 JSON.stringify(response.data))
                
-           /*  AppUserInfo( apptoken={
+           apptoken={
                refreshToken : response.data.refreshToken,
                oauthToken : response.data.oauthToken
 
-             })  */
+             }
                       
           })
           .catch(function (error) {
@@ -74,8 +74,8 @@
           });
       }
 
-      function AppUserInfo( response ) {
-       console.log("Response from accessToken", response.data.oauthToken);
+      function AppUserInfo( apptoken ) {
+       console.log("Response from accessToken", apptoken.oauthToken);
         axios({
           method: "POST",
           url: "/appuserinfo",

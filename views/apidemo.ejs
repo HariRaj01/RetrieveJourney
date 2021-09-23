@@ -25,7 +25,7 @@
     
       <br><br> 
 
-      <button type="button" style="background-color:rgb(45, 27, 201);margin-left:auto;margin-right:auto;display:block;margin-top:0%;margin-bottom:0%;color:goldenrod" onclick="getOAuthAccessToken()">
+      <button type="button" style="background-color:rgb(45, 27, 201);margin-left:auto;margin-right:auto;display:block;margin-top:0%;margin-bottom:0%;color:goldenrod" onclick="      function getJourneyById()">
         GET JOURNEY JSON
      </button> <br><br>
     
@@ -36,7 +36,12 @@
     <br><br>
     
 </head>
+
 <body>
+  <input type="hidden" id="rt" />
+  <input type="hidden" id="mid" />
+  <input type="hidden" id="oat" />
+  <input type="hidden" id="siu" />
   <script>
     let apptoken="";
    const queryString = window.location.search;
@@ -45,10 +50,10 @@
     console.log("authorization_code",authorization_code);
     // const tssd = urlParams.get('tssd');
     const tssd ="mcj6cy1x9m-t5h5tz0bfsyqj38ky";
-    /*if(authorization_code!= null)
+    if(authorization_code!= null)
     {
       getOAuthAccessToken()
-    }*/
+    }
       function getOAuthAccessToken(req,res) {
         
         axios({
@@ -90,10 +95,11 @@
         })
           .then(function (response) {
             console.log("response>>>>",response);
-            
-            var test = response.data.username;
-             
-              getJourneyById(
+            $('#rt').val(response.data.refreshToken);
+            $('#mid').val(response.data.member_id);
+            $('#oat').val(response.data.oauthToken);
+            $('#siu').val(response.data.soap_instance_url);            
+              /*getJourneyById(
                   param=
                   {
                     memberid : response.data.member_id,
@@ -101,12 +107,19 @@
                     oauthToken : response.data.oauthToken,
                     soap_instance_url : response.data.soap_instance_url
                   }
-                  )
+                  )*/
                  
           })
+        }
 
-      function getJourneyById(param)
+      function getJourneyById()
       {
+        let refreshToken =  $('#rt').val();
+        let oauthToken =  $('#oat').val();
+        let memberid =  $('#mid').val();
+        let soap_instance_url =  $('#siu').val();
+        console.log("RefreshToken",refreshToken);
+        
         var inputName= document.getElementById("input_value").value
         console.log("Given Name:",inputName);
         console.log("Param:",JSON.stringify(param))
@@ -116,12 +129,11 @@
             method:"POST",
             url: "/getJourneysById",
             data: {
-              //inputName:inputName,
-              refreshToken: param.refreshToken,
-              oauthToken:param.oauthToken,
-             // journeyId:JourneyId,
-              memberid: param.memberid,
-              soap_instance_url : param.soap_instance_url
+              refreshToken:refreshToken,
+              oauthToken:oauthToken,
+              memberid:memberid,
+              soap_instance_url:soap_instance_url,
+              // journeyId:JourneyId
             }
           })
 
@@ -151,7 +163,7 @@
           console.log(error);
         })
       }
-    }
+    
 
 
   </script>

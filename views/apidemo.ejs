@@ -183,6 +183,7 @@
           var e = document.getElementById(el);
           console.log("Journey Name>>>",journeyName);
           var strSel = "The Value is: " + e.options[e.selectedIndex].value + " and text is: " + e.options[e.selectedIndex].text;
+          console.log("e.options[e.selectedIndex].value",e.options[e.selectedIndex].value);
           for (var x= 0; x < journeyName.length; x++) {  
             if(e.options[e.selectedIndex].value==journeyName[x])
             {

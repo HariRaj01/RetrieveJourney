@@ -21,7 +21,7 @@
     <h2>RETRIEVE JSON DATA</h2>
   </header> <br><br> 
 
-      <button type="button" style="background-color:rgb(45, 27, 201);margin-left:auto;margin-right:auto;display:block;margin-top:0%;margin-bottom:0%;color:goldenrod" onclick="getJourneyById()">
+      <button type="button" id="input" style="background-color:rgb(45, 27, 201);margin-left:auto;margin-right:auto;display:block;margin-top:0%;margin-bottom:0%;color:goldenrod" onclick="getJourneyById()">
         GET JOURNEY JSON
      </button> <br><br>
      <select id="sel" style="margin-left:auto;margin-right:auto;display:block;margin-top:0%;margin-bottom:0%" >
@@ -177,7 +177,7 @@
       {
           var e = document.getElementById(el);
           var strSel = "The Value is: " + e.options[e.selectedIndex].value + " and text is: " + e.options[e.selectedIndex].text;
-          document.getElementById("demo").innerText=strSel;
+          document.getElementById("demo").innerText=e.options[e.selectedIndex].value;
 
       }
   </script>

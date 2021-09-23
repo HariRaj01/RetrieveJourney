@@ -145,13 +145,13 @@
           let journeyName= new Array();
           console.log("Journey Response:",JSON.stringify(response));
          console.log("JSON Data-Activity:",response.data.activity)
-         for (var j = 0; j< response.data.activity.items.length; j++) {
+         for (var i = 0; i< response.data.activity.items.length; i++) {
           journeyName.push(response.data.activity.items[j])
           console.log("response.data.activity.items[j]>>>>",response.data.activity.items[j])
-         }
+       /*  }
       console.log("Journey Name",journeyName)
          var ele = document.getElementById('sel');
-         for (var i = 0; i < response.data.activity.items.length; i++) {  
+         for (var i = 0; i < response.data.activity.items.length; i++) {  */
               // POPULATE SELECT ELEMENT WITH JSON.
            
             ele.innerHTML = ele.innerHTML +'<option value="' + response.data.activity.items[i]['ID'] + '">' + response.data.activity.items[i]['name'] + '</option>';

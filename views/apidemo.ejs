@@ -148,10 +148,10 @@
           console.log("Journey Response:",JSON.stringify(response));
          console.log("JSON Data-Activity:",response.data.activity)
       
-      
+         var ele = document.getElementById('sel');
          for (var i = 0; i < response.data.activity.items.length; i++) {  
               // POPULATE SELECT ELEMENT WITH JSON.
-           var ele = document.getElementById('sel');
+           
             ele.innerHTML = ele.innerHTML +'<option value=" '+ response.data.activity.items[i].name +' "></option>';
           
 

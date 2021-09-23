@@ -147,12 +147,12 @@
           let journeyName= new Array();
           console.log("Journey Response:",JSON.stringify(response));
          console.log("JSON Data-Activity:",response.data.activity)
-        // console.log("Length of response:",response.data.activity.items.length)
+      
         var ele = document.getElementById('sel');
          for (var i = 0; i < response.data.activity.items.length; i++) {  
               // POPULATE SELECT ELEMENT WITH JSON.
               ele.innerHTML = ele.innerHTML +
-                  '<option value="' + response.data.activity.items[i]['name'] + '"></option>';
+                  '<option value=" '+ response.data.activity.items[i].name +' "></option>';
         
            
            // if(inputName==response.data.activity.items[i].name){

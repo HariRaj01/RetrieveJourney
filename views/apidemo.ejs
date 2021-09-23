@@ -132,8 +132,10 @@
             //console.log("Names:",journeyName) 
             if(inputName==response.data.activity.items[i].name){
             document.getElementById("demo").innerText=JSON.stringify(response.data.activity.items[i]); 
-            break; 
+            break;   
         }
+        else 
+        document.getElementById("demo").innerText="Invalid Journey Name or Error in getting JSON Data"
 
       }
         })

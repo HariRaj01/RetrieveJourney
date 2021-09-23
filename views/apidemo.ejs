@@ -149,7 +149,7 @@
           journeyName.push(response.data.activity.items[j])
           console.log("response.data.activity.items[j]>>>>",response.data.activity.items[j])
          }
-      console.log("Journey Name",journeyName)
+      
          var ele = document.getElementById('sel');
          for (var i = 0; i < response.data.activity.items.length; i++) {  
               // POPULATE SELECT ELEMENT WITH JSON.
@@ -180,6 +180,7 @@
       function GetSelectedItem(el)
       {
           var e = document.getElementById(el);
+          console.log("Journey Name>>>",journeyName);
           var strSel = "The Value is: " + e.options[e.selectedIndex].value + " and text is: " + e.options[e.selectedIndex].text;
           document.getElementById("demo").innerText=e.options[e.selectedIndex].value;
 

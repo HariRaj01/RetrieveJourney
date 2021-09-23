@@ -151,7 +151,7 @@
          var ele = document.getElementById('sel');
          for (var i = 0; i < response.data.activity.items.length; i++) {  
               // POPULATE SELECT ELEMENT WITH JSON.
-           
+           console.log("name>>>",response.data.activity.items[i].name)
             ele.innerHTML = ele.innerHTML +'<option value=" '+ response.data.activity.items[i].name +' "></option>';
           
 

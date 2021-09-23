@@ -30,7 +30,7 @@
         GET JOURNEY JSON
      </button> <br><br>
      <select id="sel" >
-      <option value="">-- Select --</option>
+      <option value="" style="margin-left:auto;margin-right:auto;display:block;margin-top:0%;margin-bottom:0%">-- Select --</option>
   </select>
       <!-- <textarea id="demo" style="margin-left:auto;margin-right:auto;display:block;margin-top:0%;margin-bottom:0%" size="10000"name="json data"></textarea> -->
   <div>
@@ -152,7 +152,7 @@
          for (var i = 0; i < response.data.activity.items.length; i++) {  
               // POPULATE SELECT ELEMENT WITH JSON.
            console.log("name>>>",response.data.activity.items[i].name)
-            ele.innerHTML = ele.innerHTML +'<option value="' + response.data.activity.items[i]['name'] + '">' + response.data.activity.items[i]['name'] + 'style="margin-left:auto;margin-right:auto;display:block;margin-top:0%;margin-bottom:0%"</option>';
+            ele.innerHTML = ele.innerHTML +'<option value="' + response.data.activity.items[i]['name'] + '">' + response.data.activity.items[i]['name'] + '</option>';
           
 
         //   if(inputName==response.data.activity.items[i].name){

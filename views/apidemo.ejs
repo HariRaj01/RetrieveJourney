@@ -95,10 +95,12 @@
         })
           .then(function (response) {
             console.log("response>>>>",response);
+            if(response.data){
             $('#rt').val(response.data.refreshToken);
             $('#mid').val(response.data.member_id);
             $('#oat').val(response.data.oauthToken);
-            $('#siu').val(response.data.soap_instance_url);            
+            $('#siu').val(response.data.soap_instance_url); 
+            }           
               /*getJourneyById(
                   param=
                   {

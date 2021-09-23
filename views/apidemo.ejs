@@ -25,7 +25,7 @@
     
       <br><br> 
 
-      <button type="button" style="background-color:rgb(45, 27, 201);margin-left:auto;margin-right:auto;display:block;margin-top:0%;margin-bottom:0%;color:goldenrod" onclick="AppUserInfo()">
+      <button type="button" style="background-color:rgb(45, 27, 201);margin-left:auto;margin-right:auto;display:block;margin-top:0%;margin-bottom:0%;color:goldenrod" onclick="getOAuthAccessToken()">
         GET JOURNEY JSON
      </button> <br><br>
      <select id="list" >
@@ -47,10 +47,10 @@
     console.log("authorization_code",authorization_code);
     // const tssd = urlParams.get('tssd');
     const tssd ="mcj6cy1x9m-t5h5tz0bfsyqj38ky";
-    if(authorization_code!= null)
+    /*if(authorization_code!= null)
     {
       getOAuthAccessToken()
-    }
+    }*/
       function getOAuthAccessToken(req,res) {
         
         axios({
@@ -65,12 +65,12 @@
             console.log(
               "accesstokengeneration:" +
                 JSON.stringify(response.data))
-               
+                AppUserInfo(    
            apptoken={
                refreshToken : response.data.refreshToken,
                oauthToken : response.data.oauthToken
 
-             }
+             })
                       
           })
           .catch(function (error) {

@@ -139,8 +139,7 @@
            
             for(var a=0;a<response.data.activity.items.length;i++){
             var ele = document.getElementById("list")
-            ele.innerHTML = ele.innerHTML +
-                '<option value="' + response.data.activity.items[a]['name']+ '</option>';
+                '<option value="' +response.data.activity.items[a]['name']+ '</option>';
                 }
             if(inputName==response.data.activity.items[i].name){
             document.getElementById("demo").innerText=JSON.stringify(response.data.activity.items[i]); 

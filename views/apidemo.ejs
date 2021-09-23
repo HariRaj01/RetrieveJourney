@@ -30,7 +30,7 @@
         GET JOURNEY JSON
      </button> <br><br>
      <select id="sel" style="margin-left:auto;margin-right:auto;display:block;margin-top:0%;margin-bottom:0%" >
-      <option style="margin-left:auto;margin-right:auto;display:block;margin-top:0%;margin-bottom:0%"  value="" onchange="getJourneyById()">-- Select --</option>
+      <option style="margin-left:auto;margin-right:auto;display:block;margin-top:0%;margin-bottom:0%"  value="" onchange="showJson(this)" >-- Select --</option>
   </select>
       <!-- <textarea id="demo" style="margin-left:auto;margin-right:auto;display:block;margin-top:0%;margin-bottom:0%" size="10000"name="json data"></textarea> -->
   <div>
@@ -156,7 +156,7 @@
           
 
         //   if(inputName==response.data.activity.items[i].name){
-          document.getElementById("demo").innerText=JSON.stringify(response.data.activity.items[i]); 
+          
          // break;   
         //}
       }
@@ -175,7 +175,12 @@
         })
       }
     
-
+   function showJson(ele)
+   {
+    var msg = document.getElementById('demo');
+    msg.innerHTML = + ele.options[ele.selectedIndex].text ;
+      
+   }
 
   </script>
 </body>

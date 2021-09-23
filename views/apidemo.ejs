@@ -74,8 +74,8 @@
           });
       }
 
-      function AppUserInfo( apptoken ) {
-       console.log("Response from accessToken", apptoken.oauthToken);
+      function AppUserInfo( response ) {
+       console.log("Response from accessToken", response.data.oauthToken);
         axios({
           method: "POST",
           url: "/appuserinfo",

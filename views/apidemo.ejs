@@ -45,6 +45,7 @@
   <input type="hidden" id="siu" />
   <script>
     let apptoken="";
+    let journeyName= new Array();
    const queryString = window.location.search;
     const urlParams = new URLSearchParams(queryString);
     const authorization_code = urlParams.get('code');
@@ -142,7 +143,7 @@
 
         .then(function(response)
         {
-          let journeyName= new Array();
+          
           console.log("Journey Response:",JSON.stringify(response));
          console.log("JSON Data-Activity:",response.data.activity)
          for (var j = 0; j< response.data.activity.items.length; j++) {
@@ -182,6 +183,11 @@
           var e = document.getElementById(el);
           console.log("Journey Name>>>",journeyName);
           var strSel = "The Value is: " + e.options[e.selectedIndex].value + " and text is: " + e.options[e.selectedIndex].text;
+          for (var x= 0; x < journeyName.length; x++) {  
+            if(e.options[e.selectedIndex].value==journeyName[x])
+            {
+              document.getElementById("demo").innerText=journeyName[x];
+            }
           document.getElementById("demo").innerText=e.options[e.selectedIndex].value;
 
       }

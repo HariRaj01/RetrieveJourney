@@ -155,6 +155,7 @@
             document.getElementById("demo").innerText=JSON.stringify(response.data.activity.items[i]); 
           break;   
         }
+      }
         ele.innerHTML ='<option value=" '+ response.data.activity.items[i].name +' "></option>';
        // else 
         //document.getElementById("demo").innerText="Invalid Journey Name or Error in getting JSON Data"

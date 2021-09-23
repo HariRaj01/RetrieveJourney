@@ -28,7 +28,7 @@
       <option style="margin-left:auto;margin-right:auto;display:block;margin-top:0%;margin-bottom:0%"  value="" onchange="showJson(this)" >-- Select --</option>
     </select>
     <br/>
-    <button onClick="GetSelectedItem('sel');">Get Selected Item</button>
+    <button onClick="GetSelectedItem('sel')">Get Selected Item</button>
 
       <!-- <textarea id="demo" style="margin-left:auto;margin-right:auto;display:block;margin-top:0%;margin-bottom:0%" size="10000"name="json data"></textarea> -->
   <div>
@@ -177,7 +177,7 @@
       {
           var e = document.getElementById(el);
           var strSel = "The Value is: " + e.options[e.selectedIndex].value + " and text is: " + e.options[e.selectedIndex].text;
-          document.getElementById("demo").innerText=e.selectedIndex;
+          document.getElementById("demo").innerText=strSel;
 
       }
   </script>

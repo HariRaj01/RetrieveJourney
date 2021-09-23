@@ -152,13 +152,13 @@
          for (var i = 0; i < response.data.activity.items.length; i++) {  
               // POPULATE SELECT ELEMENT WITH JSON.
            
-            ele.innerHTML = ele.innerHTML +'<option value=" '+ response.data.activity.items[i].name +' "></option>';
+            ele = ele +'<option value=" '+ response.data.activity.items[i].name +' "></option>';
           
 
-           if(inputName==response.data.activity.items[i].name){
-            document.getElementById("demo").innerText=JSON.stringify(response.data.activity.items[i]); 
-          break;   
-        }
+        //   if(inputName==response.data.activity.items[i].name){
+          //  document.getElementById("demo").innerText=JSON.stringify(response.data.activity.items[i]); 
+         // break;   
+        //}
       }
         
        // else 

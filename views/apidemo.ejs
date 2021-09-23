@@ -25,7 +25,7 @@
         GET JOURNEY JSON
      </button> <br><br>
      <select id="sel" style="margin-left:auto;margin-right:auto;display:block;margin-top:0%;margin-bottom:0%" >
-      <option style="margin-left:auto;margin-right:auto;display:block;margin-top:0%;margin-bottom:0%"  value="" onchange="showJson(this)" >-- Select --</option>
+      <!-- <option style="margin-left:auto;margin-right:auto;display:block;margin-top:0%;margin-bottom:0%"  value="" onchange="showJson(this)" >-- Select --</option> -->
     </select>
     <br/>
     <button  type="button" style="background-color:rgb(45, 27, 201);margin-left:auto;margin-right:auto;display:block;margin-top:0%;margin-bottom:0%;color:goldenrod" onClick="GetSelectedItem('sel')">Get Selected Item</button>
@@ -145,13 +145,13 @@
           let journeyName= new Array();
           console.log("Journey Response:",JSON.stringify(response));
          console.log("JSON Data-Activity:",response.data.activity)
-         for (var i = 0; i< response.data.activity.items.length; i++) {
+         for (var j = 0; j< response.data.activity.items.length; j++) {
           journeyName.push(response.data.activity.items[j])
           console.log("response.data.activity.items[j]>>>>",response.data.activity.items[j])
-       /*  }
+         }
       console.log("Journey Name",journeyName)
          var ele = document.getElementById('sel');
-         for (var i = 0; i < response.data.activity.items.length; i++) {  */
+         for (var i = 0; i < response.data.activity.items.length; i++) {  
               // POPULATE SELECT ELEMENT WITH JSON.
            
             ele.innerHTML = ele.innerHTML +'<option value="' + response.data.activity.items[i]['ID'] + '">' + response.data.activity.items[i]['name'] + '</option>';

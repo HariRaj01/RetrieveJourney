@@ -185,11 +185,75 @@
           for (var x= 0; x < journeyName.length; x++) {  
             if(e.options[e.selectedIndex].id ==x)
             {
-              document.getElementById("demo").innerText= JSON.stringify(journeyName[x],null,'\n');
+              document.getElementById("demo").innerText= JSON.stringify(journeyName[x]);
+              let Journeyid = journeyName[x].id;
+              console.log("Journeyid>>>>",Journeyid)
             }
+           
           }
       //document.getElementById("demo1").innerText=e.options[e.selectedIndex].value;
+      //function ActivityId()
+      }
+      function ActivityId()
+      {
+        let refreshToken =  $('#rt').val();
+        let oauthToken =  $('#oat').val();
+        let memberid =  $('#mid').val();
+        let soap_instance_url =  $('#siu').val();
+        console.log("RefreshToken",refreshToken);
+        
+        
+        
+        
+        //let JourneyId = 'b8d3952d-6586-4a96-8ae5-01a5c218e090';
+        axios(
+          {
+            method:"POST",
+            url: "/getJourneysById",
+            data: {
+              refreshToken:refreshToken,
+              oauthToken:oauthToken,
+              memberid:memberid,
+              soap_instance_url:soap_instance_url,
+              // journeyId:JourneyId
+            }
+          })
 
+        .then(function(response)
+        {
+          
+          console.log("Journey Response:",JSON.stringify(response));
+         console.log("JSON Data-Activity:",response.data.activity)
+         for (var j = 0; j< response.data.activity.items.length; j++) {
+          journeyName.push(response.data.activity.items[j])
+          console.log("response.data.activity.items[j]>>>>",response.data.activity.items[j])
+         }
+      
+         var ele = document.getElementById('sel');
+         for (var i = 0; i < response.data.activity.items.length; i++) {  
+              // POPULATE SELECT ELEMENT WITH JSON.
+           
+            ele.innerHTML = ele.innerHTML +'<option id="'+i+'" value="' + response.data.activity.items[i]['name'] + '">' + response.data.activity.items[i]['name'] + '</option>';
+          
+
+        //   if(inputName==response.data.activity.items[i].name){
+          
+         // break;   
+        //}
+      }
+
+        
+       // else 
+        //document.getElementById("demo").innerText="Invalid Journey Name or Error in getting JSON Data"
+
+      //}
+        })
+        
+        .catch(function(error)
+        {
+          document.getElementById("demo").innerText = "Invalid Journey Name or Error in getting JSON Data"
+          console.log(error);
+        })
       }
   </script>
 </body>

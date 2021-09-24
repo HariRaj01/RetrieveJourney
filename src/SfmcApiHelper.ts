@@ -322,6 +322,8 @@ export default class SfmcApiHelper
                 headers: headers,
               })
                 .then((response: any) => {
+                  console.log("response>>>",response);
+                  
                   let sendresponse = {
                     refreshToken: req.body.refreshToken,
                     oauthToken : req.body.oauthToken,

@@ -225,7 +225,7 @@
         .then(function(response)
         {
           console.log("response>>>",response)
-          document.getElementById("demo").innerText= JSON.stringify(response.data.activity.activities.name);
+          document.getElementById("demo").innerText= JSON.stringify(response.data.activity.activities.key);
         })
         
         .catch(function(error)

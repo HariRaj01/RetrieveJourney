@@ -255,13 +255,12 @@
           var e = document.getElementById(el);
           console.log("Activities JSON>>>",activitynames);
           var strSel = "The Value is: " + e.options[e.selectedIndex].value + " and text is: " + e.options[e.selectedIndex].text;
-          console.log("e.options[e.selectedIndex].value",e.options[e.selectedIndex].id);
+          console.log("e.options[e.selectedIndex].value",e.options[e.selectedIndex].name);
           for (var x= 0; x < activitynames.length; x++) {  
-            if(e.options[e.selectedIndex].id ==x)
+            if(e.options[e.selectedIndex].id == activitynames.name)
             {
              document.getElementById("demo").innerText= JSON.stringify(activitynames[x]);
-            
-              
+             
             }
            
           }

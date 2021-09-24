@@ -73,4 +73,8 @@ const appDemoRoutes = new SfmcAppDemoRoutes();
     appDemoRoutes.getJourneysById(req, res);
   });
   
+  app.post("/getactivityById", function (req, res) {
+    appDemoRoutes.getactivityById(req, res);
+  });
+
 module.exports = app;

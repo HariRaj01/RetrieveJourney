@@ -281,6 +281,78 @@ export default class SfmcApiHelper
           .status(500)
           .send(Utils.prettyPrintJson(JSON.stringify(error.response.data)));
       });
+    }
+      public getactivityById(req: express.Request, res: express.Response) {
+        //this.getRefreshTokenHelper(this._accessToken, res);
+        //this.getRefreshTokenHelper(this._accessToken, res);
+        console.log("getJourneysById:" + req.body.memberid);
+        console.log("getJourneysById:" + req.body.soap_instance_url);
+        console.log("getJourneysById:" + req.body.refreshToken);
+        console.log("Get Journey ID:",req.body.journeyId);
+        let oauthToken="";
+        oauthToken = req.body.oauthToken;
+        console.log("OAuth in:>>",oauthToken)
+        let tssd = process.env.BASE_URL;
+        this.getRefreshTokenHelper(req.body.refreshToken, tssd, false, res)
+          .then((response) => {
+            Utils.logInfo(
+              "getJourneysById:" + JSON.stringify(req.body.refreshToken)
+            );
+            Utils.logInfo(
+              "getJourneysById= OauthToken:" + JSON.stringify(req.body.oauthToken)
+            );
+            return new Promise<any>((resolve, reject) => {
+              let headers = {
+                "Content-Type": "application/json",
+                Authorization: "Bearer " + oauthToken,
+              };
+    
+    
+              let JourneyUrl =
+                "https://" +
+                 tssd +
+                ".rest.marketingcloudapis.com/interaction/v1/interactions/" 
+                +
+                req.body.journeyId;
+    
+               console.log("Journey URL:",JourneyUrl,"","Headers:",headers)
+              axios({
+                method: "get",
+                url: JourneyUrl,
+                headers: headers,
+              })
+                .then((response: any) => {
+                  let sendresponse = {
+                    refreshToken: req.body.refreshToken,
+                    oauthToken : req.body.oauthToken,
+                    activity: response.data,
+                  };
+                  res.status(200).send(sendresponse);
+                  // res.status(200).send(response.data);
+                })
+                .catch((error: any) => {
+                  // error
+                  let errorMsg = "Error getting the Active Journeys......";
+                  errorMsg += "\nMessage: " + error.message;
+                  errorMsg +=
+                    "\nStatus: " + error.response
+                      ? error.response.status
+                      : "<None>";
+                  errorMsg +=
+                    "\nResponse data: " + error.response.data
+                      ? Utils.prettyPrintJson(JSON.stringify(error.response.data))
+                      : "<None>";
+                  Utils.logError(errorMsg);
+    
+                  reject(errorMsg);
+                });
+            });
+          })
+          .catch((error: any) => {
+            res
+              .status(500)
+              .send(Utils.prettyPrintJson(JSON.stringify(error.response.data)));
+          });
       // .catch((error: any) => {
       //   res
       //     .status(500)
@@ -288,6 +360,5 @@ export default class SfmcApiHelper
       // });
   }
 
-};
     
-
+};

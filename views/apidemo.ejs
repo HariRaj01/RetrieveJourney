@@ -28,7 +28,8 @@
       <option style="margin-left:auto;margin-right:auto;display:block;margin-top:0%;margin-bottom:0%"  value="" onchange="showJson(this)" >-- Select --</option>
     </select>
     <br/>
-    <button  type="button" style="background-color:rgb(45, 27, 201);margin-left:auto;margin-right:auto;display:block;margin-top:0%;margin-bottom:0%;color:goldenrod" onClick="GetSelectedItem('sel')">Get Selected Item</button>
+    <button  type="button" style="background-color:rgb(45, 27, 201);margin-left:auto;margin-right:auto;display:block;margin-top:0%;margin-bottom:0%;color:goldenrod" onClick="GetSelectedItem('sel')">Get journey json</button>
+    <button  type="button" style="background-color:rgb(45, 27, 201);margin-left:auto;margin-right:auto;display:block;margin-top:0%;margin-bottom:0%;color:goldenrod" onClick=ActivityId()>Get activities</button>
     <br><br>
    <textarea id="demo" cols="100" rows="20" style="margin-left:auto;margin-right:auto;display:block;margin-top:0%;margin-bottom:0%;overflow:scroll" size="10000"name="json data"></textarea>       
  
@@ -44,6 +45,7 @@
   <script>
     let apptoken="";
     let journeyName= new Array();
+    let Journeyid
    const queryString = window.location.search;
     const urlParams = new URLSearchParams(queryString);
     const authorization_code = urlParams.get('code');
@@ -177,7 +179,7 @@
     
       function GetSelectedItem(el)
       {
-        let Journeyid
+        
           var e = document.getElementById(el);
           console.log("Journey Name>>>",journeyName);
           var strSel = "The Value is: " + e.options[e.selectedIndex].value + " and text is: " + e.options[e.selectedIndex].text;
@@ -185,7 +187,7 @@
           for (var x= 0; x < journeyName.length; x++) {  
             if(e.options[e.selectedIndex].id ==x)
             {
-             // document.getElementById("demo").innerText= JSON.stringify(journeyName[x]);
+             document.getElementById("demo").innerText= JSON.stringify(journeyName[x]);
               Journeyid = journeyName[x].id;
               
             }

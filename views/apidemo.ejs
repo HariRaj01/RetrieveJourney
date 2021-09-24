@@ -32,8 +32,10 @@
 
       <!-- <textarea id="demo" style="margin-left:auto;margin-right:auto;display:block;margin-top:0%;margin-bottom:0%" size="10000"name="json data"></textarea> -->
   <div>
-    <p style="background-color:rgb(255, 2, 2)" id="demo"></p>
     <p style="background-color:rgb(47, 201, 27)" id="demo1"></p>
+    <input type="text" id="demo1" style="margin-left:auto;margin-right:auto;display:block;margin-top:0%;height: 40px; width:280px; ">
+    <p style="background-color:rgb(255, 2, 2)" id="demo"></p>
+   
   </div>
     <br><br>
     
@@ -124,10 +126,6 @@
         let memberid =  $('#mid').val();
         let soap_instance_url =  $('#siu').val();
         console.log("RefreshToken",refreshToken);
-        
-        
-        
-        
         //let JourneyId = 'b8d3952d-6586-4a96-8ae5-01a5c218e090';
         axios(
           {
@@ -155,21 +153,9 @@
          var ele = document.getElementById('sel');
          for (var i = 0; i < response.data.activity.items.length; i++) {  
               // POPULATE SELECT ELEMENT WITH JSON.
-           
             ele.innerHTML = ele.innerHTML +'<option id="'+i+'" value="' + response.data.activity.items[i]['name'] + '">' + response.data.activity.items[i]['name'] + '</option>';
-          
-
-        //   if(inputName==response.data.activity.items[i].name){
-          
-         // break;   
-        //}
+         
       }
-
-        
-       // else 
-        //document.getElementById("demo").innerText="Invalid Journey Name or Error in getting JSON Data"
-
-      //}
         })
         
         .catch(function(error)
@@ -183,8 +169,8 @@
       {
           var e = document.getElementById(el);
           console.log("Journey Name>>>",journeyName);
-          var strSel = "The Value is: " + e.options[e.selectedIndex].value + " and text is: " + e.options[e.selectedIndex].text;
-          console.log("e.options[e.selectedIndex].value",e.options[e.selectedIndex].id);
+         // var strSel = "The Value is: " + e.options[e.selectedIndex].value + " and text is: " + e.options[e.selectedIndex].text;
+         // console.log("e.options[e.selectedIndex].value",e.options[e.selectedIndex].id);
           for (var x= 0; x < journeyName.length; x++) {  
             if(e.options[e.selectedIndex].id ==x)
             {

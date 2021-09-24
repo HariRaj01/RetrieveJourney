@@ -174,7 +174,7 @@
           document.getElementById("demo").innerText = "Invalid Journey Name or Error in getting JSON Data"
           console.log(error);
         })
-      }
+    }
     
       function GetSelectedItem(el)
       {
@@ -192,10 +192,10 @@
            
           }
       //document.getElementById("demo1").innerText=e.options[e.selectedIndex].value;
-      function ActivityId(Journeyid)
+      ActivityId(Journeyid)
       }
 
-      function ActivityId()
+      function ActivityId(Journeyid)
       {
         let refreshToken =  $('#rt').val();
         let oauthToken =  $('#oat').val();
@@ -204,7 +204,7 @@
         console.log("RefreshToken",refreshToken);
         console.log("Journeyid>>>>",Journeyid)
         
-        
+      }
         
         //let JourneyId = 'b8d3952d-6586-4a96-8ae5-01a5c218e090';
         /*axios(

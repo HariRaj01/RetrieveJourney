@@ -5,6 +5,7 @@ import express = require("express");
 import { request } from 'http';
 import Utils from './Utils';
 import xml2js = require("xml2js");
+import JSONFormatter from 'json-formatter-js'
 
 export default class SfmcApiHelper
 {

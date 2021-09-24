@@ -53,6 +53,7 @@
     "helmet": "^3.13.0",
     "helmet-csp": "^3.4.0",
     "jquery": "^3.5.1",
+    "json-formatter-js": "^2.3.4",
     "jsonwebtoken": "^8.0.1",
     "jwt-simple": "^0.5.6",
     "lodash": "^4.17.21",
@@ -65,9 +66,9 @@
     "winston": "^3.1.0",
     "xml2js": "^0.4.23"
   },
-"devDependencies": {
-  "@types/node": "^10.17.56",
-  "@types/qs": "^6.9.7",
-  "@types/xml2js": "^0.4.7"
-}
+  "devDependencies": {
+    "@types/node": "^10.17.56",
+    "@types/qs": "^6.9.7",
+    "@types/xml2js": "^0.4.7"
+  }
 }

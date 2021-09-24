@@ -188,7 +188,7 @@
           for (var x= 0; x < journeyName.length; x++) {  
             if(e.options[e.selectedIndex].id ==x)
             {
-              document.getElementById("demo").innerText=journeyName[x];
+              document.getElementById("demo").innerText= JSON.stringify(journeyName[x]);
             }
           }
           document.getElementById("demo1").innerText=e.options[e.selectedIndex].value;

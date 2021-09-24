@@ -187,12 +187,12 @@
             {
               document.getElementById("demo").innerText= JSON.stringify(journeyName[x]);
               let Journeyid = journeyName[x].id;
-              console.log("Journeyid>>>>",Journeyid)
+              
             }
            
           }
       //document.getElementById("demo1").innerText=e.options[e.selectedIndex].value;
-      //function ActivityId()
+      function ActivityId(Journeyid)
       }
       function ActivityId()
       {
@@ -201,12 +201,12 @@
         let memberid =  $('#mid').val();
         let soap_instance_url =  $('#siu').val();
         console.log("RefreshToken",refreshToken);
-        
+        console.log("Journeyid>>>>",Journeyid)
         
         
         
         //let JourneyId = 'b8d3952d-6586-4a96-8ae5-01a5c218e090';
-        axios(
+        /*axios(
           {
             method:"POST",
             url: "/getJourneysById",
@@ -253,7 +253,7 @@
         {
           document.getElementById("demo").innerText = "Invalid Journey Name or Error in getting JSON Data"
           console.log(error);
-        })
+        })*/
       }
   </script>
 </body>

@@ -141,7 +141,6 @@
 
         .then(function(response)
         {
-          
           console.log("Journey Response:",JSON.stringify(response));
          console.log("JSON Data-Activity:",response.data.activity)
          for (var j = 0; j< response.data.activity.items.length; j++) {
@@ -192,9 +191,9 @@
            
           }
       //document.getElementById("demo1").innerText=e.options[e.selectedIndex].value;
-      function ActivityId(Journeyid)
-      }
-
+       ActivityId(Journeyid)
+      
+        }
       function ActivityId(Journeyid)
       {
         let refreshToken =  $('#rt').val();

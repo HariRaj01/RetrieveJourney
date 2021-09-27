@@ -238,7 +238,7 @@
               // POPULATE SELECT ELEMENT WITH JSON
             activitynames.push(response.data.activity.activities[i].name)
             ele.innerHTML = ele.innerHTML +'<option id="'+i+'" value="' + response.data.activity.activities[i]['name'] + '">' + response.data.activity.activities[i]['name'] + '</option>';
-            break;
+            break
           }
         })
         
@@ -258,8 +258,10 @@
           console.log("Activities JSON>>>",activitynames);
           
           console.log("e.options[e.selectedIndex].value",e.options[e.selectedIndex].name);
+          var getValue= document.getElementById('act_list').selectedOptions[0].value;
+          console.log("Get Selected value:",getValue)
           for (var x= 0; x < activitynames.length; x++) {  
-            if(e.options[e.selectedIndex].id == x)
+            if(e.options[e.selectedIndex].id == activitynames.)
             {
              document.getElementById("demo").innerText= JSON.stringify(activitynames[x]);
              

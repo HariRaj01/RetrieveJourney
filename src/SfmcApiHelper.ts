@@ -35,11 +35,11 @@ export default class SfmcApiHelper
     };
     console.log("ClientId:",clientId + "" + "Client Secret:",clientSecret)
     let postBody = {
-      grant_type: "authorization_code",
+      grant_type: "client_credentials",
       client_id: clientId,
       client_secret: clientSecret,
       //code: req.body.authorization_code,
-      redirect_uri: process.env.REDIRECT_URL,
+     // redirect_uri: process.env.REDIRECT_URL,
     };
 
     return self.getOAuthTokenHelper(headers, postBody, res, tssd);
@@ -62,10 +62,11 @@ export default class SfmcApiHelper
       axios
         .post(sfmcAuthServiceApiUrl, postBody, { headers: headers })
         .then((response: any) => {
-          resolve({
-            accessToken :response.data.access_token
-          })
-           
+          const accesskey = {
+            
+            accessToken : response.data.access_token,
+          };
+          res.status(200).send(accesskey);
           //  tokenExpiry = new Date();
 
         })

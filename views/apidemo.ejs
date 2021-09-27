@@ -101,11 +101,11 @@
             console.log(
               "accesstokengeneration:" +
                 JSON.stringify(response.data))
-                console.log("oauthToken:",response.data.oauthToken);
+                console.log("oauthToken:",response.data.oauthAccessToken);
                 console.log("SoAP:",response.data.soap_instance_url)
                 if(response.data)
                 {
-                  $('#oat').val(response.data.oauthToken);
+                  $('#oat').val(response.data.oauthAccessToken);
                   $('#siu').val(response.data.soap_instance_url);
                   $('#riu').val(response.data.rest_instance_url)
                 }

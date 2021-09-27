@@ -65,16 +65,16 @@ const appDemoRoutes = new SfmcAppDemoRoutes();
   app.post('/appdemoauthtoken', function(req, res) {
   appDemoRoutes.getOAuthAccessToken(req, res); }); 
 
-  app.post("/appuserinfo", function (req, res) {
-    appDemoRoutes.appUserInfo(req, res);
-  });
+  // app.post("/appuserinfo", function (req, res) {
+  //   appDemoRoutes.appUserInfo(req, res);
+  // });
   
-  app.post("/getJourneysById", function (req, res) {
-    appDemoRoutes.getJourneysById(req, res);
-  });
+  // app.post("/getJourneysById", function (req, res) {
+  //   appDemoRoutes.getJourneysById(req, res);
+  // });
   
-  app.post("/getactivityById", function (req, res) {
-    appDemoRoutes.getactivityById(req, res);
-  });
+  // app.post("/getactivityById", function (req, res) {
+  //   appDemoRoutes.getactivityById(req, res);
+  // });
 
 module.exports = app;

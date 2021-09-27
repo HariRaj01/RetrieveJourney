@@ -54,9 +54,9 @@ public getOAuthTokenHelper(headers : any, postBody: any) : Promise<any>
          resolve(
             {  
               oauthAccessToken: accessToken, 
-              //oauthAccessTokenExpiry: tokenExpiry,
-             // status: response.status, 
-              //statusText: response.statusText + "\n" + Utils.prettyPrintJson(JSON.stringify(response.data))
+              oauthAccessTokenExpiry: tokenExpiry,
+              status: response.status, 
+              statusText: response.statusText + "\n" + Utils.prettyPrintJson(JSON.stringify(response.data))
               });  
              })   
              .catch((error: any) => { 

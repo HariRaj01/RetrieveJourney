@@ -45,19 +45,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, "../static")));
 app.use(favicon(path.join(__dirname,'../static','images','favicons', 'favicon.ico')));
 
-// Routes: pages
-app.get("/", function (req, res) {
-  if (req.query.code === undefined) {
-    const redirectUri = `https://${process.env.BASE_URL}.auth.marketingcloudapis.com/v2/authorize?response_type=code&client_id=${process.env.CLIENTID}&redirect_uri=${process.env.REDIRECT_URL}`;
-
-    res.redirect(redirectUri);
-  } else {
-    res.render("apidemo.ejs", {
-      authorization_code: req.query.code,
-      tssd: req.query.tssd ? req.query.tssd : process.env.BASE_URL,
-    });
-  }
-});
+app.get('/', function(req, res) { Utils.initSampleDataAndRenderView(req, res, 'apidemo.ejs') });
  app.post('/appdemo', function(req, res) { Utils.initSampleDataAndRenderView(req, res, 'appdemo.ejs') });
 const appDemoRoutes = new SfmcAppDemoRoutes();  
 

@@ -20,7 +20,7 @@ export default class SfmcApiHelper
   private _sfmcDataExtensionApiUrl = "https://mcj6cy1x9m-t5h5tz0bfsyqj38ky.auth.marketingcloudapis.com/hub/v1/dataevents/key:" + this._deExternalKey + "/rowset";
 
   
-  public getOAuthAccessToken(client_id: string, client_secret: string) : Promise<any>    
+  public getOAuthAccessToken(clientId: string, clientSecret: string) : Promise<any>    
   {
        let self = this;
         Utils.logInfo("getOAuthAccessToken called.");   
@@ -29,9 +29,9 @@ export default class SfmcApiHelper
               'Content-Type': 'application/json',
           };
   let postBody = {
-      "grant_type": "client_credentials",
-      "client_id": clientId,
-      "client_secret": clientSecret       
+      grant_type: "client_credentials",
+      clientId: clientId,
+      clientSecret: clientSecret       
     };
   return self.getOAuthTokenHelper(headers, postBody); 
    }

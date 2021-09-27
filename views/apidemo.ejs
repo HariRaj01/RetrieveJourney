@@ -261,7 +261,7 @@
           var getValue= document.getElementById('act_list').selectedOptions[0].value;
           console.log("Get Selected value:",getValue)
           for (var x= 0; x < activitynames.length; x++) {  
-            if(e.options[e.selectedIndex].id == activitynames)
+            if(e.options[e.selectedIndex].id == x)
             {
              document.getElementById("demo").innerText= JSON.stringify(activitynames[x]);
              

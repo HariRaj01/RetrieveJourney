@@ -58,9 +58,9 @@ const appDemoRoutes = new SfmcAppDemoRoutes();
   //   appDemoRoutes.appUserInfo(req, res);
   // });
   
-  // app.post("/getJourneysById", function (req, res) {
-  //   appDemoRoutes.getJourneysById(req, res);
-  // });
+  app.post("/getJourneysById", function (req, res) {
+    appDemoRoutes.getJourneysById(req, res);
+  });
   
   // app.post("/getactivityById", function (req, res) {
   //   appDemoRoutes.getactivityById(req, res);

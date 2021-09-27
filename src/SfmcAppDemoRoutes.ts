@@ -21,6 +21,7 @@ export default class SfmcAppDemoRoutes
         let clientId = req.body.clientId;
         let clientSecret =req.body.clientSecret;
 
+        console.log("ClientId:",clientId + "" + "Client Secret:",clientSecret)
         //req.session.oauthAccessToken = "";
         //req.session.oauthAccessTokenExpiry = "";
 

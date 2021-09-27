@@ -28,8 +28,8 @@ export default class SfmcApiHelper
   ): Promise<any> {
     let self = this;
     var tssd = "";
-    tssd = process.env.BASE_URL;
-    console.log("authorizetssd:" + tssd);
+    //tssd = process.env.BASE_URL;
+    //console.log("authorizetssd:" + tssd);
     let headers = {
       "Content-Type": "application/json",
     };
@@ -55,8 +55,7 @@ export default class SfmcApiHelper
       console.log("author" + JSON.stringify(postBody));
       console.log("headers",headers);
       
-      let sfmcAuthServiceApiUrl =
-        "https://mcj6cy1x9m-t5h5tz0bfsyqj38ky.auth.marketingcloudapis.com/";
+      let sfmcAuthServiceApiUrl =  process.env.AUTH_URL;
       // this.isAccessToken = true;
       console.log("sfmcAuthServiceApiUrl:" + sfmcAuthServiceApiUrl);
       axios

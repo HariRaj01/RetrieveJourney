@@ -55,8 +55,7 @@
     let journeyName= new Array();
     let activitynames = new Array();
     let Journeyid;
-    var cid = document.getElementById("clientId").value;
-    console.log("Client Id:",cid);
+  
    const queryString = window.location.search;
     const urlParams = new URLSearchParams(queryString);
     const authorization_code = urlParams.get('code');
@@ -135,7 +134,8 @@
         let soap_instance_url =  $('#siu').val();
         console.log("RefreshToken",refreshToken);
         
-        
+        var cid = document.getElementById("clientId").value;
+        console.log("Client Id:",cid);
         
         
         //let JourneyId = 'b8d3952d-6586-4a96-8ae5-01a5c218e090';

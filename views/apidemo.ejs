@@ -238,6 +238,7 @@
               // POPULATE SELECT ELEMENT WITH JSON
             activitynames.push(response.data.activity.activities[i].name)
             ele.innerHTML = ele.innerHTML +'<option id="'+i+'" value="' + response.data.activity.activities[i]['name'] + '">' + response.data.activity.activities[i]['name'] + '</option>';
+            break;
           }
         })
         

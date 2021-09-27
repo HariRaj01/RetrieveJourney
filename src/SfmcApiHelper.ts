@@ -33,6 +33,7 @@ export default class SfmcApiHelper
       "clientId": clientId,
       "clientSecret": clientSecret       
     };
+    console.log("PostBody:",JSON.stringify(postBody));
   return self.getOAuthTokenHelper(headers, postBody); 
    }
 /**     * getOAuthTokenHelper: Helper method to POST the given header & body to the SFMC Auth endpoint     *      */    

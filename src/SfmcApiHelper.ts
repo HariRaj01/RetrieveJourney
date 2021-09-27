@@ -80,9 +80,6 @@ public getOAuthTokenHelper(headers : any, postBody: any) : Promise<any>
     oauthToken = req.body.oauthToken;
     console.log("OAuth in:>>",oauthToken)
     let tssd = process.env.BASE_URL;
-    this.getOAuthAccessToken(req.body.oauthToken, tssd)
-      .then((response) => {
-     
         Utils.logInfo(
           "getJourneysById= OauthToken:" + JSON.stringify(req.body.oauthToken)
         );
@@ -126,8 +123,8 @@ public getOAuthTokenHelper(headers : any, postBody: any) : Promise<any>
 
               reject(errorMsg);
             });
-        });
-      })
+        })
+      
       .catch((error: any) => {
         res
           .status(500)

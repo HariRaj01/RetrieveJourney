@@ -20,71 +20,55 @@ export default class SfmcApiHelper
   private _sfmcDataExtensionApiUrl = "https://mcj6cy1x9m-t5h5tz0bfsyqj38ky.auth.marketingcloudapis.com/hub/v1/dataevents/key:" + this._deExternalKey + "/rowset";
 
   
-   public getOAuthAccessToken(
-    clientId: string,
-    clientSecret: string,
-    req: any,
-    res: any
-  ): Promise<any> {
-    let self = this;
-    var tssd = "";
-    //tssd = process.env.BASE_URL;
-    //console.log("authorizetssd:" + tssd);
-    let headers = {
-      "Content-Type": "application/json",
-    };
-    console.log("ClientId:",clientId + " " + "Client Secret:",clientSecret)
-    let postBody = {
-      grant_type: "client_credentials",
-      client_id: clientId,
-      client_secret: clientSecret,
-      //code: req.body.authorization_code,
-     // redirect_uri: process.env.REDIRECT_URL,
-    };
-
-    return self.getOAuthTokenHelper(headers, postBody, res, tssd);
-  }
-
-   public getOAuthTokenHelper(
-    headers: any,
-    postBody: any,
-    res: any,
-    tssd: string
-  ): Promise<any> {
-    return new Promise<any>((resolve, reject) => {
-      console.log("author" + JSON.stringify(postBody));
-      console.log("headers",headers);
-      
-      let sfmcAuthServiceApiUrl =  process.env.AUTH_URL;
-      // this.isAccessToken = true;
-      console.log("sfmcAuthServiceApiUrl:" + sfmcAuthServiceApiUrl);
-      axios
-        .post(sfmcAuthServiceApiUrl, postBody, { headers: headers })
-        .then((response: any) => {
-          const accesskey = {
-            
-            accessToken : response.data.access_token,
+  public getOAuthAccessToken(client_id: string, client_secret: string) : Promise<any>    
+  {
+       let self = this;
+        Utils.logInfo("getOAuthAccessToken called.");   
+       Utils.logInfo("Using specified ClientID and ClientSecret to get OAuth token...");
+  let headers = {  
+              'Content-Type': 'application/json',
           };
-          res.status(200).send(accesskey);
-          //  tokenExpiry = new Date();
-
-        })
-        .catch((error: any) => {
-          // error
-          let errorMsg = "Error getting OAuth Access Token.";
-          errorMsg += "\nMessage: " + error.message;
-          errorMsg +=
-            "\nStatus: " + error.response ? error.response.status : "<None>";
-          errorMsg +=
-            "\nResponse data: " + error.response
-              ? Utils.prettyPrintJson(JSON.stringify(error.response.data))
-              : "<None>";
-          Utils.logError(errorMsg);
-
-          reject(errorMsg);
+  let postBody = {
+      "grant_type": "client_credentials",
+      "client_id": clientId,
+      "client_secret": clientSecret       
+    };
+  return self.getOAuthTokenHelper(headers, postBody); 
+   }
+/**     * getOAuthTokenHelper: Helper method to POST the given header & body to the SFMC Auth endpoint     *      */    
+public getOAuthTokenHelper(headers : any, postBody: any) : Promise<any>    
+{
+          return new Promise<any>((resolve, reject) =>
+          {
+            // POST to Marketing Cloud REST Auth service and get back an OAuth access token.
+            let sfmcAuthServiceApiUrl = "https://mcj6cy1x9m-t5h5tz0bfsyqj38ky.auth.marketingcloudapis.com/v2/token";
+            axios.post(sfmcAuthServiceApiUrl, postBody, {"headers" : headers}) 
+           .then((response: any) => { 
+        // success                
+        let accessToken = response.data.access_token;
+         let tokenExpiry = new Date(); 
+         tokenExpiry.setSeconds(tokenExpiry.getSeconds() + response.data.expiresIn);
+         Utils.logInfo("Got OAuth token: " + accessToken + ", expires = " +  tokenExpiry);
+         console.log("response:",response.data); 
+         resolve(
+            {  
+              oauthAccessToken: accessToken, 
+              //oauthAccessTokenExpiry: tokenExpiry,
+             // status: response.status, 
+              //statusText: response.statusText + "\n" + Utils.prettyPrintJson(JSON.stringify(response.data))
+              });  
+             })   
+             .catch((error: any) => { 
+               // error
+               let errorMsg = "Error getting OAuth Access Token."; 
+                errorMsg += "\nMessage: " + error.message;     
+                errorMsg += "\nStatus: " + error.response ? error.response.status : "<None>"; 
+                errorMsg += "\nResponse data: " + error.response ? Utils.prettyPrintJson(JSON.stringify(error.response.data)) : "<None>"; 
+                Utils.logError(errorMsg);
+                reject(errorMsg); 
+          });
         });
-    });
-  }
+      }
 
   //Helper method to get refresh token
   public getRefreshTokenHelper(

@@ -101,6 +101,8 @@
             console.log(
               "accesstokengeneration:" +
                 JSON.stringify(response.data))
+                console.log("oauthToken:",response.data.oauthToken);
+                console.log("SoAP:",response.data.soap_instance_url)
                 if(response.data)
                 {
                   $('#oat').val(response.data.oauthToken);

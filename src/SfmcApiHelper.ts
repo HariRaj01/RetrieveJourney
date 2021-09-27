@@ -33,7 +33,7 @@ export default class SfmcApiHelper
     let headers = {
       "Content-Type": "application/json",
     };
-    console.log("ClientId:",clientId + "" + "Client Secret:",clientSecret)
+    console.log("ClientId:",clientId + " " + "Client Secret:",clientSecret)
     let postBody = {
       grant_type: "client_credentials",
       client_id: clientId,

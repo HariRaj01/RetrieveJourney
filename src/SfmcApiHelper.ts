@@ -30,8 +30,8 @@ export default class SfmcApiHelper
           };
   let postBody = {
       "grant_type": "client_credentials",
-      "clientId": clientId,
-      "clientSecret": clientSecret       
+      "client_id": clientId,
+      "client_secret": clientSecret       
     };
     console.log("PostBody:",JSON.stringify(postBody));
   return self.getOAuthTokenHelper(headers, postBody); 
@@ -46,7 +46,7 @@ public getOAuthTokenHelper(headers : any, postBody: any) : Promise<any>
             axios.post(sfmcAuthServiceApiUrl, postBody, {"headers" : headers}) 
            .then((response: any) => { 
         // success                
-        let accessToken = response.data.access_token;
+         let accessToken = response.data.access_token;
          let tokenExpiry = new Date(); 
          tokenExpiry.setSeconds(tokenExpiry.getSeconds() + response.data.expiresIn);
          Utils.logInfo("Got OAuth token: " + accessToken + ", expires = " +  tokenExpiry);

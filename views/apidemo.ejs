@@ -130,6 +130,7 @@
         let soap_instance_url =  $('#siu').val();
         var mid = document.getElementById("memberId").value;
         console.log("Member Id:",mid);
+        console.log("OAuthToken:",oauthToken," ","SoapURL:",soap_instance_url)
         axios(
           {
             method:"POST",

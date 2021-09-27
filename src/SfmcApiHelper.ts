@@ -232,7 +232,6 @@ public getOAuthTokenHelper(headers : any, postBody: any) : Promise<any>
           })
             .then((response: any) => {
               let sendresponse = {
-                
                 oauthToken : req.body.oauthToken,
                 activity: response.data,
               };

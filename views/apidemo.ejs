@@ -23,6 +23,12 @@
 
   <label for="cid">Client ID</label>
   <input type="text" id="clientId" name="Client ID" >
+&emsp;&emsp;
+  <label for="csec">Client Secret</label>
+  <input type="text" id="clientSecret" name="Client Secret" >
+  &emsp;&emsp;
+  <label for="mid">Member ID</label>
+  <input type="text" id="memberId" name="Member ID" >
 
       <button type="button" id="input" style="background-color:rgb(45, 27, 201);margin-left:auto;margin-right:auto;display:block;margin-top:0%;margin-bottom:0%;color:goldenrod" onclick="getJourneyById()">
         GET JOURNEY
@@ -56,18 +62,24 @@
     let activitynames = new Array();
     let Journeyid;
   
-   const queryString = window.location.search;
-    const urlParams = new URLSearchParams(queryString);
-    const authorization_code = urlParams.get('code');
-    console.log("authorization_code",authorization_code);
+   //const queryString = window.location.search;
+    //const urlParams = new URLSearchParams(queryString);
+    //const authorization_code = urlParams.get('code');
+    //console.log("authorization_code",authorization_code);
     // const tssd = urlParams.get('tssd');
-    const tssd ="mcj6cy1x9m-t5h5tz0bfsyqj38ky";
-    if(authorization_code!= null)
-    {
+    //const tssd ="mcj6cy1x9m-t5h5tz0bfsyqj38ky";
+    //if(authorization_code!= null)
+    //{
       //getOAuthAccessToken()
-    }
+    //}
       function getOAuthAccessToken(req,res) {
         
+        var cid = document.getElementById("clientId").value;
+        console.log("Client Id:",cid);
+        var csec = document.getElementById("clientSecret").value;
+        console.log("Client secret:",csec);
+        var mid = document.getElementById("memberId").value;
+        console.log("Member Id:",mid);
         axios({
           method: "POST",
           url: "/appdemoauthtoken",
@@ -134,8 +146,7 @@
         let soap_instance_url =  $('#siu').val();
         console.log("RefreshToken",refreshToken);
         
-        var cid = document.getElementById("clientId").value;
-        console.log("Client Id:",cid);
+      
         
         
         //let JourneyId = 'b8d3952d-6586-4a96-8ae5-01a5c218e090';

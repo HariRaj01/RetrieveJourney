@@ -234,7 +234,7 @@
           
          for (var i = 0; i < response.data.activity.activities.length; i++) {  
               // POPULATE SELECT ELEMENT WITH JSON
-            activitynames.push(response.data.activity.activities[i]);   
+            activitynames.push(response.data.activity.activities[i].name);   
           }
           var ele = document.getElementById('act_list');
           for (var i = 0; i < response.data.activity.activities.length; i++) {  

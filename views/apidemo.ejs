@@ -233,18 +233,18 @@
           console.log("response>>>",response)
          // document.getElementById("demo").innerText= JSON.stringify(response.data.activity.activities);
 
-          var ele = document.getElementById('act_list');
+          
          for (var i = 0; i < response.data.activity.activities.length; i++) {  
               // POPULATE SELECT ELEMENT WITH JSON
             activitynames.push(response.data.activity.activities[i])
             ele.innerHTML = ele.innerHTML +'<option id="'+i+'" value="' + response.data.activity.activities[i]['name'] + '">' + response.data.activity.activities[i]['name'] + '</option>';
             
           }
-
-          for (var i = 0; i < response.data.activity.items.length; i++) {  
+          var ele = document.getElementById('act_list');
+          for (var i = 0; i < response.data.activity.activities.length; i++) {  
               // POPULATE SELECT ELEMENT WITH JSON.
            
-            ele.innerHTML = ele.innerHTML +'<option id="'+i+'" value="' + response.data.activity.items[i]['name'] + '">' + response.data.activity.items[i]['name'] + '</option>';
+            ele.innerHTML = ele.innerHTML +'<option id="'+i+'" value="' + response.data.activity.activities[i]['name'] + '">' + response.data.activity.activities[i]['name'] + '</option>';
           
 
         //   if(inputName==response.data.activity.items[i].name){

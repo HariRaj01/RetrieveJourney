@@ -236,10 +236,11 @@
           var ele = document.getElementById('act_list');
          for (var i = 0; i < response.data.activity.activities.length; i++) {  
               // POPULATE SELECT ELEMENT WITH JSON
-            //activitynames.push(response.data.activity.activities[i].name)
+            activitynames.push(response.data.activity.activities[i])
             ele.innerHTML = ele.innerHTML +'<option id="'+i+'" value="' + response.data.activity.activities[i]['name'] + '">' + response.data.activity.activities[i]['name'] + '</option>';
             break
           }
+          console.log("ACTIVITY NAMES:",activitynames)
         })
         
         .catch(function(error)

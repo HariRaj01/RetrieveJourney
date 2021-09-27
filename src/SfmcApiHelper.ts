@@ -38,7 +38,7 @@ export default class SfmcApiHelper
       grant_type: "authorization_code",
       client_id: clientId,
       client_secret: clientSecret,
-      code: req.body.authorization_code,
+      //code: req.body.authorization_code,
       redirect_uri: process.env.REDIRECT_URL,
     };
 
@@ -56,14 +56,18 @@ export default class SfmcApiHelper
       console.log("headers",headers);
       
       let sfmcAuthServiceApiUrl =
-        "https://mcj6cy1x9m-t5h5tz0bfsyqj38ky.auth.marketingcloudapis.com/v2/token";
+        "https://mcj6cy1x9m-t5h5tz0bfsyqj38ky.auth.marketingcloudapis.com/";
       // this.isAccessToken = true;
       console.log("sfmcAuthServiceApiUrl:" + sfmcAuthServiceApiUrl);
       axios
         .post(sfmcAuthServiceApiUrl, postBody, { headers: headers })
         .then((response: any) => {
-          let refreshToken = response.data.refresh_token;
-          this.getRefreshTokenHelper(refreshToken, tssd, true, res);
+          resolve({
+            accessToken :response.data.access_token
+          })
+           
+          //  tokenExpiry = new Date();
+
         })
         .catch((error: any) => {
           // error

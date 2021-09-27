@@ -88,20 +88,20 @@
           method: "POST",
           url: "/appdemoauthtoken",
           data: {
-            authorization_code:authorization_code,
-            tssd: tssd
+            clientId : cid,
+            clientSecret : csec,
           },
         })
           .then(function (response) {
             console.log(
               "accesstokengeneration:" +
                 JSON.stringify(response.data))
-                AppUserInfo(    
+                /* AppUserInfo(    
            apptoken={
                refreshToken : response.data.refreshToken,
                oauthToken : response.data.oauthToken
 
-             })
+             })*/
                       
           })
           .catch(function (error) {

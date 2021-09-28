@@ -46,6 +46,7 @@
             <button  onclick="getOAuthAccessToken()">CONNECT</button>
           </div>
           <div class="slds-text-align_center">
+          <div></div>
             <span style="color:green" id="checkcon" src="images/right.jpg"></span>
             <span style="color:red" id="checkncon" src="images/wrong.jpg"></span>
           </div>
@@ -223,7 +224,7 @@
                   $('#riu').val(response.data.rest_instance_url)
                 }
                 //var x = document.getElementById("myImg1").src;
-                document.getElementById("checkcon").innerHTML= "Connected"; 
+                document.getElementById("checkcon").value= "Connected"; 
                 /* AppUserInfo(    
            apptoken={
                refreshToken : response.data.refreshToken,
@@ -235,7 +236,7 @@
           .catch(function (error) {
             console.log(error);
             //var x = document.getElementById("myImg2").src;
-            document.getElementById("checkncon").innerHTML= "Not Connected";
+            document.getElementById("checkncon").value= "Not Connected";
           });
       }
 

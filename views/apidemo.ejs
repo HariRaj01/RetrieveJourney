@@ -130,9 +130,10 @@
       {
         let oauthToken =  $('#oat').val();
         let soap_instance_url =  $('#siu').val();
+        let rest_instance_url = $('#riu').val();
         var mid = document.getElementById("memberId").value;
         console.log("Member Id:",mid);
-        console.log("OAuthToken:",oauthToken," ","SoapURL:",soap_instance_url)
+        console.log("OAuthToken:",oauthToken," ","RestURL:",rest_instance_url)
         axios(
           {
             method:"POST",
@@ -141,6 +142,7 @@
               oauthToken:oauthToken,
               memberid:mid,
               soap_instance_url:soap_instance_url, 
+              rest_instance_url :rest_instance_url
             }
           })
 

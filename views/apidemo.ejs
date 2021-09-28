@@ -300,15 +300,15 @@
         }
         //hide function
         function hideDiv() {
-           test = document.getElementById("testdiv").style.display = 'none';    
+        document.getElementById("testdiv").style.display = 'none';    
         }  
         function myFunction() {
-          var x = document.getElementById("checkcon");
+          var x = document.getElementById("testdiv");
           console.log('checkcon=='+x);
-          if (x.innerHTML === "Connected") {
-            test.style.display = "block";
+          if (x.style.display === "none") {
+            x.style.display = "block";
           } else {
-            test.style.display = "none";
+            x.style.display = "none";
           }
         }
   </script>

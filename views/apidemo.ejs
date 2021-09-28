@@ -143,12 +143,13 @@
                oauthToken : response.data.oauthToken
 
              })*/
-             myFunction();       
+             Connected();       
           })
           .catch(function (error) {
             console.log(error);
             //var x = document.getElementById("myImg2").src;
             document.getElementById("checkcon").innerHTML= "Not Connected";
+            NotConnected();
           });
       }
 
@@ -302,14 +303,19 @@
         function hideDiv() {
         document.getElementById("testdiv").style.display = 'none';    
         }  
-        function myFunction() {
+        function Connected() {
           var x = document.getElementById("testdiv");
           console.log('checkcon=='+x);
           if (x.style.display === "none") {
             x.style.display = "block";
-          } else {
+          } 
+        }
+        function NotConnected() {
+          var x = document.getElementById("testdiv");
+          console.log('checkcon=='+x);
+          if (x.style.display === "block") {
             x.style.display = "none";
-          }
+          } 
         }
   </script>
 </body>

@@ -40,11 +40,18 @@
           </div>
         </div>
         <div class="slds-size_1-of-4">
-          <button class="slds-button slds-button_neutral slds-m-left_xx-large slds-align_absolute-center" onclick="getOAuthAccessToken()">CONNECT</button>
+          <div>
+            <button class="slds-button slds-button_neutral slds-m-left_xx-large slds-align_absolute-center" onclick="getOAuthAccessToken()">CONNECT</button>
+          </div>
+          <div>
+            <span style="color:green" id="checkcon"></span>
+            <span style="color:red" id="checkncon"></span>
+          </div>
+
         </div>
       </div>
     
-      <div>
+      <div class="slds-m-top_medium">
         <button type="button" id="input"  onclick="getJourneyById()">
           GET JOURNEY
         </button> <br><br>
@@ -56,13 +63,17 @@
         </select>
       </div>
     
-      <div>
-        <button  type="button"  onClick="GetSelectedItem('sel')">Get journey json</button>
+      <div class="slds-m-top_medium">
+        <div class="slds-m-top_medium">
+          <button  type="button"  onClick="GetSelectedItem('sel')">Get journey json</button>
+        </div>
         <br/>
-       <textarea id="demo" cols="100" rows="20"  size="10000"name="json data"></textarea>       
+        <div class="slds-m-top_medium">
+          <textarea id="demo" cols="100" rows="20"  size="10000"name="json data"></textarea>       
+        </div>
       </div>
     </div>
-    
+
   </article>
   
 

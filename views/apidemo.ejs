@@ -41,12 +41,16 @@
             <input type="text" id="csec" placeholder="Placeholder text…"  class="slds-input slds-box slds-box_x-small "  />
           </div>
         </div>
+      </div>
+      
+      <div class="demo-only demo-only--sizing slds-grid slds-wrap">
         <div class="slds-size_1-of-4">
           <label class="slds-form-element__label" for="text-input-id-46">MID</label>
           <div class="slds-form-element__control">
             <input type="text" id="memberId" placeholder="Placeholder text…"  class="slds-input slds-box slds-box_x-small "  />
           </div>
         </div>
+        
         <div class="slds-size_1-of-4">
           <div class="slds-text-align_center">
             <button  onclick="getOAuthAccessToken()">CONNECT</button>
@@ -300,7 +304,7 @@
         function myFunction() {
           var x = document.getElementById("checkcon");
           console.log('checkcon=='+x);
-          if (x.id === "Connected") {
+          if (x.innerHTML === "Connected") {
             x.style.display = "block";
           } else {
             x.style.display = "none";

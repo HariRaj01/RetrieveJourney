@@ -21,7 +21,48 @@
   <header>
     <h2>RETRIEVE JSON DATA</h2>
   </header> <br><br> 
-  <div class="slds-grid " >
+  
+  <div class="demo-only demo-only--sizing slds-grid slds-wrap">
+    <div class="slds-size_1-of-4">
+      <label class="slds-form-element__label" for="text-input-id-46">Client ID</label>
+      <div class="slds-form-element__control">
+          <input type="text" id="cid" placeholder="Placeholder text…"  class="slds-input slds-box slds-box_x-small "  />
+        </div>
+    </div>
+  </div>
+
+  <div class="demo-only demo-only--sizing slds-grid slds-wrap">
+    <div class="slds-size_1-of-4">
+      <label class="slds-form-element__label" for="text-input-id-46">Client Secret</label>
+      <div class="slds-form-element__control">
+        <input type="text" id="csec" placeholder="Placeholder text…"  class="slds-input slds-box slds-box_x-small "  />
+      </div>
+    </div>
+    <div class="slds-size_1-of-4">
+      <button class="slds-button slds-button_neutral" "slds-align_absolute-center" onclick="getOAuthAccessToken()">CONNECT</button>
+    </div>
+  </div>
+
+  <div>
+    <button type="button" id="input"  onclick="getJourneyById()">
+      GET JOURNEY
+    </button> <br><br>
+  </div>
+
+  <div>
+    <select id="sel"  >
+      <option value="" >-- Select --</option>
+    </select>
+  </div>
+
+  <div>
+    <button  type="button"  onClick="GetSelectedItem('sel')">Get journey json</button>
+    <br/>
+   <textarea id="demo" cols="100" rows="20" style="margin-left:auto;margin-right:auto;display:block;margin-top:0%;margin-bottom:0%;overflow:scroll" size="10000"name="json data"></textarea>       
+  </div>
+
+
+
     <div class="slds-grid slds-wrap" >
       <div class="slds-col slds-p-horizontal_small">
         <div class="slds-form-element slds-size_1-of-6">
@@ -39,12 +80,10 @@
         <label class="slds-form-element__label" for="text-input-id-46">Client Secret</label>
         <div class="slds-form-element__control">
         <input type="text" id="csec" placeholder="Placeholder text…"  class="slds-input slds-box slds-box_x-small "  />
+        
         </div>
       </div>
-      <div class="slds-form-element slds-size_1-of-3"></div>
-      <div class="slds-form-element slds-size_1-of-3">
-        <button class="slds-button slds-button_neutral" "slds-align_absolute-center" onclick="getOAuthAccessToken()">CONNECT</button>
-      </div>
+     
     </div>
   
     
@@ -105,7 +144,7 @@
     <button  type="button" style="background-color:rgb(45, 27, 201);margin-left:auto;margin-right:auto;display:block;margin-top:0%;margin-bottom:0%;color:goldenrod" onClick="getActivityNames('act_list')">Get activities json</button>
     <br><br> -->
    <textarea id="demo" cols="100" rows="20" style="margin-left:auto;margin-right:auto;display:block;margin-top:0%;margin-bottom:0%;overflow:scroll" size="10000"name="json data"></textarea>       
-  </div>
+  
     <br><br>
     
 </head>

@@ -4,8 +4,8 @@
 <head>
   <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
   <link rel='stylesheet' type="text/css" href="assets/styles/salesforce-lightning-design-system.min.css" />
-  <img id="myImg1" src="images/right.jpg" alt="The Pulpit Rock" width="304" height="228">
-  <img id="myImg2" src="images/wrong.jpg" alt="The Pulpit Rock" width="304" height="228">
+  <!-- <img id="myImg1" src="images/right.jpg" alt="The Pulpit Rock" width="304" height="228">
+  <img id="myImg2" src="images/wrong.jpg" alt="The Pulpit Rock" width="304" height="228"> -->
   <script
       src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.21.0/axios.min.js"
       integrity="sha512-DZqqY3PiOvTP9HkjIWgjO6ouCbq+dxqWoJZ/Q+zPYNHmlnI2dQnbJ5bxAHpAMw+LXRm4D72EIRXzvcHQtE8/VQ=="
@@ -46,8 +46,8 @@
             <button  onclick="getOAuthAccessToken()">CONNECT</button>
           </div>
           <div class="slds-text-align_center">
-            <span style="color:green" id="checkcon" >Connected</span>
-            <span style="color:red" id="checkncon">Not Connected</span>
+            <span style="color:green" id="checkcon" src="images/right.jpg"></span>
+            <span style="color:red" id="checkncon" src="images/wrong.jpg"></span>
           </div>
 
         </div>
@@ -216,8 +216,8 @@
                   $('#siu').val(response.data.soap_instance_url);
                   $('#riu').val(response.data.rest_instance_url)
                 }
-                var x = document.getElementById("myImg1").src;
-                document.getElementById("checkcon").innerHTML= x; 
+                //var x = document.getElementById("myImg1").src;
+                document.getElementById("checkcon").innerHTML= "Connected"; 
                 /* AppUserInfo(    
            apptoken={
                refreshToken : response.data.refreshToken,
@@ -228,8 +228,8 @@
           })
           .catch(function (error) {
             console.log(error);
-            var x = document.getElementById("myImg2").src;
-            document.getElementById("checkncon").innerHTML= x;
+            //var x = document.getElementById("myImg2").src;
+            document.getElementById("checkncon").innerHTML= "Not Connected";
           });
       }
 

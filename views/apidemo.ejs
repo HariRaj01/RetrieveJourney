@@ -299,7 +299,8 @@
         }  
         function myFunction() {
           var x = document.getElementById("checkcon");
-          if (x.style.display === "none") {
+          console.log('checkcon=='+x);
+          if (x.id === "Connected") {
             x.style.display = "block";
           } else {
             x.style.display = "none";

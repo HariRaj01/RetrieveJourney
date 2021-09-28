@@ -105,6 +105,7 @@
     let journeyName= new Array();
     let activitynames = new Array();
     let Journeyid;
+    var test;
   
    
       function getOAuthAccessToken(req,res) {
@@ -299,15 +300,15 @@
         }
         //hide function
         function hideDiv() {
-          document.getElementById("testdiv").style.display = 'none';    
+           test = document.getElementById("testdiv").style.display = 'none';    
         }  
         function myFunction() {
           var x = document.getElementById("checkcon");
           console.log('checkcon=='+x);
           if (x.innerHTML === "Connected") {
-            x.style.display = "block";
+            test.style.display = "block";
           } else {
-            x.style.display = "none";
+            test.style.display = "none";
           }
         }
   </script>

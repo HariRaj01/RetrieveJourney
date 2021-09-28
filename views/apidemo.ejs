@@ -47,8 +47,8 @@
           </div>
           <div class="slds-text-align_center">
           <div></div>
-            <span style="color:green" id="checkcon" src="images/right.jpg"></span>
-            <span style="color:red" id="checkncon" src="images/wrong.jpg"></span>
+            <p style="color:green" id="checkcon" src="images/right.jpg"></p>
+            <p style="color:red" id="checkncon" src="images/wrong.jpg"></p>
           </div>
 
         </div>
@@ -81,106 +81,7 @@
       
 
   </article>
-  <script>
-    function hideDiv() {
-      document.getElementById("testdiv").style.display = 'none';    
-    }  
-    function myFunction() {
-      var x = document.getElementById("testdiv");
-      if (x.style.display === "none") {
-        x.style.display = "block";
-      } else {
-        x.style.display = "none";
-      }
-    }
-  </script>
   
-
-
-    <div class="slds-grid slds-wrap" >
-      <div class="slds-col slds-p-horizontal_small">
-        <div class="slds-form-element slds-size_1-of-6">
-          <label class="slds-form-element__label" for="text-input-id-46">Client ID</label>
-          <div class="slds-form-element__control">
-          <input type="text" id="cid" placeholder="Placeholder text…"  class="slds-input slds-box slds-box_x-small "  />
-          </div>
-          </div>
-    </div>
-  </div>
-  
-  <div class="slds-grid slds-wrap" >
-    <div class="slds-col slds-p-horizontal_small">
-      <div class="slds-form-element slds-size_1-of-3">
-        <label class="slds-form-element__label" for="text-input-id-46">Client Secret</label>
-        <div class="slds-form-element__control">
-        <input type="text" id="csec" placeholder="Placeholder text…"  class="slds-input slds-box slds-box_x-small "  />
-        
-        </div>
-      </div>
-     
-    </div>
-  
-    
-  <!-- <div class="slds-box" "demo-only">
-  
-    &emsp;&emsp;
-    <div class="slds-align_absolute-center" "slds-form-element">
-      <label class="slds-form-element__label" for="text-input-id-54">
-      <abbr class="slds-required" title="required"> </abbr>CLIENT SECRET</label>
-      <div class="slds-form-element__control"><br>
-      <input type="text" id="clientSecret" placeholder="Client Secret"  class="slds-box slds-box_x-small" />
-      </div>
-
-      </div> -->
-      <div class="slds-col slds-p-horizontal_small">
-        <div class="slds-form-element slds-size_1-of-2">
-      <button class="slds-button slds-button_neutral" "slds-align_absolute-center" onclick="getOAuthAccessToken()">CONNECT</button>
-      <span class="slds-assistive-text" id="checkcon"></span>
-        <span class="slds-assistive-text" id="checkncon"></span>
-      </div>
-    </div>
-    </div>
-    </div>
-<br>
-  <!-- <label for="cid">Client ID</label>
-  <input type="text" id="clientId" name="Client ID" >
-&emsp;&emsp;
-  <label for="csec">Client Secret</label>
-  <input type="text" id="clientSecret" name="Client Secret" >
-  &emsp;&emsp;
-  <label for="mid">Member ID</label>
-  <input type="text" id="memberId" name="Member ID" > -->
-
-  <!-- <button type="button" id="input" style="background-color:rgb(45, 27, 201);color:goldenrod" onclick="getOAuthAccessToken()">
-  CONNECT
- </button>&emsp;
- 
-   <span style="color:green" id="checkcon"></span>
-  <span style="color:red" id="checkncon"></span>
- style="background-color:rgb(45, 27, 201);margin-left:auto;margin-right:auto;display:block;margin-top:0%;margin-bottom:0%;color:goldenrod"
-<br><br> -->
-
-      <button type="button" id="input"  onclick="getJourneyById()">
-        GET JOURNEY
-     </button> <br><br>
-     <select id="sel"  >
-      <!-- style="margin-left:auto;margin-right:auto;display:block;margin-top:0%;margin-bottom:0%"
-      style="margin-left:auto;margin-right:auto;display:block;margin-top:0%;margin-bottom:0%" -->
-      <option value="" >-- Select --</option>
-    </select>
-    <br/>
-    <button  type="button" style="background-color:rgb(45, 27, 201);margin-left:auto;margin-right:auto;display:block;margin-top:0%;margin-bottom:0%;color:goldenrod" onClick="GetSelectedItem('sel')">Get journey json</button>
-    <br><br>
-    <!-- <select id="act_list" style="margin-left:auto;margin-right:auto;display:block;margin-top:0%;margin-bottom:0%" >
-      <option style="margin-left:auto;margin-right:auto;display:block;margin-top:0%;margin-bottom:0%"  value="" >-- Select --</option>
-    </select>
-    <br><br>
-    <button  type="button" style="background-color:rgb(45, 27, 201);margin-left:auto;margin-right:auto;display:block;margin-top:0%;margin-bottom:0%;color:goldenrod" onClick="getActivityNames('act_list')">Get activities json</button>
-    <br><br> -->
-   <textarea id="demo" cols="100" rows="20" style="margin-left:auto;margin-right:auto;display:block;margin-top:0%;margin-bottom:0%;overflow:scroll" size="10000"name="json data"></textarea>       
-  
-    <br><br>
-    
 </head>
 
 <body onload="hideDiv()"> 
@@ -224,7 +125,7 @@
                   $('#riu').val(response.data.rest_instance_url)
                 }
                 //var x = document.getElementById("myImg1").src;
-                document.getElementById("checkcon").value= "Connected"; 
+                document.getElementById("checkcon").innerHTML= "Connected"; 
                 /* AppUserInfo(    
            apptoken={
                refreshToken : response.data.refreshToken,
@@ -236,7 +137,7 @@
           .catch(function (error) {
             console.log(error);
             //var x = document.getElementById("myImg2").src;
-            document.getElementById("checkncon").value= "Not Connected";
+            document.getElementById("checkncon").innerHTML= "Not Connected";
           });
       }
 

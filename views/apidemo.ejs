@@ -54,7 +54,7 @@
       </div>
     
       <div class="slds-m-top_medium">
-        <button type="button" id="input"  onclick="getJourneyById()">
+        <button type="button" id="input" disabled=""  onclick="getJourneyById()">
           GET JOURNEY
         </button> <br><br>
       </div>
@@ -77,8 +77,12 @@
     </div>
 
   </article>
+  <script>
+    function hideDiv() {
+      document.getElementById("testdiv").style.display = 'none';    
+    }  
+  </script>
   
-
 
 
     <div class="slds-grid slds-wrap" >

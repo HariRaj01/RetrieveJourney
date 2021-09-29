@@ -129,7 +129,7 @@ public getOAuthTokenHelper(headers : any, postBody: any) : Promise<any>
           .send(Utils.prettyPrintJson(JSON.stringify(error.response.data)));
       });
     }
-    
+
     public getactivityById(req: express.Request, res: express.Response) {
       //this.getRefreshTokenHelper(this._accessToken, res);
       //this.getRefreshTokenHelper(this._accessToken, res);
@@ -178,4 +178,5 @@ public getOAuthTokenHelper(headers : any, postBody: any) : Promise<any>
         });
 
     
-};
+}
+}

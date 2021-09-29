@@ -212,94 +212,51 @@
              document.getElementById("demo").innerText= JSON.stringify(journeyName[x]);
               Journeyid = journeyName[x].id; 
             }
-          // ActivityId()
+           ActivityId()
           }
           
           
       //document.getElementById("demo1").innerText=e.options[e.selectedIndex].value;
         }
-      function ActivityId()
-      {
-        let refreshToken =  $('#rt').val();
-        let oauthToken =  $('#oat').val();
-        let memberid =  $('#mid').val();
-        let soap_instance_url =  $('#siu').val();
-        console.log("RefreshToken",refreshToken);
-        console.log("Journeyid>>>>",Journeyid)
-        
-        let id = Journeyid
-    
-        axios(
-          {
-            method:"POST",
-            url: "/getactivityById",
-            data: {
-              refreshToken:refreshToken,
-              oauthToken:oauthToken,
-              memberid:memberid,
-              soap_instance_url:soap_instance_url,
-              journeyId:id
-            }
-          })
-
-        .then(function(response)
+        function ActivityId(Journeyid)
         {
-          console.log("response>>>",response)
-         // document.getElementById("demo").innerText= JSON.stringify(response.data.activity.activities);
-
+          let refreshToken =  $('#rt').val();
+          let oauthToken =  $('#oat').val();
+          let memberid =  $('#mid').val();
+          let rest_instance_url =  $('#riu').val();
+          console.log("RefreshToken",refreshToken);
+          console.log("Journeyid>>>>",Journeyid)
           
-         for (var i = 0; i < response.data.activity.activities.length; i++) {  
-              // POPULATE SELECT ELEMENT WITH JSON
-            activitynames.push(response.data.activity.activities[i])
-            ele.innerHTML = ele.innerHTML +'<option id="'+i+'" value="' + response.data.activity.activities[i]['name'] + '">' + response.data.activity.activities[i]['name'] + '</option>';
-            
-          }
-          var ele = document.getElementById('act_list');
-          for (var i = 0; i < response.data.activity.activities.length; i++) {  
-              // POPULATE SELECT ELEMENT WITH JSON.
-           
-            ele.innerHTML = ele.innerHTML +'<option id="'+i+'" value="' + response.data.activity.activities[i]['name'] + '">' + response.data.activity.activities[i]['name'] + '</option>';
-          
-
-        //   if(inputName==response.data.activity.items[i].name){
-          
-         // break;   
-        //}
-      }
-          console.log("ACTIVITY NAMES:",activitynames)
-        })
-        
-        .catch(function(error)
-        {
-          document.getElementById("demo").innerText = "Invalid Journey Name or Error in getting JSON Data"
-          console.log(error);
-        })
-        
-      }
-
-
-      function getActivityNames(el)
-      {
-        
-          var e = document.getElementById(el);
-          console.log("Activities JSON>>>",activitynames);
-          
-          console.log("e.options[e.selectedIndex].value",e.options[e.selectedIndex].name);
-          var getValue= document.getElementById('act_list').selectedOptions[0].value;
-          console.log("Get Selected value:",getValue)
-
-          for (var x= 0; x < activitynames.length; x++) {  
-            if(getValue == activitynames)
+          let id = Journeyid
+      
+          axios(
             {
-             document.getElementById("demo").innerText= JSON.stringify(activitynames[x]);
-             
-            }
-           
-          }
-
+              method:"POST",
+              url: "/getactivityById",
+              data: {
+                refreshToken:refreshToken,
+                oauthToken:oauthToken,
+                memberid:memberid,
+                rest_instance_url:rest_instance_url,
+                journeyId:id
+              }
+            })
+  
+          .then(function(response)
+          {
+            console.log("response>>>",response)
+            document.getElementById("demo").innerText= JSON.stringify(response.data);
+            
+          })
           
-      //document.getElementById("demo1").innerText=e.options[e.selectedIndex].value;
-        }
+          .catch(function(error)
+          {
+            document.getElementById("demo").innerText = "Invalid Journey Name or Error in getting JSON Data"
+            console.log(error);
+          })
+          
+        } 
+        
         //hide function
         function hideDiv() {
         document.getElementById("testdiv").style.display = 'none';    

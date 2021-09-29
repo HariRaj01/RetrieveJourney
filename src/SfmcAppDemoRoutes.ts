@@ -59,9 +59,9 @@ export default class SfmcAppDemoRoutes
         self._apiHelper.getJourneysById(req, res);
       }
         
-    // public getactivityById(req: express.Request, res: express.Response) {
-    //     let self = this;
-    //     self._apiHelper.getactivityById(req, res);
-    //   }
+    public getactivityById(req: express.Request, res: express.Response) {
+        let self = this;
+        self._apiHelper.getactivityById(req, res);
+      }
     
 }
